@@ -31,14 +31,12 @@ class TaxNumber implements ValueObject, Arrayable
         );
 
         $this->when($this->isWithCountry(), function () {
-            $stringable = str($this->tax_number);
-
-            $this->country = $stringable
+            $this->country = str($this->tax_number)
                 ->substr(0, 2)
                 ->upper()
                 ->value();
 
-            $this->tax_number = $stringable
+            $this->tax_number = str($this->tax_number)
                 ->substr(2)
                 ->value();
         });
