@@ -6,8 +6,5 @@ namespace MichaelRubel\ValueObjects;
 
 interface ValueObject
 {
-    /**
-     * @return static
-     */
-    public static function make(): static;
+    //
 }
