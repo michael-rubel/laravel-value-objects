@@ -1,12 +1,12 @@
 {
-    "name": "michael-rubel/laravel-package-template",
+    "name": "michael-rubel/laravel-value-objects",
     "description": "It is an example template for Laravel packages. Fill or change it the way you like.",
     "keywords": [
         "michael-rubel",
         "laravel",
-        "laravel-package-template"
+        "laravel-value-objects"
     ],
-    "homepage": "https://github.com/michael-rubel/laravel-package-template",
+    "homepage": "https://github.com/michael-rubel/laravel-value-objects",
     "license": "MIT",
     "authors": [
         {
@@ -17,7 +17,8 @@
     ],
     "require": {
         "php": "^8.0",
-        "spatie/laravel-package-tools": "^1.11"
+        "spatie/laravel-package-tools": "^1.11",
+        "michael-rubel/laravel-formatters": "^5.0"
     },
     "require-dev": {
         "nunomaduro/collision": "^5.10|^6.0",
@@ -31,12 +32,12 @@
     },
     "autoload": {
         "psr-4": {
-            "MichaelRubel\\PackageTemplate\\": "src"
+            "MichaelRubel\\ValueObjects\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "MichaelRubel\\PackageTemplate\\Tests\\": "tests"
+            "MichaelRubel\\ValueObjects\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -49,7 +50,7 @@
     "extra": {
         "laravel": {
             "providers": [
-              "MichaelRubel\\PackageTemplate\\TemplateServiceProvider"
+              "MichaelRubel\\ValueObjects\\ValueObjectServiceProvider"
             ]
         }
     },
