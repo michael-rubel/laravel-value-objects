@@ -33,7 +33,8 @@
         "pestphp/pest-plugin-global-assertions": "^1.0",
         "pestphp/pest-plugin-laravel": "^1.1",
         "pestphp/pest-plugin-mock": "^1.0",
-        "pestphp/pest-plugin-parallel": "^0.2.0"
+        "pestphp/pest-plugin-parallel": "^0.2.0",
+        "laravel/pint": "^1.2"
     },
     "autoload": {
         "psr-4": {

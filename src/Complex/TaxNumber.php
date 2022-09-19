@@ -18,8 +18,8 @@ class TaxNumber implements ValueObject, Arrayable
     /**
      * Create a new value object instance.
      *
-     * @param string|null $tax_number
-     * @param string|null $country
+     * @param  string|null  $tax_number
+     * @param  string|null  $country
      */
     final public function __construct(
         public ?string $tax_number = null,
@@ -45,8 +45,8 @@ class TaxNumber implements ValueObject, Arrayable
     /**
      * Return a new instance of TaxNumber.
      *
-     * @param string|null $tax_number
-     * @param string|null $country
+     * @param  string|null  $tax_number
+     * @param  string|null  $country
      *
      * @return static
      */
