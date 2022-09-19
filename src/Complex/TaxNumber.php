@@ -62,7 +62,7 @@ class TaxNumber implements ValueObject, Arrayable
      */
     public function isWithCountry(): bool
     {
-        return strlen($this->tax_number) >= 2
+        return strlen((string) $this->tax_number) >= 2
             && ! is_numeric($this->tax_number);
     }
 

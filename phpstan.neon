@@ -8,6 +8,10 @@ parameters:
 
     level: max
 
+    ignoreErrors:
+        - '#Cannot call method (.*) on mixed\.#'
+        - '#Property (.*) does not accept mixed\.#'
+
     checkMissingIterableValueType: false
 
     reportUnmatchedIgnoredErrors: false
