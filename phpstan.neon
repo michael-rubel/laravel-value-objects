@@ -1,0 +1,15 @@
+includes:
+    - ./vendor/nunomaduro/larastan/extension.neon
+
+parameters:
+
+    paths:
+        - src
+
+    level: max
+
+    checkMissingIterableValueType: false
+
+    reportUnmatchedIgnoredErrors: false
+
+    checkOctaneCompatibility: true

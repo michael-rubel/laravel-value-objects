@@ -1,0 +1,21 @@
+{
+  "preset": "laravel",
+  "rules": {
+    "Laravel/laravel_phpdoc_separation": false,
+    "concat_space": {
+      "spacing": "one"
+    },
+    "class_attributes_separation": {
+      "elements": {
+        "const": "only_if_meta"
+      }
+    },
+    "binary_operator_spaces": {
+      "default": "single_space",
+      "operators": {"=>": null, "=": "align_single_space_minimal"}
+    }
+  },
+  "exclude": [
+    "src/Overrides"
+  ]
+}
