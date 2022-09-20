@@ -1,0 +1,83 @@
+<?php
+
+declare(strict_types=1);
+
+namespace MichaelRubel\ValueObjects\Complex;
+
+use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Support\Traits\Conditionable;
+use Illuminate\Support\Traits\Macroable;
+use Illuminate\Support\Traits\Tappable;
+use MichaelRubel\ValueObjects\ValueObject;
+
+class Uuid implements ValueObject, Arrayable
+{
+    use Macroable, Conditionable, Tappable;
+
+    /**
+     * Create a new value object instance.
+     *
+     * @param  string|null  $uuid
+     * @param  string|null  $name
+     */
+    final public function __construct(
+        public ?string $uuid,
+        public ?string $name = null,
+    ) {
+        if (! str($this->uuid)->isUuid()) {
+            throw new \InvalidArgumentException('Your UUID is invalid.');
+        }
+    }
+
+    /**
+     * Return a new instance of value object.
+     *
+     * @param  string|null  $uuid
+     * @param  string|null  $name
+     *
+     * @return static
+     */
+    public static function make(
+        ?string $uuid,
+        ?string $name = null,
+    ): static {
+        return new static($uuid, $name);
+    }
+
+    /**
+     * @return string
+     */
+    public function name(): string
+    {
+        return str($this->name)->value();
+    }
+
+    /**
+     * @return string
+     */
+    public function value(): string
+    {
+        return $this->uuid;
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray(): array
+    {
+        return [
+            'name'  => $this->name,
+            'value' => $this->uuid,
+        ];
+    }
+
+    /**
+     * Return the first UUID if cast to string.
+     *
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return str($this->uuid)->value();
+    }
+}
