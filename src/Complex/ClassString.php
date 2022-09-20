@@ -24,7 +24,7 @@ class ClassString implements ValueObject
     }
 
     /**
-     * Return a new instance of TaxNumber.
+     * Return a new instance of value object.
      *
      * @param string|null $classString
      *
