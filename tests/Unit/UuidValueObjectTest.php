@@ -10,13 +10,13 @@ test('uuid returns error if wrong uuid string', function () {
 })->expectException(\InvalidArgumentException::class);
 
 test('can set uuid name', function () {
-    $uuid = (string) Str::uuid();
+    $uuid   = (string) Str::uuid();
     $result = new Uuid($uuid, 'verification');
     $this->assertSame('verification', $result->name());
 });
 
 test('can set uuid value', function () {
-    $uuid = (string) Str::uuid();
+    $uuid   = (string) Str::uuid();
     $result = new Uuid($uuid);
     $this->assertSame($uuid, $result->value());
 });

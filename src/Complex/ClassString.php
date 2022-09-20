@@ -16,7 +16,7 @@ class ClassString implements ValueObject
     /**
      * Create a new value object instance.
      *
-     * @param string|null $classString
+     * @param  string|null  $classString
      */
     final public function __construct(public ?string $classString)
     {
@@ -26,7 +26,7 @@ class ClassString implements ValueObject
     /**
      * Return a new instance of value object.
      *
-     * @param string|null $classString
+     * @param  string|null  $classString
      *
      * @return static
      */

@@ -6,7 +6,7 @@ use MichaelRubel\ValueObjects\Complex\ClassString;
 use MichaelRubel\ValueObjects\Tests\TestCase;
 
 test('class string is empty string', function () {
-    $classString =  new ClassString('');
+    $classString = new ClassString('');
 
     assertFalse($classString->isClassExists());
     assertFalse($classString->isInterfaceExists());
