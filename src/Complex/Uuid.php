@@ -49,7 +49,7 @@ class Uuid implements ValueObject, Arrayable
      */
     public function name(): string
     {
-        return str($this->name)->value();
+        return (string) $this->name;
     }
 
     /**
@@ -57,7 +57,7 @@ class Uuid implements ValueObject, Arrayable
      */
     public function value(): string
     {
-        return $this->uuid;
+        return (string) $this->uuid;
     }
 
     /**

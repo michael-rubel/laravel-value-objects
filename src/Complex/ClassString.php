@@ -40,7 +40,7 @@ class ClassString implements ValueObject
      */
     public function isClassExists(): bool
     {
-        return class_exists($this->classString);
+        return class_exists($this->getClassString());
     }
 
     /**
@@ -48,7 +48,7 @@ class ClassString implements ValueObject
      */
     public function isInterfaceExists(): bool
     {
-        return interface_exists($this->classString);
+        return interface_exists($this->getClassString());
     }
 
     /**
@@ -58,7 +58,7 @@ class ClassString implements ValueObject
      */
     public function getClassString(): string
     {
-        return str($this->classString)->value();
+        return (string) $this->classString;
     }
 
     /**

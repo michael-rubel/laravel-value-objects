@@ -72,7 +72,7 @@ class FullName implements ValueObject, Arrayable
      */
     public function getFullName(): string
     {
-        return $this->full_name;
+        return (string) $this->full_name;
     }
 
     /**

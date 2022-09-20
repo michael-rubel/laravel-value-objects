@@ -12,6 +12,7 @@ parameters:
         - '#Cannot call method (.*) on mixed\.#'
         - '#Property (.*) does not accept mixed\.#'
         - '#Method (.*) should return (.*) but returns mixed\.#'
+        - '#Parameter (.*), mixed given.#'
 
     checkMissingIterableValueType: false
 
