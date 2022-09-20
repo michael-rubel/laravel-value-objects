@@ -11,9 +11,12 @@ parameters:
     ignoreErrors:
         - '#Cannot call method (.*) on mixed\.#'
         - '#Property (.*) does not accept mixed\.#'
+        - '#Method (.*) should return (.*) but returns mixed\.#'
 
     checkMissingIterableValueType: false
 
     reportUnmatchedIgnoredErrors: false
 
     checkOctaneCompatibility: true
+
+    checkGenericClassInNonGenericObjectType: false
