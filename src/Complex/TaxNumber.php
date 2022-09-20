@@ -71,7 +71,7 @@ class TaxNumber implements ValueObject, Arrayable
      *
      * @return string
      */
-    public function getTaxNumber(): string
+    public function taxNumber(): string
     {
         return str($this->tax_number)
             ->upper()
@@ -83,7 +83,7 @@ class TaxNumber implements ValueObject, Arrayable
      *
      * @return string
      */
-    public function getCountry(): string
+    public function country(): string
     {
         return str($this->country)
             ->upper()
@@ -96,9 +96,9 @@ class TaxNumber implements ValueObject, Arrayable
      *
      * @return string
      */
-    public function getFullTaxNumber(): string
+    public function fullTaxNumber(): string
     {
-        return $this->getCountry() . $this->getTaxNumber();
+        return $this->country() . $this->taxNumber();
     }
 
     /**
@@ -109,9 +109,9 @@ class TaxNumber implements ValueObject, Arrayable
     public function toArray(): array
     {
         return [
-            'full_tax_number' => $this->getFullTaxNumber(),
-            'tax_number'      => $this->getTaxNumber(),
-            'country'         => $this->getCountry(),
+            'full_tax_number' => $this->fullTaxNumber(),
+            'tax_number'      => $this->taxNumber(),
+            'country'         => $this->country(),
         ];
     }
 
@@ -122,6 +122,6 @@ class TaxNumber implements ValueObject, Arrayable
      */
     public function __toString(): string
     {
-        return $this->getFullTaxNumber();
+        return $this->fullTaxNumber();
     }
 }

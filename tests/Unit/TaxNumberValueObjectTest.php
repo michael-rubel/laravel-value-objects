@@ -6,60 +6,60 @@ use MichaelRubel\ValueObjects\Complex\TaxNumber;
 
 test('data in tax number is null and country is null', function () {
     $data = new TaxNumber;
-    $this->assertEmpty($data->getCountry());
-    $this->assertEmpty($data->getTaxNumber());
+    $this->assertEmpty($data->country());
+    $this->assertEmpty($data->taxNumber());
 });
 
 test('data in tax number is number plus prefix country is null', function () {
     $data = new TaxNumber('PL1234567890');
-    $this->assertEquals('PL', $data->getCountry());
-    $this->assertEquals('1234567890', $data->getTaxNumber());
+    $this->assertEquals('PL', $data->country());
+    $this->assertEquals('1234567890', $data->taxNumber());
 });
 
 test('data in tax number is number plus prefix country is null and prefix lowercase char', function () {
     $data = new TaxNumber('pl1234567890');
-    $this->assertEquals('PL', $data->getCountry());
-    $this->assertEquals('1234567890', $data->getTaxNumber());
+    $this->assertEquals('PL', $data->country());
+    $this->assertEquals('1234567890', $data->taxNumber());
 });
 
 test('data in tax number is number without prefix country is null', function () {
     $data = new TaxNumber('1234567890');
-    $this->assertEquals('', $data->getCountry());
-    $this->assertEquals('1234567890', $data->getTaxNumber());
+    $this->assertEquals('', $data->country());
+    $this->assertEquals('1234567890', $data->taxNumber());
 });
 
 test('data in tax number is number plus prefix country is ok', function () {
     $data = new TaxNumber('PL1234567890', 'PL');
-    $this->assertEquals('PL', $data->getCountry());
-    $this->assertEquals('1234567890', $data->getTaxNumber());
+    $this->assertEquals('PL', $data->country());
+    $this->assertEquals('1234567890', $data->taxNumber());
 });
 
 test('data in tax number is number country is added', function () {
     $data = new TaxNumber('1234567890', 'pL');
-    $this->assertEquals('PL', $data->getCountry());
-    $this->assertEquals('1234567890', $data->getTaxNumber());
+    $this->assertEquals('PL', $data->country());
+    $this->assertEquals('1234567890', $data->taxNumber());
 });
 
 test('data in tax number is number country is added another', function () {
     $data = new TaxNumber('pL1234567890', 'aa');
-    $this->assertEquals('AA', $data->getCountry());
-    $this->assertEquals('PL1234567890', $data->getTaxNumber());
+    $this->assertEquals('AA', $data->country());
+    $this->assertEquals('PL1234567890', $data->taxNumber());
 });
 
 test('data in tax number is number country is added out full number vat', function () {
     $data = new TaxNumber('1234567890', 'pL');
-    $this->assertEquals('PL1234567890', $data->getFullTaxNumber());
+    $this->assertEquals('PL1234567890', $data->fullTaxNumber());
 });
 
 test('data in tax number is number country is added and special characters out full number vat', function () {
     $data = new TaxNumber(' pl 123-456.78 90 ', 'pL');
-    $this->assertEquals('PL1234567890', $data->getFullTaxNumber());
+    $this->assertEquals('PL1234567890', $data->fullTaxNumber());
 });
 
 test('data in tax number is number country is added another static', function () {
     $data = TaxNumber::make('pL006888nHy', 'aZ');
-    $this->assertEquals('AZ', $data->getCountry());
-    $this->assertEquals('PL006888NHY', $data->getTaxNumber());
+    $this->assertEquals('AZ', $data->country());
+    $this->assertEquals('PL006888NHY', $data->taxNumber());
 });
 
 test('data in ta number is number country is added another method to string', function () {
@@ -79,86 +79,86 @@ test('tests that are used in the examples in ReadMe', function () {
 
     $multi = TaxNumber::make('Ab 012-345 67.89', 'uK');
     $this->assertEquals('UKAB0123456789', $multi);
-    $this->assertEquals('UKAB0123456789', $multi->getFullTaxNumber());
-    $this->assertEquals('UK', $multi->getCountry());
-    $this->assertEquals('AB0123456789', $multi->getTaxNumber());
+    $this->assertEquals('UKAB0123456789', $multi->fullTaxNumber());
+    $this->assertEquals('UK', $multi->country());
+    $this->assertEquals('AB0123456789', $multi->taxNumber());
 });
 
 test('passed null values to value object', function () {
     $data = new TaxNumber(null, null);
-    $this->assertEquals('', $data->getCountry());
-    $this->assertEquals('', $data->getTaxNumber());
+    $this->assertEquals('', $data->country());
+    $this->assertEquals('', $data->taxNumber());
 
     $data = (new TaxNumber(null, null))
-        ->getFullTaxNumber();
+        ->fullTaxNumber();
     $this->assertEquals('', $data);
 
     $data = TaxNumber::make(null, null);
-    $this->assertEquals('', $data->getCountry());
-    $this->assertEquals('', $data->getTaxNumber());
+    $this->assertEquals('', $data->country());
+    $this->assertEquals('', $data->taxNumber());
 
     $data = TaxNumber::make(null, null)
-        ->getFullTaxNumber();
+        ->fullTaxNumber();
     $this->assertEquals('', $data);
 });
 
 test('passed empty values to value object', function () {
     $data = new TaxNumber('', '');
-    $this->assertEquals('', $data->getCountry());
-    $this->assertEquals('', $data->getTaxNumber());
+    $this->assertEquals('', $data->country());
+    $this->assertEquals('', $data->taxNumber());
 
     $data = (new TaxNumber('', ''))
-        ->getFullTaxNumber();
+        ->fullTaxNumber();
     $this->assertEquals('', $data);
 
     $data = TaxNumber::make('', '');
-    $this->assertEquals('', $data->getCountry());
-    $this->assertEquals('', $data->getTaxNumber());
+    $this->assertEquals('', $data->country());
+    $this->assertEquals('', $data->taxNumber());
 
     $data = TaxNumber::make('', '')
-        ->getFullTaxNumber();
+        ->fullTaxNumber();
     $this->assertEquals('', $data);
 });
 
 test('passed empty tax number and null country', function () {
     $data = new TaxNumber('', null);
-    $this->assertEquals('', $data->getCountry());
-    $this->assertEquals('', $data->getTaxNumber());
+    $this->assertEquals('', $data->country());
+    $this->assertEquals('', $data->taxNumber());
 
     $data = (new TaxNumber('', null))
-        ->getFullTaxNumber();
+        ->fullTaxNumber();
     $this->assertEquals('', $data);
 
     $data = TaxNumber::make('', null);
-    $this->assertEquals('', $data->getCountry());
-    $this->assertEquals('', $data->getTaxNumber());
+    $this->assertEquals('', $data->country());
+    $this->assertEquals('', $data->taxNumber());
 
     $data = TaxNumber::make('', null)
-        ->getFullTaxNumber();
+        ->fullTaxNumber();
     $this->assertEquals('', $data);
 });
 
 test('passed null tax number and empty country', function () {
     $data = new TaxNumber(null, '');
-    $this->assertEquals('', $data->getCountry());
-    $this->assertEquals('', $data->getTaxNumber());
+    $this->assertEquals('', $data->country());
+    $this->assertEquals('', $data->taxNumber());
 
     $data = (new TaxNumber(null, ''))
-        ->getFullTaxNumber();
+        ->fullTaxNumber();
     $this->assertEquals('', $data);
 
     $data = TaxNumber::make(null, '');
-    $this->assertEquals('', $data->getCountry());
-    $this->assertEquals('', $data->getTaxNumber());
+    $this->assertEquals('', $data->country());
+    $this->assertEquals('', $data->taxNumber());
 
     $data = TaxNumber::make(null, '')
-        ->getFullTaxNumber();
+        ->fullTaxNumber();
     $this->assertEquals('', $data);
 });
 
 test('tax number value object is macroable', function () {
     TaxNumber::macro('getLength', function () {
-        return str($this->getFullTaxNumber())->length();
+        return str($this->fullTaxNumber())->length();
     });
 
     $valueObject = TaxNumber::make('PL0123456789');
@@ -169,8 +169,8 @@ test('tax number value object is macroable', function () {
 test('tax number value object is conditionable', function () {
     $valueObject = TaxNumber::make('PL0123456789');
 
-    assertSame('PL', $valueObject->when(true)->getCountry());
-    assertSame($valueObject, $valueObject->when(false)->getCountry());
+    assertSame('PL', $valueObject->when(true)->country());
+    assertSame($valueObject, $valueObject->when(false)->country());
 });
 
 test('tax number value object is tappable', function () {

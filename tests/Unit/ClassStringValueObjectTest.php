@@ -8,35 +8,35 @@ use MichaelRubel\ValueObjects\Tests\TestCase;
 test('class string is empty string', function () {
     $classString = new ClassString('');
 
-    assertFalse($classString->isClassExists());
-    assertFalse($classString->isInterfaceExists());
+    assertFalse($classString->classExists());
+    assertFalse($classString->interfaceExists());
 });
 
 test('can get class string', function () {
     $classString = new ClassString('My\Test\Class');
 
-    assertSame('My\Test\Class', $classString->getClassString());
+    assertSame('My\Test\Class', $classString->value());
 });
 
 test('class string not instantiable and class and interface are undefined', function () {
     $classString = new ClassString('My\Test\Class\NotInstantiable');
 
-    assertFalse($classString->isClassExists());
-    assertFalse($classString->isInterfaceExists());
+    assertFalse($classString->classExists());
+    assertFalse($classString->interfaceExists());
 });
 
 test('class string is exists but interface dont', function () {
     $classString = new ClassString(ClassString::class);
 
-    assertTrue($classString->isClassExists());
-    assertFalse($classString->isInterfaceExists());
+    assertTrue($classString->classExists());
+    assertFalse($classString->interfaceExists());
 });
 
 test('class string is interface & exists but class dont', function () {
     $classString = new ClassString(TestCase::class);
 
-    assertTrue($classString->isClassExists());
-    assertFalse($classString->isInterfaceExists());
+    assertTrue($classString->classExists());
+    assertFalse($classString->interfaceExists());
 });
 
 test('can cast class string to string', function () {
@@ -47,10 +47,10 @@ test('can cast class string to string', function () {
 
 test('class string is null', function () {
     $classString = new ClassString('');
-    assertSame('', $classString->getClassString());
+    assertSame('', $classString->value());
 
     $classString = new ClassString(null);
-    assertSame('', $classString->getClassString());
+    assertSame('', $classString->value());
 
     $classString = new ClassString(null);
     assertSame('', (string) $classString);
@@ -58,7 +58,7 @@ test('class string is null', function () {
 
 test('class string value object is macroable', function () {
     ClassString::macro('getLength', function () {
-        return str($this->getClassString())->length();
+        return str($this->value())->length();
     });
 
     $valueObject = ClassString::make('TestClass\Testing');
@@ -69,8 +69,8 @@ test('class string value object is macroable', function () {
 test('class string value object is conditionable', function () {
     $valueObject = ClassString::make(TestCase::class);
 
-    assertTrue($valueObject->when(true)->isClassExists());
-    assertSame($valueObject, $valueObject->when(false)->isClassExists());
+    assertTrue($valueObject->when(true)->classExists());
+    assertSame($valueObject, $valueObject->when(false)->classExists());
 });
 
 test('class string value object is tappable', function () {

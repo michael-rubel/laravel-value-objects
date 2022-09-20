@@ -38,17 +38,17 @@ class ClassString implements ValueObject
     /**
      * @return bool
      */
-    public function isClassExists(): bool
+    public function classExists(): bool
     {
-        return class_exists($this->getClassString());
+        return class_exists($this->value());
     }
 
     /**
      * @return bool
      */
-    public function isInterfaceExists(): bool
+    public function interfaceExists(): bool
     {
-        return interface_exists($this->getClassString());
+        return interface_exists($this->value());
     }
 
     /**
@@ -56,7 +56,7 @@ class ClassString implements ValueObject
      *
      * @return string
      */
-    public function getClassString(): string
+    public function value(): string
     {
         return (string) $this->classString;
     }
@@ -68,6 +68,6 @@ class ClassString implements ValueObject
      */
     public function __toString(): string
     {
-        return $this->getClassString();
+        return $this->value();
     }
 }

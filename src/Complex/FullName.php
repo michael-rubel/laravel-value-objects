@@ -50,7 +50,7 @@ class FullName implements ValueObject, Arrayable
      *
      * @return string
      */
-    public function getFirstName(): string
+    public function firstName(): string
     {
         return $this->split->first();
     }
@@ -60,7 +60,7 @@ class FullName implements ValueObject, Arrayable
      *
      * @return string
      */
-    public function getLastName(): string
+    public function lastName(): string
     {
         return $this->split->last();
     }
@@ -70,7 +70,7 @@ class FullName implements ValueObject, Arrayable
      *
      * @return string
      */
-    public function getFullName(): string
+    public function fullName(): string
     {
         return (string) $this->full_name;
     }
@@ -81,9 +81,9 @@ class FullName implements ValueObject, Arrayable
     public function toArray(): array
     {
         return [
-            'full_name'  => $this->getFullName(),
-            'first_name' => $this->getFirstName(),
-            'last_name'  => $this->getLastName(),
+            'full_name'  => $this->fullName(),
+            'first_name' => $this->firstName(),
+            'last_name'  => $this->lastName(),
         ];
     }
 
@@ -94,6 +94,6 @@ class FullName implements ValueObject, Arrayable
      */
     public function __toString(): string
     {
-        return $this->getFullName();
+        return $this->fullName();
     }
 }
