@@ -4,37 +4,46 @@ declare(strict_types=1);
 
 namespace MichaelRubel\ValueObjects\Complex;
 
+use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Stringable;
+use Illuminate\Support\Traits\Conditionable;
+use Illuminate\Support\Traits\Macroable;
+use Illuminate\Support\Traits\Tappable;
 use MichaelRubel\Formatters\Collection\FullNameFormatter;
 use MichaelRubel\ValueObjects\ValueObject;
 
-class FullName implements ValueObject
+class FullName implements ValueObject, Arrayable
 {
+    use Macroable, Conditionable, Tappable;
+
+    /**
+     * @var Collection
+     */
+    protected Collection $split;
+
     /**
      * Create a new value object instance.
      *
-     * @param string|null $first_name
-     * @param string|null $last_name
+     * @param  string|null  $full_name
      */
-    final public function __construct(
-        public ?string $first_name = null,
-        public ?string $last_name = null,
-    ) {
-        //
+    final public function __construct(public ?string $full_name)
+    {
+        $this->full_name = format(FullNameFormatter::class, $this->full_name);
+
+        $this->split = str($this->full_name)->split('/\s/');
     }
 
     /**
      * Return a new instance of TaxNumber.
      *
-     * @param string|null $first_name
-     * @param string|null $last_name
+     * @param  string|null  $name
      *
      * @return static
      */
-    public static function make(
-        ?string $first_name = null,
-        ?string $last_name = null,
-    ): static {
-        return new static($first_name, $last_name);
+    public static function make(?string $name = null): static
+    {
+        return new static($name);
     }
 
     /**
@@ -44,7 +53,7 @@ class FullName implements ValueObject
      */
     public function getFirstName(): string
     {
-        return format(FullNameFormatter::class, $this->first_name);
+        return $this->split->first();
     }
 
     /**
@@ -54,7 +63,7 @@ class FullName implements ValueObject
      */
     public function getLastName(): string
     {
-        return format(FullNameFormatter::class, $this->last_name);
+        return $this->split->last();
     }
 
     /**
@@ -64,9 +73,19 @@ class FullName implements ValueObject
      */
     public function getFullName(): string
     {
-        return str($this->getFirstName() . $this->getLastName())
-            ->headline()
-            ->value();
+        return $this->full_name;
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray(): array
+    {
+        return [
+            'full_name'  => $this->getFullName(),
+            'first_name' => $this->getFirstName(),
+            'last_name'  => $this->getLastName(),
+        ];
     }
 
     /**
