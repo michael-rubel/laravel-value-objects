@@ -23,7 +23,7 @@ class TaxNumber implements ValueObject, Arrayable
      */
     final public function __construct(
         public ?string $tax_number = null,
-        public ?string $country = null
+        public ?string $country = null,
     ) {
         $this->tax_number = format(
             TaxNumberFormatter::class,
@@ -110,7 +110,7 @@ class TaxNumber implements ValueObject, Arrayable
     {
         return [
             'full_tax_number' => $this->getFullTaxNumber(),
-            'tax_number'      => $this->tax_number,
+            'tax_number'      => $this->getTaxNumber(),
             'country'         => $this->getCountry(),
         ];
     }

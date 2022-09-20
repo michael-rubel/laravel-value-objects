@@ -66,8 +66,8 @@ class Uuid implements ValueObject, Arrayable
     public function toArray(): array
     {
         return [
-            'name'  => $this->name,
-            'value' => $this->uuid,
+            'name'  => $this->name(),
+            'value' => $this->value(),
         ];
     }
 
@@ -78,6 +78,6 @@ class Uuid implements ValueObject, Arrayable
      */
     public function __toString(): string
     {
-        return str($this->uuid)->value();
+        return $this->value();
     }
 }
