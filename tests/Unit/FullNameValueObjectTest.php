@@ -45,14 +45,24 @@ test('can pass nulls and returns empty string', function () {
     assertSame('', $name->getFullName());
 });
 
-test('tax number value object is conditionable', function () {
+test('full name value object is macroable', function () {
+    FullName::macro('getLength', function () {
+        return str($this->getFullName())->length();
+    });
+
+    $valueObject = FullName::make('Michael');
+
+    assertSame(7, $valueObject->getLength());
+});
+
+test('full name value object is conditionable', function () {
     $valueObject = FullName::make('Michael Rubél');
 
     assertSame('Michael', $valueObject->when(true)->getFirstName());
     assertSame($valueObject, $valueObject->when(false)->getFirstName());
 });
 
-test('tax number value object is tappable', function () {
+test('full name value object is tappable', function () {
     $valueObject = FullName::make('Michael Rubél');
 
     $valueObject->tap(function ($object) use ($valueObject) {
@@ -60,7 +70,7 @@ test('tax number value object is tappable', function () {
     });
 });
 
-test('tax number value object is arrayable', function () {
+test('full name value object is arrayable', function () {
     $valueObject = FullName::make('Michael Rubél');
 
     assertSame([

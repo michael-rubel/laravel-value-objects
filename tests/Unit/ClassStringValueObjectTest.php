@@ -56,14 +56,24 @@ test('class string is null', function () {
     assertSame('', (string) $classString);
 });
 
-test('tax number value object is conditionable', function () {
+test('class string value object is macroable', function () {
+    ClassString::macro('getLength', function () {
+        return str($this->getClassString())->length();
+    });
+
+    $valueObject = ClassString::make('TestClass\Testing');
+
+    assertSame(17, $valueObject->getLength());
+});
+
+test('class string value object is conditionable', function () {
     $valueObject = ClassString::make(TestCase::class);
 
     assertTrue($valueObject->when(true)->isClassExists());
     assertSame($valueObject, $valueObject->when(false)->isClassExists());
 });
 
-test('tax number value object is tappable', function () {
+test('class string value object is tappable', function () {
     $valueObject = ClassString::make(TestCase::class);
 
     $valueObject->tap(function ($object) use ($valueObject) {
