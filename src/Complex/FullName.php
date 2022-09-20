@@ -6,7 +6,6 @@ namespace MichaelRubel\ValueObjects\Complex;
 
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Stringable;
 use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
 use Illuminate\Support\Traits\Tappable;
@@ -41,7 +40,7 @@ class FullName implements ValueObject, Arrayable
      *
      * @return static
      */
-    public static function make(?string $name = null): static
+    public static function make(?string $name): static
     {
         return new static($name);
     }
