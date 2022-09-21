@@ -14,6 +14,19 @@ class ValueObject
      */
     public function __set(string $name, $value): void
     {
-        throw new \InvalidArgumentException('Value objects are immutable, and it means you cannot modify properties. Create a new object instead.');
+        throw new \InvalidArgumentException('Value objects are immutable. You cannot modify properties. Create a new object instead.');
+    }
+
+    /**
+     * Check if objects are instances of the same class,
+     * and share the same properties and values.
+     *
+     * @param  ValueObject  $object
+     *
+     * @return bool
+     */
+    public function equals(ValueObject $object): bool
+    {
+        return $this == $object;
     }
 }
