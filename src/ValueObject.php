@@ -20,7 +20,7 @@ class ValueObject
 
     /**
      * @param  string  $name
-     * @param mixed $value
+     * @param  mixed  $value
      *
      * @return void
      */

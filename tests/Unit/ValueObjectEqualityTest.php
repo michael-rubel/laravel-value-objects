@@ -17,4 +17,3 @@ test('value objects are equal', function () {
     $this->assertFalse($vo3->equals($vo1));
     $this->assertFalse($vo3->equals($vo2));
 });
-
