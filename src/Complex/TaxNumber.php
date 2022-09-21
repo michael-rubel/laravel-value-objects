@@ -11,7 +11,7 @@ use Illuminate\Support\Traits\Tappable;
 use MichaelRubel\Formatters\Collection\TaxNumberFormatter;
 use MichaelRubel\ValueObjects\ValueObject;
 
-class TaxNumber implements ValueObject, Arrayable
+class TaxNumber extends ValueObject implements Arrayable
 {
     use Macroable, Conditionable, Tappable;
 
@@ -22,8 +22,8 @@ class TaxNumber implements ValueObject, Arrayable
      * @param  string|null  $country
      */
     final public function __construct(
-        public ?string $tax_number = null,
-        public ?string $country = null,
+        protected ?string $tax_number = null,
+        protected ?string $country = null,
     ) {
         $this->tax_number = format(TaxNumberFormatter::class, $this->tax_number, $this->country);
 

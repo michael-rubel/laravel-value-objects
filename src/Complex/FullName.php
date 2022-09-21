@@ -12,7 +12,7 @@ use Illuminate\Support\Traits\Tappable;
 use MichaelRubel\Formatters\Collection\FullNameFormatter;
 use MichaelRubel\ValueObjects\ValueObject;
 
-class FullName implements ValueObject, Arrayable
+class FullName extends ValueObject implements Arrayable
 {
     use Macroable, Conditionable, Tappable;
 
@@ -26,7 +26,7 @@ class FullName implements ValueObject, Arrayable
      *
      * @param  string|null  $full_name
      */
-    final public function __construct(public ?string $full_name)
+    final public function __construct(protected ?string $full_name)
     {
         $this->full_name = format(FullNameFormatter::class, $this->full_name);
 

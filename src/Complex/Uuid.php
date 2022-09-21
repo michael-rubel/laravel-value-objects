@@ -10,7 +10,7 @@ use Illuminate\Support\Traits\Macroable;
 use Illuminate\Support\Traits\Tappable;
 use MichaelRubel\ValueObjects\ValueObject;
 
-class Uuid implements ValueObject, Arrayable
+class Uuid extends ValueObject implements Arrayable
 {
     use Macroable, Conditionable, Tappable;
 
@@ -21,8 +21,8 @@ class Uuid implements ValueObject, Arrayable
      * @param  string|null  $name
      */
     final public function __construct(
-        public ?string $uuid,
-        public ?string $name = null,
+        protected ?string $uuid,
+        protected ?string $name = null,
     ) {
         if (! str($this->uuid)->isUuid()) {
             throw new \InvalidArgumentException('Your UUID is invalid.');

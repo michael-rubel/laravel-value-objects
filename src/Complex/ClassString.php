@@ -9,7 +9,7 @@ use Illuminate\Support\Traits\Macroable;
 use Illuminate\Support\Traits\Tappable;
 use MichaelRubel\ValueObjects\ValueObject;
 
-class ClassString implements ValueObject
+class ClassString extends ValueObject
 {
     use Macroable, Conditionable, Tappable;
 
@@ -18,7 +18,7 @@ class ClassString implements ValueObject
      *
      * @param  string|null  $classString
      */
-    final public function __construct(public ?string $classString)
+    final public function __construct(protected ?string $classString)
     {
         //
     }
