@@ -40,7 +40,7 @@ class TaxNumber implements ValueObject, Arrayable
     }
 
     /**
-     * Return a new instance of TaxNumber.
+     * Return a new instance of value object.
      *
      * @param  string|null  $tax_number
      * @param  string|null  $country
