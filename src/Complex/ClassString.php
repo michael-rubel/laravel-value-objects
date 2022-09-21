@@ -8,31 +8,19 @@ use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
 use MichaelRubel\ValueObjects\ValueObject;
 
+/**
+ * @method make(string $classString)
+ */
 class ClassString extends ValueObject
 {
     use Macroable, Conditionable;
 
     /**
-     * Create a new value object instance.
-     *
      * @param  string|null  $classString
      */
-    final public function __construct(
-        protected ?string $classString
-    ) {
-        //
-    }
-
-    /**
-     * Return a new instance of value object.
-     *
-     * @param  string|null  $classString
-     *
-     * @return static
-     */
-    public static function make(?string $classString): static
+    public function __construct(protected ?string $classString)
     {
-        return new static($classString);
+        //
     }
 
     /**
@@ -52,8 +40,6 @@ class ClassString extends ValueObject
     }
 
     /**
-     * Get the last name.
-     *
      * @return string
      */
     public function value(): string
@@ -62,7 +48,7 @@ class ClassString extends ValueObject
     }
 
     /**
-     * Return the first UUID if cast to string.
+     * Get string representation of the value object.
      *
      * @return string
      */

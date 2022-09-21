@@ -10,45 +10,33 @@ use Illuminate\Support\Traits\Macroable;
 use MichaelRubel\Formatters\Collection\TaxNumberFormatter;
 use MichaelRubel\ValueObjects\ValueObject;
 
+/**
+ * @method make(string $taxNumber, string $country)
+ */
 class TaxNumber extends ValueObject implements Arrayable
 {
     use Macroable, Conditionable;
 
     /**
-     * Create a new value object instance.
-     *
-     * @param  string|null  $tax_number
+     * @param  string|null  $taxNumber
      * @param  string|null  $country
      */
-    final public function __construct(
-        protected ?string $tax_number = null,
+    public function __construct(
+        protected ?string $taxNumber = null,
         protected ?string $country = null,
     ) {
-        $this->tax_number = format(TaxNumberFormatter::class, $this->tax_number, $this->country);
+        $this->taxNumber = format(TaxNumberFormatter::class, $this->taxNumber, $this->country);
 
         $this->when($this->isWithCountry(), function () {
-            $this->country = str($this->tax_number)
+            $this->country = str($this->taxNumber)
                 ->substr(0, 2)
                 ->upper()
                 ->value();
 
-            $this->tax_number = str($this->tax_number)
+            $this->taxNumber = str($this->taxNumber)
                 ->substr(2)
                 ->value();
         });
-    }
-
-    /**
-     * Return a new instance of value object.
-     *
-     * @param  string|null  $tax_number
-     * @param  string|null  $country
-     *
-     * @return static
-     */
-    public static function make(?string $tax_number, ?string $country = null): static
-    {
-        return new static($tax_number, $country);
     }
 
     /**
@@ -68,7 +56,7 @@ class TaxNumber extends ValueObject implements Arrayable
      */
     public function taxNumber(): string
     {
-        return str($this->tax_number)
+        return str($this->taxNumber)
             ->upper()
             ->value();
     }
@@ -92,25 +80,25 @@ class TaxNumber extends ValueObject implements Arrayable
      */
     public function isWithCountry(): bool
     {
-        return strlen($this->tax_number) >= 2 && ! is_numeric($this->tax_number);
+        return strlen($this->taxNumber) >= 2 && ! is_numeric($this->taxNumber);
     }
 
     /**
-     * Get the array representation of the value object.
+     * Get array representation of the value object.
      *
      * @return array
      */
     public function toArray(): array
     {
         return [
-            'full_tax_number' => $this->fullTaxNumber(),
-            'tax_number'      => $this->taxNumber(),
-            'country'         => $this->country(),
+            'fullTaxNumber' => $this->fullTaxNumber(),
+            'taxNumber'     => $this->taxNumber(),
+            'country'       => $this->country(),
         ];
     }
 
     /**
-     * Get the raw string value.
+     * Get string representation of the value object.
      *
      * @return string
      */

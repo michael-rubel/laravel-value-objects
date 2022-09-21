@@ -174,8 +174,8 @@ test('tax number value object is arrayable', function () {
     $valueObject = TaxNumber::make('PL0123456789');
 
     $this->assertSame([
-        'full_tax_number' => 'PL0123456789',
-        'tax_number'      => '0123456789',
-        'country'         => 'PL',
+        'fullTaxNumber' => 'PL0123456789',
+        'taxNumber'     => '0123456789',
+        'country'       => 'PL',
     ], $valueObject->toArray());
 });

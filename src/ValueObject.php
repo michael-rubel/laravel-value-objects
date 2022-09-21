@@ -7,12 +7,24 @@ namespace MichaelRubel\ValueObjects;
 class ValueObject
 {
     /**
+     * Convenient method to create a value object statically.
+     *
+     * @param  mixed  $values
+     *
+     * @return static
+     */
+    public static function make(...$values): static
+    {
+        return new static(...$values);
+    }
+
+    /**
      * @param  string  $name
-     * @param $value
+     * @param mixed $value
      *
      * @return void
      */
-    public function __set(string $name, $value): void
+    public function __set(string $name, mixed $value): void
     {
         throw new \InvalidArgumentException('Value objects are immutable. You cannot modify properties. Create a new object instead.');
     }

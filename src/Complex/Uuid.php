@@ -9,36 +9,22 @@ use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
 use MichaelRubel\ValueObjects\ValueObject;
 
+/**
+ * @method make(string $uuid, string $name)
+ */
 class Uuid extends ValueObject implements Arrayable
 {
     use Macroable, Conditionable;
 
     /**
-     * Create a new value object instance.
-     *
      * @param  string|null  $uuid
      * @param  string|null  $name
      */
-    final public function __construct(
+    public function __construct(
         protected ?string $uuid,
         protected ?string $name = null,
     ) {
         //
-    }
-
-    /**
-     * Return a new instance of value object.
-     *
-     * @param  string|null  $uuid
-     * @param  string|null  $name
-     *
-     * @return static
-     */
-    public static function make(
-        ?string $uuid,
-        ?string $name = null,
-    ): static {
-        return new static($uuid, $name);
     }
 
     /**
@@ -69,8 +55,6 @@ class Uuid extends ValueObject implements Arrayable
     }
 
     /**
-     * Return the first UUID if cast to string.
-     *
      * @return string
      */
     public function __toString(): string

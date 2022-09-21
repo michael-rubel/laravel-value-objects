@@ -11,6 +11,9 @@ use Illuminate\Support\Traits\Macroable;
 use MichaelRubel\Formatters\Collection\FullNameFormatter;
 use MichaelRubel\ValueObjects\ValueObject;
 
+/**
+ * @method make(string $taxNumber)
+ */
 class FullName extends ValueObject implements Arrayable
 {
     use Macroable, Conditionable;
@@ -21,37 +24,23 @@ class FullName extends ValueObject implements Arrayable
     protected Collection $split;
 
     /**
-     * Create a new value object instance.
-     *
-     * @param  string|null  $full_name
+     * @param  string|null  $fullName
      */
-    final public function __construct(protected ?string $full_name)
+    public function __construct(protected ?string $fullName)
     {
-        $this->full_name = format(FullNameFormatter::class, $this->full_name);
+        $this->fullName = format(FullNameFormatter::class, $this->fullName);
 
-        $this->split = str($this->full_name)->split('/\s/');
+        $this->split = str($this->fullName)->split('/\s/');
     }
 
     /**
-     * Return a new instance of value object.
-     *
-     * @param  string|null  $name
-     *
-     * @return static
-     */
-    public static function make(?string $name): static
-    {
-        return new static($name);
-    }
-
-    /**
-     * Get the last name.
+     * Get the full name.
      *
      * @return string
      */
     public function fullName(): string
     {
-        return (string) $this->full_name;
+        return (string) $this->fullName;
     }
 
     /**
@@ -75,19 +64,21 @@ class FullName extends ValueObject implements Arrayable
     }
 
     /**
+     * Get array representation of the value object.
+     *
      * @return array
      */
     public function toArray(): array
     {
         return [
-            'full_name'  => $this->fullName(),
-            'first_name' => $this->firstName(),
-            'last_name'  => $this->lastName(),
+            'fullName'  => $this->fullName(),
+            'firstName' => $this->firstName(),
+            'lastName'  => $this->lastName(),
         ];
     }
 
     /**
-     * Return the first UUID if cast to string.
+     * Get string representation of the value object.
      *
      * @return string
      */

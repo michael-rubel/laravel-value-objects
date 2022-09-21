@@ -65,8 +65,8 @@ test('full name value object is conditionable', function () {
 test('full name value object is arrayable', function () {
     $valueObject = FullName::make('Michael Rubél');
     $this->assertSame([
-        'full_name'  => 'Michael Rubél',
-        'first_name' => 'Michael',
-        'last_name'  => 'Rubél',
+        'fullName'  => 'Michael Rubél',
+        'firstName' => 'Michael',
+        'lastName'  => 'Rubél',
     ], $valueObject->toArray());
 });
