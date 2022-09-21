@@ -34,7 +34,7 @@ class FullName implements ValueObject, Arrayable
     }
 
     /**
-     * Return a new instance of TaxNumber.
+     * Return a new instance of value object.
      *
      * @param  string|null  $name
      *
@@ -43,6 +43,16 @@ class FullName implements ValueObject, Arrayable
     public static function make(?string $name): static
     {
         return new static($name);
+    }
+
+    /**
+     * Get the last name.
+     *
+     * @return string
+     */
+    public function fullName(): string
+    {
+        return (string) $this->full_name;
     }
 
     /**
@@ -63,16 +73,6 @@ class FullName implements ValueObject, Arrayable
     public function lastName(): string
     {
         return $this->split->last();
-    }
-
-    /**
-     * Get the last name.
-     *
-     * @return string
-     */
-    public function fullName(): string
-    {
-        return (string) $this->full_name;
     }
 
     /**
