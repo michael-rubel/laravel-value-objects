@@ -13,6 +13,7 @@ parameters:
         - '#Property (.*) does not accept mixed\.#'
         - '#Method (.*) should return (.*) but returns mixed\.#'
         - '#Parameter (.*), mixed given.#'
+        - '#Parameter \#1 \$string of function strlen expects string, string\|null given\.#'
 
     checkMissingIterableValueType: false
 
