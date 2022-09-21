@@ -18,7 +18,7 @@ class ValueObject
     }
 
     /**
-     * Check if objects are instances of the same class,
+     * Check if objects are instances of same class
      * and share the same properties and values.
      *
      * @param  ValueObject  $object
