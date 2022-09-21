@@ -24,9 +24,7 @@ class Uuid extends ValueObject implements Arrayable
         protected ?string $uuid,
         protected ?string $name = null,
     ) {
-        if (! str($this->uuid)->isUuid()) {
-            throw new \InvalidArgumentException('Your UUID is invalid.');
-        }
+        //
     }
 
     /**

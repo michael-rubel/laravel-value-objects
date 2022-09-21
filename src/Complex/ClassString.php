@@ -18,8 +18,9 @@ class ClassString extends ValueObject
      *
      * @param  string|null  $classString
      */
-    final public function __construct(protected ?string $classString)
-    {
+    final public function __construct(
+        protected ?string $classString
+    ) {
         //
     }
 
