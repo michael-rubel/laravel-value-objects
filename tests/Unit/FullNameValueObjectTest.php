@@ -62,13 +62,6 @@ test('full name value object is conditionable', function () {
     $this->assertSame($valueObject, $valueObject->when(false)->firstName());
 });
 
-test('full name value object is tappable', function () {
-    $valueObject = FullName::make('Michael Rubél');
-    $valueObject->tap(function ($object) use ($valueObject) {
-        $this->assertSame($valueObject, $object);
-    });
-});
-
 test('full name value object is arrayable', function () {
     $valueObject = FullName::make('Michael Rubél');
     $this->assertSame([

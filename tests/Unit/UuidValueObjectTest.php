@@ -44,14 +44,6 @@ test('uuid value object is conditionable', function () {
     $this->assertSame($valueObject, $valueObject->when(false)->value());
 });
 
-test('uuid value object is tappable', function () {
-    $uuid        = (string) Str::uuid();
-    $valueObject = Uuid::make($uuid);
-    $valueObject->tap(function ($object) use ($valueObject) {
-        $this->assertSame($valueObject, $object);
-    });
-});
-
 test('uuid value object is arrayable', function () {
     $uuid  = (string) Str::uuid();
     $array = (new Uuid($uuid, 'name'))->toArray();

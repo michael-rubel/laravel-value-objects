@@ -7,13 +7,12 @@ namespace MichaelRubel\ValueObjects\Complex;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
-use Illuminate\Support\Traits\Tappable;
 use MichaelRubel\Formatters\Collection\TaxNumberFormatter;
 use MichaelRubel\ValueObjects\ValueObject;
 
 class TaxNumber extends ValueObject implements Arrayable
 {
-    use Macroable, Conditionable, Tappable;
+    use Macroable, Conditionable;
 
     /**
      * Create a new value object instance.

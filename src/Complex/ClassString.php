@@ -6,12 +6,11 @@ namespace MichaelRubel\ValueObjects\Complex;
 
 use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
-use Illuminate\Support\Traits\Tappable;
 use MichaelRubel\ValueObjects\ValueObject;
 
 class ClassString extends ValueObject
 {
-    use Macroable, Conditionable, Tappable;
+    use Macroable, Conditionable;
 
     /**
      * Create a new value object instance.

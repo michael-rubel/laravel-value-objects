@@ -170,13 +170,6 @@ test('tax number value object is conditionable', function () {
     $this->assertSame($valueObject, $valueObject->when(false)->country());
 });
 
-test('tax number value object is tappable', function () {
-    $valueObject = TaxNumber::make('PL0123456789');
-    $valueObject->tap(function ($object) use ($valueObject) {
-        $this->assertSame($valueObject, $object);
-    });
-});
-
 test('tax number value object is arrayable', function () {
     $valueObject = TaxNumber::make('PL0123456789');
 

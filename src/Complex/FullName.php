@@ -8,13 +8,12 @@ use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
-use Illuminate\Support\Traits\Tappable;
 use MichaelRubel\Formatters\Collection\FullNameFormatter;
 use MichaelRubel\ValueObjects\ValueObject;
 
 class FullName extends ValueObject implements Arrayable
 {
-    use Macroable, Conditionable, Tappable;
+    use Macroable, Conditionable;
 
     /**
      * @var Collection

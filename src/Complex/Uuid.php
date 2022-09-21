@@ -7,12 +7,11 @@ namespace MichaelRubel\ValueObjects\Complex;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
-use Illuminate\Support\Traits\Tappable;
 use MichaelRubel\ValueObjects\ValueObject;
 
 class Uuid extends ValueObject implements Arrayable
 {
-    use Macroable, Conditionable, Tappable;
+    use Macroable, Conditionable;
 
     /**
      * Create a new value object instance.
