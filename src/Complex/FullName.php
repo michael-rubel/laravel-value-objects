@@ -24,7 +24,7 @@ class FullName extends ValueObject implements Arrayable
     protected Collection $split;
 
     /**
-     * @param  string|null  $fullName
+     * @param  string  $fullName
      */
     public function __construct(protected ?string $fullName)
     {

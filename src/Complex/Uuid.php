@@ -17,8 +17,8 @@ class Uuid extends ValueObject implements Arrayable
     use Macroable, Conditionable;
 
     /**
-     * @param  string|null  $uuid
-     * @param  string|null  $name
+     * @param  string  $uuid
+     * @param  string  $name
      */
     public function __construct(
         protected ?string $uuid,

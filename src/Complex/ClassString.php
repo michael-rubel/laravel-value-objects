@@ -16,7 +16,7 @@ class ClassString extends ValueObject
     use Macroable, Conditionable;
 
     /**
-     * @param  string|null  $classString
+     * @param  string  $classString
      */
     public function __construct(protected ?string $classString)
     {

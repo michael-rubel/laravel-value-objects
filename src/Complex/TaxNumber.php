@@ -18,8 +18,8 @@ class TaxNumber extends ValueObject implements Arrayable
     use Macroable, Conditionable;
 
     /**
-     * @param  string|null  $taxNumber
-     * @param  string|null  $country
+     * @param  string  $taxNumber
+     * @param  string  $country
      */
     public function __construct(
         protected ?string $taxNumber = null,
