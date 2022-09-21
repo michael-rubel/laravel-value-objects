@@ -25,10 +25,7 @@ class TaxNumber implements ValueObject, Arrayable
         public ?string $tax_number = null,
         public ?string $country = null,
     ) {
-        $this->tax_number = format(
-            TaxNumberFormatter::class,
-            [$this->tax_number, $this->country]
-        );
+        $this->tax_number = format(TaxNumberFormatter::class, $this->tax_number, $this->country);
 
         $this->when($this->isWithCountry(), function () {
             $this->country = str($this->tax_number)
@@ -56,18 +53,17 @@ class TaxNumber implements ValueObject, Arrayable
     }
 
     /**
-     * Check if the tax number length is less or equal two.
+     * Get the tax number with a country prefix.
      *
-     * @return bool
+     * @return string
      */
-    public function isWithCountry(): bool
+    public function fullTaxNumber(): string
     {
-        return strlen((string) $this->tax_number) >= 2
-            && ! is_numeric($this->tax_number);
+        return $this->country() . $this->taxNumber();
     }
 
     /**
-     * Get the tax number.
+     * Get the tax number without country prefix.
      *
      * @return string
      */
@@ -79,7 +75,7 @@ class TaxNumber implements ValueObject, Arrayable
     }
 
     /**
-     * Get the country prefix.
+     * Get the country prefix for a given tax number.
      *
      * @return string
      */
@@ -91,14 +87,14 @@ class TaxNumber implements ValueObject, Arrayable
     }
 
     /**
-     * Get a full tax number for a given value object.
-     * The tax number with a country prefix.
+     * Check if the tax number length is less or equal two.
      *
-     * @return string
+     * @return bool
      */
-    public function fullTaxNumber(): string
+    public function isWithCountry(): bool
     {
-        return $this->country() . $this->taxNumber();
+        return strlen((string) $this->tax_number) >= 2
+            && ! is_numeric($this->tax_number);
     }
 
     /**
