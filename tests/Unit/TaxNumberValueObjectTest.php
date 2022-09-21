@@ -160,31 +160,27 @@ test('tax number value object is macroable', function () {
     TaxNumber::macro('getLength', function () {
         return str($this->fullTaxNumber())->length();
     });
-
     $valueObject = TaxNumber::make('PL0123456789');
-
-    assertSame(12, $valueObject->getLength());
+    $this->assertSame(12, $valueObject->getLength());
 });
 
 test('tax number value object is conditionable', function () {
     $valueObject = TaxNumber::make('PL0123456789');
-
-    assertSame('PL', $valueObject->when(true)->country());
-    assertSame($valueObject, $valueObject->when(false)->country());
+    $this->assertSame('PL', $valueObject->when(true)->country());
+    $this->assertSame($valueObject, $valueObject->when(false)->country());
 });
 
 test('tax number value object is tappable', function () {
     $valueObject = TaxNumber::make('PL0123456789');
-
     $valueObject->tap(function ($object) use ($valueObject) {
-        assertSame($valueObject, $object);
+        $this->assertSame($valueObject, $object);
     });
 });
 
 test('tax number value object is arrayable', function () {
     $valueObject = TaxNumber::make('PL0123456789');
 
-    assertSame([
+    $this->assertSame([
         'full_tax_number' => 'PL0123456789',
         'tax_number'      => '0123456789',
         'country'         => 'PL',

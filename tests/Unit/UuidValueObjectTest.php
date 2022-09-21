@@ -7,8 +7,7 @@ use MichaelRubel\ValueObjects\Complex\Uuid;
 
 test('no error if uuid string is wrong', function () {
     $valueObject = new Uuid('test');
-
-    assertSame('test', $valueObject->value());
+    $this->assertSame('test', $valueObject->value());
 });
 
 test('can set uuid name', function () {
@@ -31,30 +30,25 @@ test('can cast uuid to string', function () {
 
 test('uuid value object is macroable', function () {
     $uuid = (string) Str::uuid();
-
     Uuid::macro('getLength', function () {
         return str($this->value())->length();
     });
-
     $valueObject = Uuid::make($uuid);
-
-    assertSame(36, $valueObject->getLength());
+    $this->assertSame(36, $valueObject->getLength());
 });
 
 test('uuid value object is conditionable', function () {
     $uuid        = (string) Str::uuid();
     $valueObject = Uuid::make($uuid);
-
-    assertSame($uuid, $valueObject->when(true)->value());
-    assertSame($valueObject, $valueObject->when(false)->value());
+    $this->assertSame($uuid, $valueObject->when(true)->value());
+    $this->assertSame($valueObject, $valueObject->when(false)->value());
 });
 
 test('uuid value object is tappable', function () {
     $uuid        = (string) Str::uuid();
     $valueObject = Uuid::make($uuid);
-
     $valueObject->tap(function ($object) use ($valueObject) {
-        assertSame($valueObject, $object);
+        $this->assertSame($valueObject, $object);
     });
 });
 
