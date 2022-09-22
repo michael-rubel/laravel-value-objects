@@ -17,7 +17,6 @@ test('can make value object using command', function () {
     $this->assertStringContainsString('use MichaelRubel\ValueObjects\ValueObject;', $fileString);
     $this->assertStringContainsString('@method static static make(mixed ...$values)', $fileString);
     $this->assertStringContainsString('class TestValueObject extends ValueObject', $fileString);
-    $this->assertStringContainsString('use Macroable, Conditionable;', $fileString);
     $this->assertStringContainsString('public function value(): string', $fileString);
     $this->assertStringContainsString('public function toArray(): array', $fileString);
     $this->assertStringContainsString('public function __toString(): string', $fileString);
