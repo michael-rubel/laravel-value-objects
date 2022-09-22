@@ -5,9 +5,13 @@ declare(strict_types=1);
 namespace MichaelRubel\ValueObjects;
 
 use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Support\Traits\Conditionable;
+use Illuminate\Support\Traits\Macroable;
 
 abstract class ValueObject implements Arrayable
 {
+    use Macroable, Conditionable;
+
     /**
      * Get the object value.
      *

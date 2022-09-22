@@ -14,8 +14,6 @@ test('can make value object using command', function () {
     $fileString = File::get($pathToGeneratedFile);
 
     $this->assertStringContainsString('declare(strict_types=1);', $fileString);
-    $this->assertStringContainsString('use Illuminate\Support\Traits\Conditionable;', $fileString);
-    $this->assertStringContainsString('use Illuminate\Support\Traits\Macroable;', $fileString);
     $this->assertStringContainsString('use MichaelRubel\ValueObjects\ValueObject;', $fileString);
     $this->assertStringContainsString('@method static static make(mixed ...$values)', $fileString);
     $this->assertStringContainsString('class TestValueObject extends ValueObject', $fileString);

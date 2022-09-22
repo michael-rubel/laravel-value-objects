@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace MichaelRubel\ValueObjects\Complex;
 
-use Illuminate\Support\Traits\Conditionable;
-use Illuminate\Support\Traits\Macroable;
 use MichaelRubel\Formatters\Collection\TaxNumberFormatter;
 use MichaelRubel\ValueObjects\ValueObject;
 
@@ -14,8 +12,6 @@ use MichaelRubel\ValueObjects\ValueObject;
  */
 class TaxNumber extends ValueObject
 {
-    use Macroable, Conditionable;
-
     /**
      * Create a new instance of the value object.
      *

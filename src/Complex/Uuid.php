@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace MichaelRubel\ValueObjects\Complex;
 
-use Illuminate\Support\Traits\Conditionable;
-use Illuminate\Support\Traits\Macroable;
 use MichaelRubel\ValueObjects\ValueObject;
 
 /**
@@ -13,8 +11,6 @@ use MichaelRubel\ValueObjects\ValueObject;
  */
 class Uuid extends ValueObject
 {
-    use Macroable, Conditionable;
-
     /**
      * Create a new instance of the value object.
      *

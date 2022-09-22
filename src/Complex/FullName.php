@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace MichaelRubel\ValueObjects\Complex;
 
 use Illuminate\Support\Collection;
-use Illuminate\Support\Traits\Conditionable;
-use Illuminate\Support\Traits\Macroable;
 use MichaelRubel\Formatters\Collection\FullNameFormatter;
 use MichaelRubel\ValueObjects\ValueObject;
 
@@ -15,8 +13,6 @@ use MichaelRubel\ValueObjects\ValueObject;
  */
 class FullName extends ValueObject
 {
-    use Macroable, Conditionable;
-
     /**
      * @var Collection
      */
