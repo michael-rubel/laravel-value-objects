@@ -9,6 +9,8 @@ use Illuminate\Contracts\Support\Arrayable;
 abstract class ValueObject implements Arrayable
 {
     /**
+     * Get the object value.
+     *
      * @return mixed
      */
     abstract public function value();
