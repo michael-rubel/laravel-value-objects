@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace MichaelRubel\ValueObjects;
 
-use MichaelRubel\ValueObjects\Commands\ValueObjectMakeCommand;
+use MichaelRubel\ValueObjects\Artisan\ValueObjectMakeCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
