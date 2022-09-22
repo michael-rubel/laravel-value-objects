@@ -69,3 +69,9 @@ test('class string value object is conditionable', function () {
     $this->assertTrue($valueObject->when(true)->classExists());
     $this->assertSame($valueObject, $valueObject->when(false)->classExists());
 });
+
+test('class string value object is arrayable', function () {
+    $valueObject = ClassString::make('Throwable');
+    $this->assertTrue($valueObject->interfaceExists());
+    $this->assertSame([$valueObject->value()], $valueObject->toArray());
+});

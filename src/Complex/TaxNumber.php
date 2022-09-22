@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace MichaelRubel\ValueObjects\Complex;
 
-use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
 use MichaelRubel\Formatters\Collection\TaxNumberFormatter;
@@ -13,7 +12,7 @@ use MichaelRubel\ValueObjects\ValueObject;
 /**
  * @method make(string $taxNumber, string $country)
  */
-class TaxNumber extends ValueObject implements Arrayable
+class TaxNumber extends ValueObject
 {
     use Macroable, Conditionable;
 

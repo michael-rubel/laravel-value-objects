@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace MichaelRubel\ValueObjects;
 
-abstract class ValueObject
+use Illuminate\Contracts\Support\Arrayable;
+
+abstract class ValueObject implements Arrayable
 {
     /**
      * @return mixed

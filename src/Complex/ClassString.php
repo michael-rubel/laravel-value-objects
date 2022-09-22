@@ -48,6 +48,14 @@ class ClassString extends ValueObject
     }
 
     /**
+     * @return array
+     */
+    public function toArray(): array
+    {
+        return [$this->value()];
+    }
+
+    /**
      * Get string representation of the value object.
      *
      * @return string
