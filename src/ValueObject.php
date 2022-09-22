@@ -52,6 +52,16 @@ abstract class ValueObject implements Arrayable
     }
 
     /**
+     * Get an array representation of the value object.
+     *
+     * @return array
+     */
+    public function toArray(): array
+    {
+        return [$this->value()];
+    }
+
+    /**
      * Get string representation of the value object.
      *
      * @return string

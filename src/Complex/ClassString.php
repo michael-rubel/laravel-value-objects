@@ -50,14 +50,4 @@ class ClassString extends ValueObject
     {
         return (string) $this->classString;
     }
-
-    /**
-     * Get an array representation of the value object.
-     *
-     * @return array
-     */
-    public function toArray(): array
-    {
-        return [$this->value()];
-    }
 }
