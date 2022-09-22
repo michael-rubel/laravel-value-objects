@@ -9,7 +9,7 @@ use Illuminate\Support\Traits\Macroable;
 use MichaelRubel\ValueObjects\ValueObject;
 
 /**
- * @method make(string $uuid, string $name)
+ * @method static static make(string $uuid, string $name)
  */
 class Uuid extends ValueObject
 {

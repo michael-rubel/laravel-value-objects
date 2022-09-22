@@ -11,7 +11,7 @@ use MichaelRubel\Formatters\Collection\FullNameFormatter;
 use MichaelRubel\ValueObjects\ValueObject;
 
 /**
- * @method make(string $taxNumber)
+ * @method static static make(string $taxNumber)
  */
 class FullName extends ValueObject
 {

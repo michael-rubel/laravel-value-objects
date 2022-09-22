@@ -9,7 +9,7 @@ use Illuminate\Support\Traits\Macroable;
 use MichaelRubel\ValueObjects\ValueObject;
 
 /**
- * @method make(string $classString)
+ * @method static static make(string $classString)
  */
 class ClassString extends ValueObject
 {
