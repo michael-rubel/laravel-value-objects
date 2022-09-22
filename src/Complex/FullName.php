@@ -23,6 +23,8 @@ class FullName extends ValueObject
     protected Collection $split;
 
     /**
+     * Create a new instance of the value object.
+     *
      * @param  string|null  $fullName
      */
     public function __construct(protected ?string $fullName)

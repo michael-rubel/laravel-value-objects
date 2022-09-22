@@ -16,6 +16,8 @@ class Uuid extends ValueObject
     use Macroable, Conditionable;
 
     /**
+     * Create a new instance of the value object.
+     *
      * @param  string|null  $uuid
      * @param  string|null  $name
      */
