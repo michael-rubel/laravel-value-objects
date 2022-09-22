@@ -74,7 +74,7 @@ abstract class ValueObject implements Arrayable
      */
     public function toArray(): array
     {
-        return [$this->value()];
+        return (array) $this->value();
     }
 
     /**
