@@ -30,17 +30,25 @@ class Uuid extends ValueObject implements Arrayable
     /**
      * @return string
      */
-    public function name(): string
+    public function value(): string
     {
-        return (string) $this->name;
+        return (string) $this->uuid;
     }
 
     /**
      * @return string
      */
-    public function value(): string
+    public function uuid(): string
     {
-        return (string) $this->uuid;
+        return $this->value();
+    }
+
+    /**
+     * @return string
+     */
+    public function name(): string
+    {
+        return (string) $this->name;
     }
 
     /**

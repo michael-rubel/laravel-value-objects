@@ -4,8 +4,13 @@ declare(strict_types=1);
 
 namespace MichaelRubel\ValueObjects;
 
-class ValueObject
+abstract class ValueObject
 {
+    /**
+     * @return mixed
+     */
+    abstract public function value();
+
     /**
      * Convenient method to create a value object statically.
      *

@@ -34,6 +34,14 @@ class FullName extends ValueObject implements Arrayable
     }
 
     /**
+     * @return string
+     */
+    public function value(): string
+    {
+        return $this->fullName();
+    }
+
+    /**
      * Get the full name.
      *
      * @return string

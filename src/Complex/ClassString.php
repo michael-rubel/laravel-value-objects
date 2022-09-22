@@ -24,6 +24,14 @@ class ClassString extends ValueObject
     }
 
     /**
+     * @return string
+     */
+    public function value(): string
+    {
+        return (string) $this->classString;
+    }
+
+    /**
      * @return bool
      */
     public function classExists(): bool
@@ -37,14 +45,6 @@ class ClassString extends ValueObject
     public function interfaceExists(): bool
     {
         return interface_exists($this->value());
-    }
-
-    /**
-     * @return string
-     */
-    public function value(): string
-    {
-        return (string) $this->classString;
     }
 
     /**
