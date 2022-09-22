@@ -15,6 +15,7 @@ parameters:
         - '#Parameter (.*), mixed given.#'
         - '#Parameter \#1 \$string of function strlen expects string, string\|null given\.#'
         - '#Unsafe usage of new static\(\)\.#'
+        - '#Cannot cast mixed to string\.#'
 
     checkMissingIterableValueType: false
 
