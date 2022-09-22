@@ -20,7 +20,7 @@ abstract class ValueObject implements Arrayable
      *
      * @return static
      */
-    public static function make(...$values): static
+    public static function make(mixed ...$values): static
     {
         return new static(...$values);
     }
