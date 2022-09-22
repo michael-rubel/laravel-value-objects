@@ -26,6 +26,8 @@ class {{ class }} extends ValueObject
     }
 
     /**
+     * Get the object value.
+     *
      * @return string
      */
     public function value(): string
@@ -34,6 +36,8 @@ class {{ class }} extends ValueObject
     }
 
     /**
+     * Get array representation of the value object.
+     *
      * @return array
      */
     public function toArray(): array
@@ -42,6 +46,8 @@ class {{ class }} extends ValueObject
     }
 
     /**
+     * Get string representation of the value object.
+     *
      * @return string
      */
     public function __toString(): string

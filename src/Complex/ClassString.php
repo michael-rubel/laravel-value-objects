@@ -42,6 +42,8 @@ class ClassString extends ValueObject
     }
 
     /**
+     * Get the object value.
+     *
      * @return string
      */
     public function value(): string
@@ -50,6 +52,8 @@ class ClassString extends ValueObject
     }
 
     /**
+     * Get an array representation of the value object.
+     *
      * @return array
      */
     public function toArray(): array

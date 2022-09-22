@@ -85,6 +85,8 @@ class TaxNumber extends ValueObject
     }
 
     /**
+     * Get the object value.
+     *
      * @return string
      */
     public function value(): string
@@ -93,7 +95,7 @@ class TaxNumber extends ValueObject
     }
 
     /**
-     * Get array representation of the value object.
+     * Get an array representation of the value object.
      *
      * @return array
      */

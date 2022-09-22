@@ -65,6 +65,8 @@ class FullName extends ValueObject
     }
 
     /**
+     * Get the object value.
+     *
      * @return string
      */
     public function value(): string
@@ -73,7 +75,7 @@ class FullName extends ValueObject
     }
 
     /**
-     * Get array representation of the value object.
+     * Get an array representation of the value object.
      *
      * @return array
      */

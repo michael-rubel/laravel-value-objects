@@ -45,6 +45,8 @@ class Uuid extends ValueObject
     }
 
     /**
+     * Get the object value.
+     *
      * @return string
      */
     public function value(): string
@@ -53,6 +55,8 @@ class Uuid extends ValueObject
     }
 
     /**
+     * Get an array representation of the value object.
+     *
      * @return array
      */
     public function toArray(): array
@@ -64,6 +68,8 @@ class Uuid extends ValueObject
     }
 
     /**
+     * Get string representation of the value object.
+     *
      * @return string
      */
     public function __toString(): string
