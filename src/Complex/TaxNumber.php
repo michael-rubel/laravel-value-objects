@@ -40,14 +40,6 @@ class TaxNumber extends ValueObject implements Arrayable
     }
 
     /**
-     * @return string
-     */
-    public function value(): string
-    {
-        return $this->fullTaxNumber();
-    }
-
-    /**
      * Get the tax number with a country prefix.
      *
      * @return string
@@ -89,6 +81,14 @@ class TaxNumber extends ValueObject implements Arrayable
     public function isWithCountry(): bool
     {
         return strlen($this->taxNumber) >= 2 && ! is_numeric($this->taxNumber);
+    }
+
+    /**
+     * @return string
+     */
+    public function value(): string
+    {
+        return $this->fullTaxNumber();
     }
 
     /**
