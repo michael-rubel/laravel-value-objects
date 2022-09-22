@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace MichaelRubel\ValueObjects;
 
+use MichaelRubel\ValueObjects\Commands\ValueObjectMakeCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -18,6 +19,8 @@ class ValueObjectServiceProvider extends PackageServiceProvider
      */
     public function configurePackage(Package $package): void
     {
-        $package->name('laravel-value-objects');
+        $package
+            ->name('laravel-value-objects')
+            ->hasCommand(ValueObjectMakeCommand::class);
     }
 }

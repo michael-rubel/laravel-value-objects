@@ -1,0 +1,51 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ namespace }};
+
+use Illuminate\Support\Traits\Conditionable;
+use Illuminate\Support\Traits\Macroable;
+use MichaelRubel\ValueObjects\ValueObject;
+
+/**
+ * @method static static make(mixed ...$values)
+ */
+class {{ class }} extends ValueObject
+{
+    use Macroable, Conditionable;
+
+    /**
+     * Create a new instance of the value object.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //
+    }
+
+    /**
+     * @return string
+     */
+    public function value(): string
+    {
+        // TODO: Implement value() method.
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray(): array
+    {
+        // TODO: Implement value() method.
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        // TODO: Implement value() method.
+    }
+}
