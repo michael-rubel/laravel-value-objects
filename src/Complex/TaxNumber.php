@@ -107,14 +107,4 @@ class TaxNumber extends ValueObject
             'country'       => $this->country(),
         ];
     }
-
-    /**
-     * Get string representation of the value object.
-     *
-     * @return string
-     */
-    public function __toString(): string
-    {
-        return $this->fullTaxNumber();
-    }
 }

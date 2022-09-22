@@ -66,14 +66,4 @@ class Uuid extends ValueObject
             'value' => $this->value(),
         ];
     }
-
-    /**
-     * Get string representation of the value object.
-     *
-     * @return string
-     */
-    public function __toString(): string
-    {
-        return $this->value();
-    }
 }

@@ -26,6 +26,21 @@ abstract class ValueObject implements Arrayable
     }
 
     /**
+     * Check if objects are instances of same class
+     * and share the same properties and values.
+     *
+     * @param  ValueObject  $object
+     *
+     * @return bool
+     */
+    public function equals(ValueObject $object): bool
+    {
+        return $this == $object;
+    }
+
+    /**
+     * Make sure value object is immutable.
+     *
      * @param  string  $name
      * @param  mixed  $value
      *
@@ -37,15 +52,12 @@ abstract class ValueObject implements Arrayable
     }
 
     /**
-     * Check if objects are instances of same class
-     * and share the same properties and values.
+     * Get string representation of the value object.
      *
-     * @param  ValueObject  $object
-     *
-     * @return bool
+     * @return string
      */
-    public function equals(ValueObject $object): bool
+    public function __toString(): string
     {
-        return $this == $object;
+        return $this->value();
     }
 }

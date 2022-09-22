@@ -87,14 +87,4 @@ class FullName extends ValueObject
             'lastName'  => $this->lastName(),
         ];
     }
-
-    /**
-     * Get string representation of the value object.
-     *
-     * @return string
-     */
-    public function __toString(): string
-    {
-        return $this->fullName();
-    }
 }
