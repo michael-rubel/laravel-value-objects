@@ -13,6 +13,19 @@ test('integer can accept integer', function () {
     $this->assertSame(2, $valueObject->value());
 });
 
+test('integer can accept float', function () {
+    $valueObject = new Integer(1.2);
+    $this->assertSame(1, $valueObject->value());
+    $valueObject = new Integer(1.3);
+    $this->assertSame(1, $valueObject->value());
+    $valueObject = new Integer(1.7);
+    $this->assertSame(1, $valueObject->value());
+    $valueObject = new Integer(1.8);
+    $this->assertSame(1, $valueObject->value());
+    $valueObject = new Integer(2.1);
+    $this->assertSame(2, $valueObject->value());
+});
+
 test('integer can accept string', function () {
     $valueObject = new Integer('1');
     $this->assertSame(1, $valueObject->value());
@@ -30,18 +43,9 @@ test('integer can accept string', function () {
     $this->assertSame(3, $valueObject->value());
 });
 
-test('integer can accept float', function () {
-    $valueObject = new Integer(1.2);
-    $this->assertSame(1, $valueObject->value());
-    $valueObject = new Integer(1.3);
-    $this->assertSame(1, $valueObject->value());
-    $valueObject = new Integer(1.7);
-    $this->assertSame(1, $valueObject->value());
-    $valueObject = new Integer(1.8);
-    $this->assertSame(1, $valueObject->value());
-    $valueObject = new Integer(2.1);
-    $this->assertSame(2, $valueObject->value());
-});
+test('integer fails when text provided', function () {
+    new Integer('asd');
+})->expectException(\InvalidArgumentException::class);
 
 test('integer can accept null', function () {
     $valueObject = new Integer(null);

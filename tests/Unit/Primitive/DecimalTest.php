@@ -43,6 +43,10 @@ test('decimal can accept string', function () {
     $this->assertSame('3.10', $valueObject->value());
 });
 
+test('decimal fails when text provided', function () {
+    new Decimal('asd');
+})->expectException(\InvalidArgumentException::class);
+
 test('decimal can accept null', function () {
     $valueObject = new Decimal(null);
     $this->assertSame('0.00', $valueObject->value());
