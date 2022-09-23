@@ -81,6 +81,16 @@ test('decimal can change decimals', function () {
     $this->assertSame('7771.77700000000000', $valueObject->value());
     $valueObject = new Decimal('7771.7771', 15);
     $this->assertSame('7771.777100000000000', $valueObject->value());
+    $valueObject = new Decimal('7771.77711', 16);
+    $this->assertSame('7771.7771100000000000', $valueObject->value());
+    $valueObject = new Decimal('7771.777111', 17);
+    $this->assertSame('7771.77711100000000000', $valueObject->value());
+    $valueObject = new Decimal('7771.7771119', 18);
+    $this->assertSame('7771.777111900000000000', $valueObject->value());
+    $valueObject = new Decimal('7771.77711199', 19);
+    $this->assertSame('7771.7771119900000000000', $valueObject->value());
+    $valueObject = new Decimal('7771.777111999', 20);
+    $this->assertSame('7771.77711199900000000000', $valueObject->value());
 });
 
 test('decimal can handle huge numbers', function () {
