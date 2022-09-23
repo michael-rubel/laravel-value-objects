@@ -179,3 +179,8 @@ test('tax number is arrayable', function () {
         'country'       => 'PL',
     ], $valueObject->toArray());
 });
+
+test('tax number is stringable', function () {
+    $valueObject = TaxNumber::make('PL0123456789');
+    $this->assertSame($valueObject->value(), (string) $valueObject);
+});

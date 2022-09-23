@@ -70,3 +70,8 @@ test('full name is arrayable', function () {
         'lastName'  => 'Rubél',
     ], $valueObject->toArray());
 });
+
+test('full name is stringable', function () {
+    $valueObject = FullName::make('Name');
+    $this->assertSame($valueObject->value(), (string) $valueObject);
+});

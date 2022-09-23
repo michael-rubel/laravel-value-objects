@@ -52,3 +52,9 @@ test('uuid is arrayable', function () {
         'value' => $uuid,
     ], $array);
 });
+
+test('uuid is stringable', function () {
+    $uuid        = (string) Str::uuid();
+    $valueObject = Uuid::make($uuid);
+    $this->assertSame($valueObject->value(), (string) $valueObject);
+});

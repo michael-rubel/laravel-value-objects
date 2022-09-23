@@ -8,7 +8,7 @@ use MichaelRubel\Formatters\Collection\TaxNumberFormatter;
 use MichaelRubel\ValueObjects\ValueObject;
 
 /**
- * @method static static make(string $taxNumber, string $country)
+ * @method static static make(string $taxNumber, string $country = null)
  */
 class TaxNumber extends ValueObject
 {

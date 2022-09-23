@@ -75,3 +75,8 @@ test('class string is arrayable', function () {
     $this->assertTrue($valueObject->interfaceExists());
     $this->assertSame([$valueObject->value()], $valueObject->toArray());
 });
+
+test('class string is stringable', function () {
+    $valueObject = ClassString::make('Throwable');
+    $this->assertSame($valueObject->value(), (string) $valueObject);
+});

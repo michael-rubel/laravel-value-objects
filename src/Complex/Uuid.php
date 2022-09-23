@@ -7,7 +7,7 @@ namespace MichaelRubel\ValueObjects\Complex;
 use MichaelRubel\ValueObjects\ValueObject;
 
 /**
- * @method static static make(string $uuid, string $name)
+ * @method static static make(string $uuid, string $name = null)
  */
 class Uuid extends ValueObject
 {
