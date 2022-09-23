@@ -156,7 +156,7 @@ test('passed null tax number and empty country', function () {
     $this->assertEquals('', $data);
 });
 
-test('tax number value object is macroable', function () {
+test('tax number is macroable', function () {
     TaxNumber::macro('getLength', function () {
         return str($this->fullTaxNumber())->length();
     });
@@ -164,13 +164,13 @@ test('tax number value object is macroable', function () {
     $this->assertSame(12, $valueObject->getLength());
 });
 
-test('tax number value object is conditionable', function () {
+test('tax number is conditionable', function () {
     $valueObject = TaxNumber::make('PL0123456789');
     $this->assertSame('PL', $valueObject->when(true)->country());
     $this->assertSame($valueObject, $valueObject->when(false)->country());
 });
 
-test('tax number value object is arrayable', function () {
+test('tax number is arrayable', function () {
     $valueObject = TaxNumber::make('PL0123456789');
 
     $this->assertSame([

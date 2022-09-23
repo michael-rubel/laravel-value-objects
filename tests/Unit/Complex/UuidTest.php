@@ -28,7 +28,7 @@ test('can cast uuid to string', function () {
     $this->assertSame($uuid, $string);
 });
 
-test('uuid value object is macroable', function () {
+test('uuid is macroable', function () {
     $uuid = (string) Str::uuid();
     Uuid::macro('getLength', function () {
         return str($this->value())->length();
@@ -37,14 +37,14 @@ test('uuid value object is macroable', function () {
     $this->assertSame(36, $valueObject->getLength());
 });
 
-test('uuid value object is conditionable', function () {
+test('uuid is conditionable', function () {
     $uuid        = (string) Str::uuid();
     $valueObject = Uuid::make($uuid);
     $this->assertSame($uuid, $valueObject->when(true)->value());
     $this->assertSame($valueObject, $valueObject->when(false)->value());
 });
 
-test('uuid value object is arrayable', function () {
+test('uuid is arrayable', function () {
     $uuid  = (string) Str::uuid();
     $array = (new Uuid($uuid, 'name'))->toArray();
     $this->assertSame([

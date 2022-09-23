@@ -45,7 +45,7 @@ test('can pass nulls and returns empty string', function () {
     $this->assertSame('', $name->fullName());
 });
 
-test('full name value object is macroable', function () {
+test('full name is macroable', function () {
     FullName::macro('getLength', function () {
         return str($this->fullName())->length();
     });
@@ -55,14 +55,14 @@ test('full name value object is macroable', function () {
     $this->assertSame(7, $valueObject->getLength());
 });
 
-test('full name value object is conditionable', function () {
+test('full name is conditionable', function () {
     $valueObject = FullName::make('Michael Rubél');
 
     $this->assertSame('Michael', $valueObject->when(true)->firstName());
     $this->assertSame($valueObject, $valueObject->when(false)->firstName());
 });
 
-test('full name value object is arrayable', function () {
+test('full name is arrayable', function () {
     $valueObject = FullName::make('Michael Rubél');
     $this->assertSame([
         'fullName'  => 'Michael Rubél',

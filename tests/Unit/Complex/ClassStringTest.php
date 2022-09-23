@@ -56,7 +56,7 @@ test('class string is null', function () {
     $this->assertSame('', (string) $classString);
 });
 
-test('class string value object is macroable', function () {
+test('class string is macroable', function () {
     ClassString::macro('getLength', function () {
         return str($this->value())->length();
     });
@@ -64,13 +64,13 @@ test('class string value object is macroable', function () {
     $this->assertSame(17, $valueObject->getLength());
 });
 
-test('class string value object is conditionable', function () {
+test('class string is conditionable', function () {
     $valueObject = ClassString::make(TestCase::class);
     $this->assertTrue($valueObject->when(true)->classExists());
     $this->assertSame($valueObject, $valueObject->when(false)->classExists());
 });
 
-test('class string value object is arrayable', function () {
+test('class string is arrayable', function () {
     $valueObject = ClassString::make('Throwable');
     $this->assertTrue($valueObject->interfaceExists());
     $this->assertSame([$valueObject->value()], $valueObject->toArray());
