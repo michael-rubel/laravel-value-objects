@@ -41,13 +41,23 @@ test('decimal can accept string', function () {
     $this->assertSame('2.00', $valueObject->value());
     $valueObject = new Decimal('3.1');
     $this->assertSame('3.10', $valueObject->value());
+    $valueObject = new Decimal(' 100,000 ');
+    $this->assertSame('100.00', $valueObject->value());
+    $valueObject = new Decimal(' 100 000,000 ', 3);
+    $this->assertSame('100000.000', $valueObject->value());
 });
 
 test('decimal fails when text provided', function () {
     new Decimal('asd');
 })->expectException(\InvalidArgumentException::class);
 
+test('decimal fails when empty string passed', function () {
+    // todo: to discuss
+    new Decimal('');
+})->expectException(\InvalidArgumentException::class);
+
 test('decimal can accept null', function () {
+    // todo: to discuss
     $valueObject = new Decimal(null);
     $this->assertSame('0.00', $valueObject->value());
 });
@@ -93,6 +103,8 @@ test('decimal can change decimals', function () {
     $this->assertSame('7771.777111900000000000', $valueObject->value());
     $valueObject = new Decimal('7771.77711199', 19);
     $this->assertSame('7771.7771119900000000000', $valueObject->value());
+    $valueObject = new Decimal('777177711191777.99977777777777777777', 20);
+    $this->assertSame('777177711191777.99977777777777777777', $valueObject->value());
     $valueObject = new Decimal('777177711191777.99977777777777777777', 20);
     $this->assertSame('777177711191777.99977777777777777777', $valueObject->value());
 });

@@ -15,6 +15,7 @@ trait SanitizesNumbers
     {
         return str($number ?? '0')
             ->replace(',', '.')
+            ->replace(' ', '')
             ->value();
     }
 }
