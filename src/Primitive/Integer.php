@@ -28,6 +28,8 @@ class Integer extends ValueObject
      */
     public function value(): int
     {
-        return (int) $this->integer;
+        return (int) str($this->integer)
+            ->match('/([0-9]+)/')
+            ->value();
     }
 }

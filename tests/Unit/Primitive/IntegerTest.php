@@ -48,10 +48,29 @@ test('integer can accept null', function () {
     $this->assertSame(0, $valueObject->value());
 });
 
+test('integer can handle huge numbers', function () {
+    $valueObject = new Integer(9223372036854775807);
+    $this->assertSame(9223372036854775807, $valueObject->value());
+    $valueObject = new Integer('9223372036854775807');
+    $this->assertSame(9223372036854775807, $valueObject->value());
+
+    $valueObject = new Integer(111777999.99997);
+    $this->assertSame(111777999, $valueObject->value());
+    $valueObject = new Integer('111777999.99999999997');
+    $this->assertSame(111777999, $valueObject->value());
+    $valueObject = new Integer('111777999,99999999997');
+    $this->assertSame(111777999, $valueObject->value());
+
+    $valueObject = new Integer('9223372036854775807.9223372036854775807');
+    $this->assertSame(9223372036854775807, $valueObject->value());
+    $valueObject = new Integer('9223372036854775807,9223372036854775807');
+    $this->assertSame(9223372036854775807, $valueObject->value());
+});
+
 test('integer is makeable', function () {
     $valueObject = Integer::make(1);
     $this->assertSame(1, $valueObject->value());
-    $valueObject = Integer::make(1.1);
+    $valueObject = Integer::make('1.1');
     $this->assertSame(1, $valueObject->value());
     $valueObject = Integer::make('1');
     $this->assertSame(1, $valueObject->value());
