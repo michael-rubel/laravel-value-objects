@@ -7,16 +7,16 @@ namespace MichaelRubel\ValueObjects\Primitive;
 use MichaelRubel\ValueObjects\ValueObject;
 
 /**
- * @method static static make(float $double)
+ * @method static static make(int|float|string|null $double)
  */
 class Double extends ValueObject
 {
     /**
      * Create a new instance of the value object.
      *
-     * @param  float|null  $double
+     * @param  int|float|string|null  $double
      */
-    public function __construct(protected ?float $double)
+    public function __construct(protected int|float|string|null $double)
     {
         //
     }
