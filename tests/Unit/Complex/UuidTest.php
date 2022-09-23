@@ -10,6 +10,12 @@ test('no error if uuid string is wrong', function () {
     $this->assertSame('test', $valueObject->value());
 });
 
+test('can get uuid using uuid method', function () {
+    $uuid = (string) Str::uuid();
+    $valueObject = new Uuid($uuid);
+    $this->assertSame($uuid, $valueObject->uuid());
+});
+
 test('can set uuid name', function () {
     $uuid   = (string) Str::uuid();
     $result = new Uuid($uuid, 'verification');
