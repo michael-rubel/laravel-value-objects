@@ -2,7 +2,7 @@
 
 namespace Olsza\ValueObjects\Tests\Feature\ValueObjects;
 
-use MichaelRubel\ValueObjects\Complex\ClassString;
+use MichaelRubel\ValueObjects\Collection\Complex\ClassString;
 
 test('value objects are equal', function () {
     $vo1 = new ClassString('Exception');

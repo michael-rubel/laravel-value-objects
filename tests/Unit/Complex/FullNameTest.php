@@ -2,7 +2,7 @@
 
 namespace Olsza\ValueObjects\Tests\Feature\ValueObjects;
 
-use MichaelRubel\ValueObjects\Complex\FullName;
+use MichaelRubel\ValueObjects\Collection\Complex\FullName;
 
 test('can get first name', function () {
     $name = new FullName('Michael');

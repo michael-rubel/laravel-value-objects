@@ -2,7 +2,7 @@
 
 namespace MichaelRubel\ValueObjects\Tests\Feature\ValueObjects;
 
-use MichaelRubel\ValueObjects\Complex\TaxNumber;
+use MichaelRubel\ValueObjects\Collection\Complex\TaxNumber;
 
 test('data in tax number is null and country is null', function () {
     $data = new TaxNumber;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace MichaelRubel\ValueObjects\Primitive;
+namespace MichaelRubel\ValueObjects\Collection\Primitive;
 
 use MichaelRubel\ValueObjects\ValueObject;
 

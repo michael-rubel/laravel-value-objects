@@ -3,10 +3,10 @@
 namespace Olsza\ValueObjects\Tests\Feature\ValueObjects;
 
 use Illuminate\Support\Str;
-use MichaelRubel\ValueObjects\Complex\ClassString;
-use MichaelRubel\ValueObjects\Complex\FullName;
-use MichaelRubel\ValueObjects\Complex\TaxNumber;
-use MichaelRubel\ValueObjects\Complex\Uuid;
+use MichaelRubel\ValueObjects\Collection\Complex\ClassString;
+use MichaelRubel\ValueObjects\Collection\Complex\FullName;
+use MichaelRubel\ValueObjects\Collection\Complex\TaxNumber;
+use MichaelRubel\ValueObjects\Collection\Complex\Uuid;
 
 test('class string value object is immutable', function () {
     $valueObject              = new ClassString('Exception');

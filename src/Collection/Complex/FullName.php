@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace MichaelRubel\ValueObjects\Complex;
+namespace MichaelRubel\ValueObjects\Collection\Complex;
 
 use Illuminate\Support\Collection;
 use MichaelRubel\Formatters\Collection\FullNameFormatter;

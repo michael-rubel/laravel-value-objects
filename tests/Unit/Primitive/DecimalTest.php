@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Olsza\ValueObjects\Tests\Feature\ValueObjects;
 
-use MichaelRubel\ValueObjects\Primitive\Decimal;
+use MichaelRubel\ValueObjects\Collection\Primitive\Decimal;
 
 test('decimal can accept integer', function () {
     $valueObject = new Decimal(1);
@@ -98,6 +98,8 @@ test('decimal can handle huge numbers', function () {
     $this->assertSame('111777999.97', $valueObject->value());
     $valueObject = new Decimal('111777999,97');
     $this->assertSame('111777999.97', $valueObject->value());
+    $valueObject = new Decimal('111777999.99999999997', 11);
+    $this->assertSame('111777999.99999999997', $valueObject->value());
     $valueObject = new Decimal('92233720368.547', 3);
     $this->assertSame('92233720368.547', $valueObject->value());
 });

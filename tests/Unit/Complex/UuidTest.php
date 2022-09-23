@@ -3,7 +3,7 @@
 namespace Olsza\ValueObjects\Tests\Feature\ValueObjects;
 
 use Illuminate\Support\Str;
-use MichaelRubel\ValueObjects\Complex\Uuid;
+use MichaelRubel\ValueObjects\Collection\Complex\Uuid;
 
 test('no error if uuid string is wrong', function () {
     $valueObject = new Uuid('test');

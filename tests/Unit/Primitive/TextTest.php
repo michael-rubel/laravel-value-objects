@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Olsza\ValueObjects\Tests\Feature\ValueObjects;
 
-use MichaelRubel\ValueObjects\Primitive\Text;
+use MichaelRubel\ValueObjects\Collection\Primitive\Text;
 
 test('text can accept integer', function () {
     $valueObject = new Text(1);

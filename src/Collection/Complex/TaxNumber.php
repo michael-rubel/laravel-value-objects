@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace MichaelRubel\ValueObjects\Complex;
+namespace MichaelRubel\ValueObjects\Collection\Complex;
 
 use MichaelRubel\Formatters\Collection\TaxNumberFormatter;
 use MichaelRubel\ValueObjects\ValueObject;

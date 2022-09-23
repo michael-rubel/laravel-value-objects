@@ -2,7 +2,7 @@
 
 namespace Olsza\ValueObjects\Tests\Feature\ValueObjects;
 
-use MichaelRubel\ValueObjects\Complex\ClassString;
+use MichaelRubel\ValueObjects\Collection\Complex\ClassString;
 use MichaelRubel\ValueObjects\Tests\TestCase;
 
 test('class string is empty string', function () {
@@ -42,7 +42,7 @@ test('class string is interface & exists but class dont', function () {
 test('can cast class string to string', function () {
     $classString = new ClassString(ClassString::class);
 
-    $this->assertSame('MichaelRubel\ValueObjects\Complex\ClassString', (string) $classString);
+    $this->assertSame('MichaelRubel\ValueObjects\Collection\Complex\ClassString', (string) $classString);
 });
 
 test('class string is null', function () {

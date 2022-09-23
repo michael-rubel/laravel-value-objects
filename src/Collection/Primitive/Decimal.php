@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace MichaelRubel\ValueObjects\Primitive;
+namespace MichaelRubel\ValueObjects\Collection\Primitive;
 
+use MichaelRubel\ValueObjects\Traits\SanitizesNumbers;
 use MichaelRubel\ValueObjects\ValueObject;
 use PHP\Math\BigNumber\BigNumber;
 
@@ -12,6 +13,8 @@ use PHP\Math\BigNumber\BigNumber;
  */
 class Decimal extends ValueObject
 {
+    use SanitizesNumbers;
+
     /**
      * @var BigNumber
      */
@@ -25,11 +28,7 @@ class Decimal extends ValueObject
      */
     public function __construct(int|float|string|null $number, protected int $scale = 2)
     {
-        $filtered = str($number ?? '0')
-            ->replace(',', '.')
-            ->value();
-
-        $this->number = new BigNumber($filtered, $this->scale);
+        $this->number = new BigNumber($this->sanitize($number), $this->scale);
     }
 
     /**
