@@ -93,8 +93,8 @@ test('decimal can change decimals', function () {
     $this->assertSame('7771.777111900000000000', $valueObject->value());
     $valueObject = new Decimal('7771.77711199', 19);
     $this->assertSame('7771.7771119900000000000', $valueObject->value());
-    $valueObject = new Decimal('7771.777111999', 20);
-    $this->assertSame('7771.77711199900000000000', $valueObject->value());
+    $valueObject = new Decimal('777177711191777.99977777777777777777', 20);
+    $this->assertSame('777177711191777.99977777777777777777', $valueObject->value());
 });
 
 test('decimal can handle huge numbers', function () {
