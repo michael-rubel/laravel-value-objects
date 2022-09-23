@@ -2,7 +2,6 @@
 
 namespace Olsza\ValueObjects\Tests\Feature\ValueObjects;
 
-
 use MichaelRubel\ValueObjects\Collection\Primitive\Integer;
 
 test('can get value length', function () {
