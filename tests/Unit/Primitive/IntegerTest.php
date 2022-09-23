@@ -51,18 +51,24 @@ test('integer can accept null', function () {
 test('integer is makeable', function () {
     $valueObject = Integer::make(1);
     $this->assertSame(1, $valueObject->value());
+    $valueObject = Integer::make(1.1);
+    $this->assertSame(1, $valueObject->value());
+    $valueObject = Integer::make('1');
+    $this->assertSame(1, $valueObject->value());
+    $valueObject = Integer::make(null);
+    $this->assertSame(0, $valueObject->value());
 });
 
 test('integer is macroable', function () {
     Integer::macro('getLength', function () {
         return str($this->value())->length();
     });
-    $valueObject = Integer::make(12);
+    $valueObject = new Integer(12);
     $this->assertSame(2, $valueObject->getLength());
 });
 
 test('integer is conditionable', function () {
-    $valueObject = Integer::make(1);
+    $valueObject = new Integer('1');
     $this->assertSame(1, $valueObject->when(true)->value());
     $this->assertSame($valueObject, $valueObject->when(false)->value());
 });
@@ -73,14 +79,14 @@ test('integer is arrayable', function () {
 });
 
 test('integer is stringable', function () {
-    $valueObject = Integer::make(1);
+    $valueObject = new Integer(1);
     $this->assertSame('1', (string) $valueObject);
-    $valueObject = Integer::make(1.2);
+    $valueObject = new Integer(1.2);
     $this->assertSame('1', (string) $valueObject);
-    $valueObject = Integer::make(1.3);
+    $valueObject = new Integer(1.3);
     $this->assertSame('1', (string) $valueObject);
-    $valueObject = Integer::make(1.7);
+    $valueObject = new Integer(1.7);
     $this->assertSame('1', (string) $valueObject);
-    $valueObject = Integer::make(1.8);
+    $valueObject = new Integer(1.8);
     $this->assertSame('1', (string) $valueObject);
 });

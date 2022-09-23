@@ -28,12 +28,6 @@ test('can get cast to string', function () {
     $this->assertSame('Michael Rubél', (string) $name);
 });
 
-test('can sue make method', function () {
-    $name = FullName::make('Michael Rubél');
-
-    $this->assertSame('Michael Rubél', $name->fullName());
-});
-
 test('can pass nulls and returns empty string', function () {
     $name = new FullName('');
     $this->assertSame('', $name->fullName());
@@ -45,25 +39,30 @@ test('can pass nulls and returns empty string', function () {
     $this->assertSame('', $name->fullName());
 });
 
+test('full name is makeable', function () {
+    $name = FullName::make('Michael Rubél');
+    $this->assertSame('Michael Rubél', $name->fullName());
+});
+
 test('full name is macroable', function () {
     FullName::macro('getLength', function () {
         return str($this->fullName())->length();
     });
 
-    $valueObject = FullName::make('Michael');
+    $valueObject = new FullName('Michael');
 
     $this->assertSame(7, $valueObject->getLength());
 });
 
 test('full name is conditionable', function () {
-    $valueObject = FullName::make('Michael Rubél');
+    $valueObject = new FullName('Michael Rubél');
 
     $this->assertSame('Michael', $valueObject->when(true)->firstName());
     $this->assertSame($valueObject, $valueObject->when(false)->firstName());
 });
 
 test('full name is arrayable', function () {
-    $valueObject = FullName::make('Michael Rubél');
+    $valueObject = new FullName('Michael Rubél');
     $this->assertSame([
         'fullName'  => 'Michael Rubél',
         'firstName' => 'Michael',
@@ -72,6 +71,6 @@ test('full name is arrayable', function () {
 });
 
 test('full name is stringable', function () {
-    $valueObject = FullName::make('Name');
+    $valueObject = new FullName('Name');
     $this->assertSame($valueObject->value(), (string) $valueObject);
 });

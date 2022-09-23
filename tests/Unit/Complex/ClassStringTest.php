@@ -56,27 +56,32 @@ test('class string is null', function () {
     $this->assertSame('', (string) $classString);
 });
 
+test('class string is makeable', function () {
+    $valueObject = ClassString::make('Exception');
+    $this->assertSame('Exception', $valueObject->value());
+});
+
 test('class string is macroable', function () {
     ClassString::macro('getLength', function () {
         return str($this->value())->length();
     });
-    $valueObject = ClassString::make('TestClass\Testing');
+    $valueObject = new ClassString('TestClass\Testing');
     $this->assertSame(17, $valueObject->getLength());
 });
 
 test('class string is conditionable', function () {
-    $valueObject = ClassString::make(TestCase::class);
+    $valueObject = new ClassString(TestCase::class);
     $this->assertTrue($valueObject->when(true)->classExists());
     $this->assertSame($valueObject, $valueObject->when(false)->classExists());
 });
 
 test('class string is arrayable', function () {
-    $valueObject = ClassString::make('Throwable');
+    $valueObject = new ClassString('Throwable');
     $this->assertTrue($valueObject->interfaceExists());
     $this->assertSame([$valueObject->value()], $valueObject->toArray());
 });
 
 test('class string is stringable', function () {
-    $valueObject = ClassString::make('Throwable');
+    $valueObject = new ClassString('Throwable');
     $this->assertSame($valueObject->value(), (string) $valueObject);
 });
