@@ -52,17 +52,26 @@ test('decimal fails when text provided', function () {
 })->expectException(\InvalidArgumentException::class);
 
 test('decimal fails when empty string passed', function () {
-    // todo: to discuss
+    $this->expectException(\InvalidArgumentException::class);
+
     new Decimal('');
-})->expectException(\InvalidArgumentException::class);
+})->skip('to discuss');
 
 test('decimal can accept null', function () {
-    // todo: to discuss
     $valueObject = new Decimal(null);
     $this->assertSame('0.00', $valueObject->value());
-});
+})->skip('to discuss');
 
 test('decimal can change decimals', function () {
+    $valueObject = new Decimal('111777999.97');
+    $this->assertSame('111777999.97', $valueObject->value());
+    $valueObject = new Decimal('111777999,97');
+    $this->assertSame('111777999.97', $valueObject->value());
+    $valueObject = new Decimal('111777999.99999999997', 11);
+    $this->assertSame('111777999.99999999997', $valueObject->value());
+    $valueObject = new Decimal('92233720368.547', 3);
+    $this->assertSame('92233720368.547', $valueObject->value());
+
     $valueObject = new Decimal('7.1', 0);
     $this->assertSame('7', $valueObject->value());
     $valueObject = new Decimal('7.1', 1);

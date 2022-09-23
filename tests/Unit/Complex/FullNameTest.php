@@ -22,6 +22,20 @@ test('can get full name', function () {
     $this->assertSame('Michael Rubél', $name->fullName());
 });
 
+test('can get full name next case', function () {
+    $name = new FullName('Anna Nowak-Kowalska');
+
+    $this->assertSame('Anna', $name->firstName());
+    $this->assertSame('Nowak-Kowalska', $name->lastName());
+})->skip('todo: minus case');
+
+test('can get full name with name in between', function () {
+    $name = new FullName('Anna Ewa Kowalska');
+
+    $this->assertSame('Anna', $name->firstName());
+    $this->assertSame('Kowalska', $name->lastName());
+})->skip('todo: name in between case');
+
 test('can get cast to string', function () {
     $name = new FullName('Michael Rubél');
 
