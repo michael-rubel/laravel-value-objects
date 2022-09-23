@@ -6,14 +6,14 @@ namespace Olsza\ValueObjects\Tests\Feature\ValueObjects;
 
 use MichaelRubel\ValueObjects\Primitive\Double;
 
-test('integer can accept integer', function () {
+test('double can accept integer', function () {
     $valueObject = new Double(1);
     $this->assertSame(1.0, $valueObject->value());
     $valueObject = new Double(2);
     $this->assertSame(2.0, $valueObject->value());
 });
 
-test('integer can accept string', function () {
+test('double can accept string', function () {
     $valueObject = new Double('1');
     $this->assertSame(1.0, $valueObject->value());
     $valueObject = new Double('1.2');
@@ -30,7 +30,7 @@ test('integer can accept string', function () {
     $this->assertSame(3.1, $valueObject->value());
 });
 
-test('integer can accept float', function () {
+test('double can accept float', function () {
     $valueObject = new Double(1.2);
     $this->assertSame(1.2, $valueObject->value());
     $valueObject = new Double(1.3);
@@ -43,7 +43,7 @@ test('integer can accept float', function () {
     $this->assertSame(2.1, $valueObject->value());
 });
 
-test('integer can accept null', function () {
+test('double can accept null', function () {
     $valueObject = new Double(null);
     $this->assertSame(0.0, $valueObject->value());
 });
