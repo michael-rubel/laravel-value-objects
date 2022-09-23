@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace MichaelRubel\ValueObjects\Collection\Primitive;
 
-use MichaelRubel\ValueObjects\Traits\SanitizesNumbers;
+use MichaelRubel\ValueObjects\Concerns\SanitizesNumbers;
 use MichaelRubel\ValueObjects\ValueObject;
 use PHP\Math\BigNumber\BigNumber;
 

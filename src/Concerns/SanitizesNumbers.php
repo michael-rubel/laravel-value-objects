@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace MichaelRubel\ValueObjects\Traits;
+namespace MichaelRubel\ValueObjects\Concerns;
 
 trait SanitizesNumbers
 {
