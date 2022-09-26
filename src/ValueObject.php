@@ -45,7 +45,7 @@ abstract class ValueObject implements Arrayable
     }
 
     /**
-     * Inversion to `equals` method.
+     * Inversion for `equals` method.
      *
      * @param  ValueObject  $object
      *
