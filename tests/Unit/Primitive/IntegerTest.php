@@ -57,6 +57,10 @@ test('integer can handle huge numbers', function () {
     $this->assertSame(9223372036854775807, $valueObject->value());
     $valueObject = new Integer('9223372036854775807');
     $this->assertSame(9223372036854775807, $valueObject->value());
+    $valueObject = new Integer(-9223372036854775);
+    $this->assertSame(-9223372036854775, $valueObject->value());
+    $valueObject = new Integer('-9223372036854775');
+    $this->assertSame(-9223372036854775, $valueObject->value());
 
     $valueObject = new Integer(111777999.99997);
     $this->assertSame(111777999, $valueObject->value());
