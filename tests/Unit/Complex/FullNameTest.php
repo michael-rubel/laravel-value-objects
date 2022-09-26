@@ -22,19 +22,19 @@ test('can get full name', function () {
     $this->assertSame('Michael Rubél', $name->fullName());
 });
 
-test('can get full name next case', function () {
+test('can get full name minus case', function () {
     $name = new FullName('Anna Nowak-Kowalska');
 
     $this->assertSame('Anna', $name->firstName());
     $this->assertSame('Nowak-Kowalska', $name->lastName());
-})->skip('todo: minus case');
+});
 
 test('can get full name with name in between', function () {
     $name = new FullName('Anna Ewa Kowalska');
 
     $this->assertSame('Anna', $name->firstName());
     $this->assertSame('Kowalska', $name->lastName());
-})->skip('todo: name in between case');
+});
 
 test('can get cast to string', function () {
     $name = new FullName('Michael Rubél');
@@ -59,13 +59,13 @@ test('full name is makeable', function () {
 });
 
 test('full name is macroable', function () {
-    FullName::macro('getLength', function () {
-        return str($this->fullName())->length();
+    FullName::macro('surname', function () {
+        return $this->split[1];
     });
 
-    $valueObject = new FullName('Michael');
+    $valueObject = new FullName('Anna Ewa Kowalska');
 
-    $this->assertSame(7, $valueObject->getLength());
+    $this->assertSame('Ewa', $valueObject->surname());
 });
 
 test('full name is conditionable', function () {
