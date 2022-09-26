@@ -62,9 +62,16 @@ test('full name is macroable', function () {
     FullName::macro('surname', function () {
         return $this->split[1];
     });
-
     $valueObject = new FullName('Anna Ewa Kowalska');
+    $this->assertSame('Ewa', $valueObject->surname());
 
+    FullName::macro('inverse', function () {
+        return $this->split = $this->split->reverse();
+    });
+    $valueObject = new FullName('Nowak-Kowalska Ewa Anna');
+    $valueObject->inverse();
+    $this->assertSame('Anna', $valueObject->firstName());
+    $this->assertSame('Nowak-Kowalska', $valueObject->lastName());
     $this->assertSame('Ewa', $valueObject->surname());
 });
 
