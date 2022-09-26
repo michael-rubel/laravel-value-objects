@@ -45,6 +45,18 @@ abstract class ValueObject implements Arrayable
     }
 
     /**
+     * Inversion to `equals` method.
+     *
+     * @param  ValueObject  $object
+     *
+     * @return bool
+     */
+    public function notEquals(ValueObject $object): bool
+    {
+        return ! $this->equals($object);
+    }
+
+    /**
      * Get the length of the value.
      *
      * @return int
