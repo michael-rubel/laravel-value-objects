@@ -66,16 +66,16 @@ test('full name is makeable', function () {
 });
 
 test('full name is macroable', function () {
-    FullName::macro('surname', fn () => $this->split[1]);
+    FullName::macro('middlename', fn () => $this->split[1]);
     $valueObject = new FullName('Anna Ewa Kowalska');
-    $this->assertSame('Ewa', $valueObject->surname());
+    $this->assertSame('Ewa', $valueObject->middlename());
 
     FullName::macro('inverse', fn () => $this->split = $this->split->reverse());
     $valueObject = new FullName('Nowak-Kowalska Ewa Anna');
     $valueObject->inverse();
     $this->assertSame('Anna', $valueObject->firstName());
     $this->assertSame('Nowak-Kowalska', $valueObject->lastName());
-    $this->assertSame('Ewa', $valueObject->surname());
+    $this->assertSame('Ewa', $valueObject->middlename());
 });
 
 test('full name is conditionable', function () {
