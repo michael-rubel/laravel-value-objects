@@ -32,7 +32,7 @@ class Boolean extends ValueObject
     /**
      * Create a new instance of the value object.
      *
-     * @param  bool|int|string|null  $bool
+     * @param  bool|int|string  $bool
      */
     public function __construct(protected bool|int|string $bool)
     {
