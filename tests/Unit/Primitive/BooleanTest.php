@@ -82,8 +82,8 @@ test('boolean is makeable', function () {
 });
 
 test('boolean is macroable', function () {
-    Boolean::macro('getPositiveValues', fn () => $this->positives);
-    Boolean::macro('getNegativeValues', fn () => $this->negatives);
+    Boolean::macro('getPositiveValues', fn () => $this->trueValues);
+    Boolean::macro('getNegativeValues', fn () => $this->falseValues);
     $valueObject = new Boolean(1);
     $this->assertSame([
         '1', 'true', 'True', 'TRUE', 1, true,

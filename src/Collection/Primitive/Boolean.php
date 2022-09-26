@@ -16,7 +16,7 @@ class Boolean extends ValueObject
      *
      * @var array
      */
-    protected array $positives = [
+    protected array $trueValues = [
         '1', 'true', 'True', 'TRUE', 1, true,
     ];
 
@@ -25,7 +25,7 @@ class Boolean extends ValueObject
      *
      * @var array
      */
-    protected array $negatives = [
+    protected array $falseValues = [
         '0', 'false', 'False', 'FALSE', 0, false,
     ];
 
@@ -37,8 +37,8 @@ class Boolean extends ValueObject
     public function __construct(protected bool|int|string $bool)
     {
         $this->bool = match (true) {
-            $this->isPositive() => true,
-            $this->isNegative() => false,
+            $this->true()  => true,
+            $this->false() => false,
             default => throw new \InvalidArgumentException('Invalid boolean'),
         };
     }
@@ -58,9 +58,9 @@ class Boolean extends ValueObject
      *
      * @return bool
      */
-    protected function isPositive(): bool
+    protected function true(): bool
     {
-        return in_array($this->bool, $this->positives, true);
+        return in_array($this->bool, $this->trueValues, true);
     }
 
     /**
@@ -68,9 +68,9 @@ class Boolean extends ValueObject
      *
      * @return bool
      */
-    protected function isNegative(): bool
+    protected function false(): bool
     {
-        return in_array($this->bool, $this->negatives, true);
+        return in_array($this->bool, $this->falseValues, true);
     }
 
     /**
