@@ -8,29 +8,29 @@ use MichaelRubel\Formatters\Collection\TaxNumberFormatter;
 use MichaelRubel\ValueObjects\ValueObject;
 
 /**
- * @method static static make(string $taxNumber, string $country = null)
+ * @method static static make(string $number, string $country = null)
  */
 class TaxNumber extends ValueObject
 {
     /**
      * Create a new instance of the value object.
      *
-     * @param  string|null  $taxNumber
+     * @param  string|null  $number
      * @param  string|null  $country
      */
     public function __construct(
-        protected ?string $taxNumber = null,
+        protected ?string $number = null,
         protected ?string $country = null,
     ) {
-        $this->taxNumber = format(TaxNumberFormatter::class, $this->taxNumber, $this->country);
+        $this->number = format(TaxNumberFormatter::class, $this->number, $this->country);
 
         $this->when($this->isWithCountry(), function () {
-            $this->country = str($this->taxNumber)
+            $this->country = str($this->number)
                 ->substr(0, 2)
                 ->upper()
                 ->value();
 
-            $this->taxNumber = str($this->taxNumber)
+            $this->number = str($this->number)
                 ->substr(2)
                 ->value();
         });
@@ -53,7 +53,7 @@ class TaxNumber extends ValueObject
      */
     public function taxNumber(): string
     {
-        return str($this->taxNumber)
+        return str($this->number)
             ->upper()
             ->value();
     }
@@ -77,7 +77,7 @@ class TaxNumber extends ValueObject
      */
     public function isWithCountry(): bool
     {
-        return strlen($this->taxNumber) >= 2 && ! is_numeric($this->taxNumber);
+        return strlen($this->number) >= 2 && ! is_numeric($this->number);
     }
 
     /**
