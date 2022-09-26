@@ -47,6 +47,12 @@ test('decimal can accept string', function () {
     $this->assertSame('100000.000', $valueObject->value());
 });
 
+test('decimal fails when no argument passed', function () {
+    $this->expectException(\TypeError::class);
+
+    new Decimal;
+});
+
 test('decimal fails when text provided', function () {
     $this->expectException(\InvalidArgumentException::class);
 

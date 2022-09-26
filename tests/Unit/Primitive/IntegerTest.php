@@ -43,6 +43,12 @@ test('integer can accept string', function () {
     $this->assertSame(3, $valueObject->value());
 });
 
+test('decimal fails when no argument passed', function () {
+    $this->expectException(\TypeError::class);
+
+    new Integer;
+});
+
 test('integer fails when text provided', function () {
     $this->expectException(\InvalidArgumentException::class);
 

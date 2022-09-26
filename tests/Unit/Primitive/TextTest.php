@@ -66,6 +66,12 @@ test('text can accept null', function () {
     $this->assertSame('', $valueObject->value());
 });
 
+test('text fails when no argument passed', function () {
+    $this->expectException(\TypeError::class);
+
+    new Text;
+});
+
 test('integer is makeable', function () {
     $valueObject = Text::make(1);
     $this->assertSame('1', $valueObject->value());
