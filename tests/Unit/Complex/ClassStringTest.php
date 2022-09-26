@@ -39,6 +39,13 @@ test('class string is interface & exists but class dont', function () {
     $this->assertFalse($classString->interfaceExists());
 });
 
+test('class string is instantiable', function () {
+    $classString = new ClassString('Exception');
+    $this->assertTrue($classString->isInstantiable());
+    $classString = new ClassString('Throwable');
+    $this->assertFalse($classString->isInstantiable());
+});
+
 test('can cast class string to string', function () {
     $classString = new ClassString(ClassString::class);
 
