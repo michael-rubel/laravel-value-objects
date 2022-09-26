@@ -1,0 +1,120 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Olsza\ValueObjects\Tests\Feature\ValueObjects;
+
+use MichaelRubel\ValueObjects\Collection\Primitive\Boolean;
+
+test('boolean can accept integer', function () {
+    $valueObject = new Boolean(0);
+    $this->assertFalse($valueObject->value());
+    $valueObject = new Boolean(1);
+    $this->assertTrue($valueObject->value());
+});
+
+test('boolean can accept integer as a string', function () {
+    $valueObject = new Boolean('0');
+    $this->assertFalse($valueObject->value());
+    $valueObject = new Boolean('1');
+    $this->assertTrue($valueObject->value());
+});
+
+test('boolean can accept boolean strings', function () {
+    $valueObject = new Boolean('false');
+    $this->assertFalse($valueObject->value());
+    $valueObject = new Boolean('False');
+    $this->assertFalse($valueObject->value());
+    $valueObject = new Boolean('FALSE');
+    $this->assertFalse($valueObject->value());
+    $valueObject = new Boolean('true');
+    $this->assertTrue($valueObject->value());
+    $valueObject = new Boolean('True');
+    $this->assertTrue($valueObject->value());
+    $valueObject = new Boolean('TRUE');
+    $this->assertTrue($valueObject->value());
+});
+
+test('boolean can accept native booleans', function () {
+    $valueObject = new Boolean(false);
+    $this->assertFalse($valueObject->value());
+    $valueObject = new Boolean(true);
+    $this->assertTrue($valueObject->value());
+});
+
+test('boolean fails when no argument passed', function () {
+    $this->expectException(\TypeError::class);
+
+    new Boolean;
+});
+
+test('boolean fails when null passed', function () {
+    $this->expectException(\TypeError::class);
+
+    (new Boolean(null))->value();
+});
+
+test('boolean fails when empty string passed', function () {
+    $this->expectException(\InvalidArgumentException::class);
+
+    (new Boolean(''))->value();
+});
+
+test('boolean fails when any string passed', function () {
+    $this->expectException(\InvalidArgumentException::class);
+
+    (new Boolean('asd'))->value();
+});
+
+test('boolean is makeable', function () {
+    $valueObject = Boolean::make(1);
+    $this->assertTrue($valueObject->value());
+    $valueObject = Boolean::make(0);
+    $this->assertFalse($valueObject->value());
+    $valueObject = Boolean::make('1');
+    $this->assertTrue($valueObject->value());
+    $valueObject = Boolean::make('0');
+    $this->assertFalse($valueObject->value());
+    $valueObject = Boolean::make('true');
+    $this->assertTrue($valueObject->value());
+    $valueObject = Boolean::make('false');
+    $this->assertFalse($valueObject->value());
+});
+
+test('boolean is macroable', function () {
+    Boolean::macro('getPositiveValues', fn () => $this->positives);
+    Boolean::macro('getNegativeValues', fn () => $this->negatives);
+    $valueObject = new Boolean(1);
+    $this->assertSame([
+        '1', 'true', 'True', 'TRUE', 1, true,
+    ], $valueObject->getPositiveValues());
+    $this->assertSame([
+        '0', 'false', 'False', 'FALSE', 0, false,
+    ], $valueObject->getNegativeValues());
+});
+
+test('boolean is conditionable', function () {
+    $valueObject = new Boolean('1');
+    $this->assertTrue($valueObject->when(true)->value());
+    $this->assertSame($valueObject, $valueObject->when(false)->value());
+});
+
+test('boolean is arrayable', function () {
+    $array = (new Boolean(1))->toArray();
+    $this->assertSame([true], $array);
+});
+
+test('boolean is stringable', function () {
+    $valueObject = new Boolean(1);
+    $this->assertSame('true', (string) $valueObject);
+    $valueObject = new Boolean(0);
+    $this->assertSame('false', (string) $valueObject);
+    $valueObject = new Boolean('1');
+    $this->assertSame('true', (string) $valueObject);
+    $valueObject = new Boolean('0');
+    $this->assertSame('false', (string) $valueObject);
+    $valueObject = new Boolean('true');
+    $this->assertSame('true', (string) $valueObject);
+    $valueObject = new Boolean('false');
+    $this->assertSame('false', (string) $valueObject);
+});
