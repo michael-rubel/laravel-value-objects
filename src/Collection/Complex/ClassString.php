@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace MichaelRubel\ValueObjects\Collection\Complex;
 
-use Illuminate\Contracts\Container\BindingResolutionException;
 use MichaelRubel\ValueObjects\ValueObject;
 
 /**
@@ -23,20 +22,8 @@ class ClassString extends ValueObject
     }
 
     /**
-     * @return bool
-     */
-    public function isInstantiable(): bool
-    {
-        try {
-            app($this->value());
-        } catch (BindingResolutionException) {
-            return false;
-        }
-
-        return true;
-    }
-
-    /**
+     * Determine if the class exists for this class string.
+     *
      * @return bool
      */
     public function classExists(): bool
@@ -45,6 +32,8 @@ class ClassString extends ValueObject
     }
 
     /**
+     * Determine if the interface exists for this class string.
+     *
      * @return bool
      */
     public function interfaceExists(): bool
