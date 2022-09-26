@@ -67,19 +67,6 @@ abstract class ValueObject implements Arrayable
     }
 
     /**
-     * Make sure value object is immutable.
-     *
-     * @param  string  $name
-     * @param  mixed  $value
-     *
-     * @return void
-     */
-    public function __set(string $name, mixed $value): void
-    {
-        throw new \InvalidArgumentException('Value objects are immutable. You cannot modify properties. Create a new object instead.');
-    }
-
-    /**
      * Get an array representation of the value object.
      *
      * @return array
@@ -97,5 +84,18 @@ abstract class ValueObject implements Arrayable
     public function __toString(): string
     {
         return (string) $this->value();
+    }
+
+    /**
+     * Make sure value object is immutable.
+     *
+     * @param  string  $name
+     * @param  mixed  $value
+     *
+     * @return void
+     */
+    public function __set(string $name, mixed $value): void
+    {
+        throw new \InvalidArgumentException('Value objects are immutable. You cannot modify properties. Create a new object instead.');
     }
 }
