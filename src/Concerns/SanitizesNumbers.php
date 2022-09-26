@@ -14,8 +14,7 @@ trait SanitizesNumbers
     public function sanitize(int|float|string|null $number): string
     {
         return str($number)
-            ->replace(',', '.')
-            ->replace(' ', '')
+            ->replace([',', ' '], ['.', ''])
             ->value();
     }
 }
