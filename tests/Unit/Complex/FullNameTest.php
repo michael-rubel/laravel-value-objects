@@ -29,6 +29,13 @@ test('can get full name minus case', function () {
     $this->assertSame('Nowak-Kowalska', $name->lastName());
 });
 
+test('can get full name space case', function () {
+    $name = new FullName('Alicja', 'Bachleda Curuś');
+
+    $this->assertSame('Alicja', $name->firstName());
+    $this->assertSame('Bachleda Curuś', $name->lastName());
+})->skip('edge case with spaces in last name');
+
 test('can get full name with name in between', function () {
     $name = new FullName('Anna Ewa Kowalska');
 
