@@ -13,7 +13,7 @@ trait SanitizesNumbers
      */
     public function sanitize(int|float|string|null $number): string
     {
-        return str($number ?? '0')
+        return str($number)
             ->replace(',', '.')
             ->replace(' ', '')
             ->value();

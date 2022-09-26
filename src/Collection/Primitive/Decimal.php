@@ -9,7 +9,7 @@ use MichaelRubel\ValueObjects\ValueObject;
 use PHP\Math\BigNumber\BigNumber;
 
 /**
- * @method static static make(int|float|string|null $number, int $scale = 2)
+ * @method static static make(int|float|string $number, int $scale = 2)
  */
 class Decimal extends ValueObject
 {
@@ -23,10 +23,10 @@ class Decimal extends ValueObject
     /**
      * Create a new instance of the value object.
      *
-     * @param  int|float|string|null  $number
+     * @param  int|float|string  $number
      * @param  int  $scale
      */
-    public function __construct(int|float|string|null $number, protected int $scale = 2)
+    public function __construct(int|float|string $number, protected int $scale = 2)
     {
         $this->number = new BigNumber($this->sanitize($number), $this->scale);
     }

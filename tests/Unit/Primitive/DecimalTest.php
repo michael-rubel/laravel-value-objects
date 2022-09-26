@@ -48,19 +48,22 @@ test('decimal can accept string', function () {
 });
 
 test('decimal fails when text provided', function () {
+    $this->expectException(\InvalidArgumentException::class);
+
     new Decimal('asd');
-})->expectException(\InvalidArgumentException::class);
+});
 
 test('decimal fails when empty string passed', function () {
     $this->expectException(\InvalidArgumentException::class);
 
     new Decimal('');
-})->skip('to discuss');
+});
 
-test('decimal can accept null', function () {
-    $valueObject = new Decimal(null);
-    $this->assertSame('0.00', $valueObject->value());
-})->skip('to discuss');
+test('decimal fails when null passed', function () {
+    $this->expectException(\TypeError::class);
+
+    new Decimal(null);
+});
 
 test('decimal can change decimals', function () {
     $valueObject = new Decimal('111777999.97');
@@ -129,18 +132,16 @@ test('decimal can handle huge numbers', function () {
     $this->assertSame('92233720368.547', $valueObject->value());
 });
 
-test('integer is makeable', function () {
+test('decimal is makeable', function () {
     $valueObject = Decimal::make('1');
     $this->assertSame('1.00', $valueObject->value());
     $valueObject = Decimal::make('1.1');
     $this->assertSame('1.10', $valueObject->value());
     $valueObject = Decimal::make('1');
     $this->assertSame('1.00', $valueObject->value());
-    $valueObject = Decimal::make(null);
-    $this->assertSame('0.00', $valueObject->value());
 });
 
-test('integer is macroable', function () {
+test('decimal is macroable', function () {
     Decimal::macro('getLength', function () {
         return str($this->value())->length();
     });
@@ -148,18 +149,18 @@ test('integer is macroable', function () {
     $this->assertSame(5, $valueObject->getLength());
 });
 
-test('integer is conditionable', function () {
+test('decimal is conditionable', function () {
     $valueObject = new Decimal('1');
     $this->assertSame('1.00', $valueObject->when(true)->value());
     $this->assertSame($valueObject, $valueObject->when(false)->value());
 });
 
-test('integer is arrayable', function () {
+test('decimal is arrayable', function () {
     $array = (new Decimal('1'))->toArray();
     $this->assertSame(['1.00'], $array);
 });
 
-test('integer is stringable', function () {
+test('decimal is stringable', function () {
     $valueObject = new Decimal('1');
     $this->assertSame('1.00', (string) $valueObject);
     $valueObject = new Decimal('1.2');

@@ -44,12 +44,21 @@ test('integer can accept string', function () {
 });
 
 test('integer fails when text provided', function () {
-    new Integer('asd');
-})->expectException(\InvalidArgumentException::class);
+    $this->expectException(\InvalidArgumentException::class);
 
-test('integer can accept null', function () {
-    $valueObject = new Integer(null);
-    $this->assertSame(0, $valueObject->value());
+    new Integer('asd');
+});
+
+test('integer fails when empty string passed', function () {
+    $this->expectException(\InvalidArgumentException::class);
+
+    new Integer('');
+});
+
+test('integer fails when null passed', function () {
+    $this->expectException(\TypeError::class);
+
+    new Integer(null);
 });
 
 test('integer can handle huge numbers', function () {
@@ -82,8 +91,6 @@ test('integer is makeable', function () {
     $this->assertSame(1, $valueObject->value());
     $valueObject = Integer::make('1');
     $this->assertSame(1, $valueObject->value());
-    $valueObject = Integer::make(null);
-    $this->assertSame(0, $valueObject->value());
 });
 
 test('integer is macroable', function () {

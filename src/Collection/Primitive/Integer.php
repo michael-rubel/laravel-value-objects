@@ -9,7 +9,7 @@ use MichaelRubel\ValueObjects\ValueObject;
 use PHP\Math\BigNumber\BigNumber;
 
 /**
- * @method static static make(int|float|string|null $number)
+ * @method static static make(int|float|string $number)
  */
 class Integer extends ValueObject
 {
@@ -23,9 +23,9 @@ class Integer extends ValueObject
     /**
      * Create a new instance of the value object.
      *
-     * @param  int|float|string|null  $number
+     * @param  int|float|string  $number
      */
-    public function __construct(int|float|string|null $number)
+    public function __construct(int|float|string $number)
     {
         $this->number = new BigNumber($this->sanitize($number), 0);
     }
