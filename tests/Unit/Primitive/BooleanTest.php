@@ -102,6 +102,16 @@ test('boolean is conditionable', function () {
 test('boolean is arrayable', function () {
     $array = (new Boolean(1))->toArray();
     $this->assertSame([true], $array);
+    $array = (new Boolean(0))->toArray();
+    $this->assertSame([false], $array);
+    $array = (new Boolean('1'))->toArray();
+    $this->assertSame([true], $array);
+    $array = (new Boolean('0'))->toArray();
+    $this->assertSame([false], $array);
+    $array = (new Boolean('true'))->toArray();
+    $this->assertSame([true], $array);
+    $array = (new Boolean('false'))->toArray();
+    $this->assertSame([false], $array);
 });
 
 test('boolean is stringable', function () {
