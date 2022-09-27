@@ -16,18 +16,14 @@ class Boolean extends ValueObject
      *
      * @var array
      */
-    protected array $trueValues = [
-        '1', 'true', 'True', 'TRUE', 1, true,
-    ];
+    protected array $trueValues = ['1', 'true', 'True', 'TRUE', 1, true];
 
     /**
      * Allowed values that are treated as `false`.
      *
      * @var array
      */
-    protected array $falseValues = [
-        '0', 'false', 'False', 'FALSE', 0, false,
-    ];
+    protected array $falseValues = ['0', 'false', 'False', 'FALSE', 0, false];
 
     /**
      * Create a new instance of the value object.
