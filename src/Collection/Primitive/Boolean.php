@@ -56,7 +56,7 @@ class Boolean extends ValueObject
      */
     protected function isTrue(): bool
     {
-        return in_array($this->bool, $this->trueValues, true);
+        return in_array($this->bool, $this->trueValues, strict: true);
     }
 
     /**
@@ -66,7 +66,7 @@ class Boolean extends ValueObject
      */
     protected function isFalse(): bool
     {
-        return in_array($this->bool, $this->falseValues, true);
+        return in_array($this->bool, $this->falseValues, strict: true);
     }
 
     /**
