@@ -14,7 +14,7 @@ parameters:
         - '#Method (.*) should return (.*) but returns mixed\.#'
         - '#Parameter (.*), mixed given.#'
         - '#Parameter \#1 \$string of function strlen expects string, string\|null given\.#'
-        - '#Parameter \#1 \$string of function str expects string\|null, float\|int\|string\|null given\.#'
+        - '#Parameter \#1 \$string of function str expects string\|null, int\|string\|null given\.#'
         - '#Unsafe usage of new static\(\)\.#'
         - '#Cannot cast mixed to string\.#'
 
