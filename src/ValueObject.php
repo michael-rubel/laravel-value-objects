@@ -96,6 +96,6 @@ abstract class ValueObject implements Arrayable
      */
     public function __set(string $name, mixed $value): void
     {
-        throw new \InvalidArgumentException('Value objects are immutable. You cannot modify properties. Create a new object instead.');
+        throw new \InvalidArgumentException('Value objects are immutable. You cannot modify properties, create a new object instead.');
     }
 }
