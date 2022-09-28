@@ -34,7 +34,7 @@ test('value objects are not equal', function () {
 });
 
 test('decimal object equality works as expected', function () {
-    $vo1 = new Decimal('777177711191777.97999999999998', scale: 2);
+    $vo1 = new Decimal(777177711191777.97999999999998, scale: 2);
     $vo2 = new Decimal('777177711191777.97999999999998', scale: 3);
     $vo3 = new Decimal('777177711191777.97999999999998', scale: 2);
     $vo4 = clone $vo1;

@@ -13,19 +13,6 @@ test('decimal can accept integer', function () {
     $this->assertSame('2.00', $valueObject->value());
 });
 
-test('decimal can accept float', function () {
-    $valueObject = new Decimal(1.2);
-    $this->assertSame('1.20', $valueObject->value());
-    $valueObject = new Decimal(1.3);
-    $this->assertSame('1.30', $valueObject->value());
-    $valueObject = new Decimal(1.7);
-    $this->assertSame('1.70', $valueObject->value());
-    $valueObject = new Decimal(1.8);
-    $this->assertSame('1.80', $valueObject->value());
-    $valueObject = new Decimal(2.1);
-    $this->assertSame('2.10', $valueObject->value());
-});
-
 test('decimal can accept string', function () {
     $valueObject = new Decimal('1');
     $this->assertSame('1.00', $valueObject->value());

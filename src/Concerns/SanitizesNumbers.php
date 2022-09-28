@@ -7,11 +7,11 @@ namespace MichaelRubel\ValueObjects\Concerns;
 trait SanitizesNumbers
 {
     /**
-     * @param  int|float|string|null  $number
+     * @param  int|string|null  $number
      *
      * @return string
      */
-    public function sanitize(int|float|string|null $number): string
+    public function sanitize(int|string|null $number): string
     {
         return str($number)
             ->replace([',', ' '], ['.', ''])
