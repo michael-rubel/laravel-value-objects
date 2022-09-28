@@ -57,16 +57,6 @@ abstract class ValueObject implements Arrayable
     }
 
     /**
-     * Get the length of the value.
-     *
-     * @return int
-     */
-    public function length(): int
-    {
-        return strlen((string) $this->value());
-    }
-
-    /**
      * Get an array representation of the value object.
      *
      * @return array
