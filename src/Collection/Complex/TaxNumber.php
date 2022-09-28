@@ -22,18 +22,21 @@ class TaxNumber extends ValueObject
         protected ?string $number = null,
         protected ?string $country = null,
     ) {
-        $this->number = format(TaxNumberFormatter::class, $this->number, $this->country);
+        $this->number = $this->format();
 
-        $this->when($this->isWithCountry(), function () {
-            $this->country = str($this->number)
-                ->substr(0, 2)
-                ->upper()
-                ->value();
+        if ($this->isWithCountry()) {
+            $this->split();
+        }
+    }
 
-            $this->number = str($this->number)
-                ->substr(2)
-                ->value();
-        });
+    /**
+     * Check if the tax number length is less or equal two.
+     *
+     * @return bool
+     */
+    public function isWithCountry(): bool
+    {
+        return strlen($this->number) >= 2 && ! is_numeric($this->number);
     }
 
     /**
@@ -71,16 +74,6 @@ class TaxNumber extends ValueObject
     }
 
     /**
-     * Check if the tax number length is less or equal two.
-     *
-     * @return bool
-     */
-    public function isWithCountry(): bool
-    {
-        return strlen($this->number) >= 2 && ! is_numeric($this->number);
-    }
-
-    /**
      * Get the object value.
      *
      * @return string
@@ -88,6 +81,33 @@ class TaxNumber extends ValueObject
     public function value(): string
     {
         return $this->fullTaxNumber();
+    }
+
+    /**
+     * Format the value.
+     *
+     * @return string
+     */
+    protected function format(): string
+    {
+        return format(TaxNumberFormatter::class, $this->taxNumber(), $this->country());
+    }
+
+    /**
+     * Split the value.
+     *
+     * @return void
+     */
+    protected function split(): void
+    {
+        $this->country = str($this->number)
+            ->substr(0, 2)
+            ->upper()
+            ->value();
+
+        $this->number = str($this->number)
+            ->substr(2)
+            ->value();
     }
 
     /**

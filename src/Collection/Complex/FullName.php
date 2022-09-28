@@ -25,9 +25,8 @@ class FullName extends ValueObject
      */
     public function __construct(protected ?string $name)
     {
-        $this->name = format(FullNameFormatter::class, $this->name);
-
-        $this->split = str($this->name)->split('/\s/');
+        $this->name  = $this->format();
+        $this->split = $this->split();
     }
 
     /**
@@ -68,6 +67,26 @@ class FullName extends ValueObject
     public function value(): string
     {
         return $this->fullName();
+    }
+
+    /**
+     * Format the value.
+     *
+     * @return string
+     */
+    protected function format(): string
+    {
+        return format(FullNameFormatter::class, $this->value());
+    }
+
+    /**
+     * Split the value.
+     *
+     * @return Collection
+     */
+    protected function split(): Collection
+    {
+        return str($this->value())->split('/\s/');
     }
 
     /**
