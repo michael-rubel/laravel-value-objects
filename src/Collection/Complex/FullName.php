@@ -9,7 +9,8 @@ use MichaelRubel\Formatters\Collection\FullNameFormatter;
 use MichaelRubel\ValueObjects\ValueObject;
 
 /**
- * @method static static make(string $name)
+ * @method static static make(string $value)
+ * @method static static from(string $value)
  */
 class FullName extends ValueObject
 {
@@ -21,11 +22,11 @@ class FullName extends ValueObject
     /**
      * Create a new instance of the value object.
      *
-     * @param  string|null  $name
+     * @param  string|null  $value
      */
-    public function __construct(protected ?string $name)
+    public function __construct(protected ?string $value)
     {
-        $this->name  = $this->format();
+        $this->value = $this->format();
         $this->split = $this->split();
     }
 
@@ -36,7 +37,7 @@ class FullName extends ValueObject
      */
     public function fullName(): string
     {
-        return (string) $this->name;
+        return (string) $this->value;
     }
 
     /**

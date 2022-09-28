@@ -32,6 +32,18 @@ abstract class ValueObject implements Arrayable
     }
 
     /**
+     * Convenient method to create a value object statically.
+     *
+     * @param  mixed  $values
+     *
+     * @return static
+     */
+    public static function from(mixed ...$values): static
+    {
+        return static::make(...$values);
+    }
+
+    /**
      * Check if objects are instances of same class
      * and share the same properties and values.
      *

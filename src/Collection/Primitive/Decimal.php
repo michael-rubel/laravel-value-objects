@@ -10,6 +10,7 @@ use PHP\Math\BigNumber\BigNumber;
 
 /**
  * @method static static make(int|float|string $number, int $scale = 2)
+ * @method static static from(int|float|string $number, int $scale = 2)
  */
 class Decimal extends ValueObject
 {

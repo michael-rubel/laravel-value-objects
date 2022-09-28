@@ -7,7 +7,8 @@ namespace MichaelRubel\ValueObjects\Collection\Primitive;
 use MichaelRubel\ValueObjects\ValueObject;
 
 /**
- * @method static static make(bool|int|string $bool)
+ * @method static static make(bool|int|string $value)
+ * @method static static from(bool|int|string $value)
  */
 class Boolean extends ValueObject
 {
@@ -28,11 +29,11 @@ class Boolean extends ValueObject
     /**
      * Create a new instance of the value object.
      *
-     * @param  bool|int|string  $bool
+     * @param  bool|int|string  $value
      */
-    public function __construct(protected bool|int|string $bool)
+    public function __construct(protected bool|int|string $value)
     {
-        $this->bool = match (true) {
+        $this->value = match (true) {
             $this->isTrue()  => true,
             $this->isFalse() => false,
             default => throw new \InvalidArgumentException('Invalid boolean'),
@@ -46,7 +47,7 @@ class Boolean extends ValueObject
      */
     public function value(): bool
     {
-        return (bool) $this->bool;
+        return (bool) $this->value;
     }
 
     /**
@@ -56,7 +57,7 @@ class Boolean extends ValueObject
      */
     protected function isTrue(): bool
     {
-        return in_array($this->bool, $this->trueValues, strict: true);
+        return in_array($this->value, $this->trueValues, strict: true);
     }
 
     /**
@@ -66,7 +67,7 @@ class Boolean extends ValueObject
      */
     protected function isFalse(): bool
     {
-        return in_array($this->bool, $this->falseValues, strict: true);
+        return in_array($this->value, $this->falseValues, strict: true);
     }
 
     /**

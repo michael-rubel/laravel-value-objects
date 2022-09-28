@@ -7,16 +7,17 @@ namespace MichaelRubel\ValueObjects\Collection\Complex;
 use MichaelRubel\ValueObjects\ValueObject;
 
 /**
- * @method static static make(string $classString)
+ * @method static static make(string $string)
+ * @method static static from(string $string)
  */
 class ClassString extends ValueObject
 {
     /**
      * Create a new instance of the value object.
      *
-     * @param  string|null  $classString
+     * @param  string|null  $string
      */
-    public function __construct(protected ?string $classString)
+    public function __construct(protected ?string $string)
     {
         //
     }
@@ -48,6 +49,6 @@ class ClassString extends ValueObject
      */
     public function value(): string
     {
-        return (string) $this->classString;
+        return (string) $this->string;
     }
 }

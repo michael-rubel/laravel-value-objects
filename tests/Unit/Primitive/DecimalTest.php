@@ -145,6 +145,13 @@ test('decimal is makeable', function () {
     $this->assertSame('1.10', $valueObject->value());
     $valueObject = Decimal::make('1');
     $this->assertSame('1.00', $valueObject->value());
+
+    $valueObject = Decimal::from('1');
+    $this->assertSame('1.00', $valueObject->value());
+    $valueObject = Decimal::from('1.1');
+    $this->assertSame('1.10', $valueObject->value());
+    $valueObject = Decimal::from('1');
+    $this->assertSame('1.00', $valueObject->value());
 });
 
 test('decimal is macroable', function () {

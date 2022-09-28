@@ -7,16 +7,17 @@ namespace MichaelRubel\ValueObjects\Collection\Primitive;
 use MichaelRubel\ValueObjects\ValueObject;
 
 /**
- * @method static static make(int|float|string|null $text)
+ * @method static static make(int|float|string|null $value)
+ * @method static static from(int|float|string|null $value)
  */
 class Text extends ValueObject
 {
     /**
      * Create a new instance of the value object.
      *
-     * @param  int|float|string|null  $text
+     * @param  int|float|string|null  $value
      */
-    public function __construct(protected int|float|string|null $text)
+    public function __construct(protected int|float|string|null $value)
     {
         //
     }
@@ -28,6 +29,6 @@ class Text extends ValueObject
      */
     public function value(): string
     {
-        return (string) $this->text;
+        return (string) $this->value;
     }
 }

@@ -35,8 +35,12 @@ test('can cast uuid to string', function () {
 });
 
 test('full name is makeable', function () {
-    $uuid        = (string) Str::uuid();
+    $uuid = (string) Str::uuid();
+
     $valueObject = Uuid::make($uuid);
+    $this->assertSame($uuid, $valueObject->value());
+
+    $valueObject = Uuid::from($uuid);
     $this->assertSame($uuid, $valueObject->value());
 });
 

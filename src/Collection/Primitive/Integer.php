@@ -10,6 +10,7 @@ use PHP\Math\BigNumber\BigNumber;
 
 /**
  * @method static static make(int|float|string $number)
+ * @method static static from(int|float|string $number)
  */
 class Integer extends ValueObject
 {

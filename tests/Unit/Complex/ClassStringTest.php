@@ -59,6 +59,9 @@ test('class string is null', function () {
 test('class string is makeable', function () {
     $valueObject = ClassString::make('Exception');
     $this->assertSame('Exception', $valueObject->value());
+
+    $valueObject = ClassString::from('Exception');
+    $this->assertSame('Exception', $valueObject->value());
 });
 
 test('class string is macroable', function () {

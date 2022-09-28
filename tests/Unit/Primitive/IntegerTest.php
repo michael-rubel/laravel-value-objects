@@ -97,6 +97,13 @@ test('integer is makeable', function () {
     $this->assertSame(1, $valueObject->value());
     $valueObject = Integer::make('1');
     $this->assertSame(1, $valueObject->value());
+
+    $valueObject = Integer::from(1);
+    $this->assertSame(1, $valueObject->value());
+    $valueObject = Integer::from('1.1');
+    $this->assertSame(1, $valueObject->value());
+    $valueObject = Integer::from('1');
+    $this->assertSame(1, $valueObject->value());
 });
 
 test('integer is macroable', function () {

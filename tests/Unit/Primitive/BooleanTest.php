@@ -79,6 +79,19 @@ test('boolean is makeable', function () {
     $this->assertTrue($valueObject->value());
     $valueObject = Boolean::make('false');
     $this->assertFalse($valueObject->value());
+
+    $valueObject = Boolean::from(1);
+    $this->assertTrue($valueObject->value());
+    $valueObject = Boolean::from(0);
+    $this->assertFalse($valueObject->value());
+    $valueObject = Boolean::from('1');
+    $this->assertTrue($valueObject->value());
+    $valueObject = Boolean::from('0');
+    $this->assertFalse($valueObject->value());
+    $valueObject = Boolean::from('true');
+    $this->assertTrue($valueObject->value());
+    $valueObject = Boolean::from('false');
+    $this->assertFalse($valueObject->value());
 });
 
 test('boolean is macroable', function () {

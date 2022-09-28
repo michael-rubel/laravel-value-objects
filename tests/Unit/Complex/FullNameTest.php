@@ -63,6 +63,9 @@ test('can pass nulls and returns empty string', function () {
 test('full name is makeable', function () {
     $name = FullName::make('Michael Rubél');
     $this->assertSame('Michael Rubél', $name->fullName());
+
+    $name = FullName::from('Michael Rubél');
+    $this->assertSame('Michael Rubél', $name->fullName());
 });
 
 test('full name is macroable', function () {

@@ -9,6 +9,7 @@ use MichaelRubel\ValueObjects\ValueObject;
 
 /**
  * @method static static make(string $number, string $country = null)
+ * @method static static from(string $number, string $country = null)
  */
 class TaxNumber extends ValueObject
 {

@@ -155,6 +155,9 @@ test('passed null tax number and empty country', function () {
 test('tax number is makeable', function () {
     $valueObject = TaxNumber::make('PL0123456789');
     $this->assertSame('PL0123456789', $valueObject->value());
+
+    $valueObject = TaxNumber::from('PL0123456789');
+    $this->assertSame('PL0123456789', $valueObject->value());
 });
 
 test('tax number is macroable', function () {

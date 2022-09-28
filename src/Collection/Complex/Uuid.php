@@ -7,18 +7,19 @@ namespace MichaelRubel\ValueObjects\Collection\Complex;
 use MichaelRubel\ValueObjects\ValueObject;
 
 /**
- * @method static static make(string $uuid, string $name = null)
+ * @method static static make(string $value, string $name = null)
+ * @method static static from(string $value, string $name = null)
  */
 class Uuid extends ValueObject
 {
     /**
      * Create a new instance of the value object.
      *
-     * @param  string|null  $uuid
+     * @param  string|null  $value
      * @param  string|null  $name
      */
     public function __construct(
-        protected ?string $uuid,
+        protected ?string $value,
         protected ?string $name = null,
     ) {
         //
@@ -47,7 +48,7 @@ class Uuid extends ValueObject
      */
     public function value(): string
     {
-        return (string) $this->uuid;
+        return (string) $this->value;
     }
 
     /**
