@@ -2,7 +2,7 @@ name: run-tests
 
 on:
   push:
-    branches: [main, patch*]
+    branches: [main]
   pull_request:
     branches: [main]
 
@@ -39,7 +39,6 @@ jobs:
         run: |
           composer require "laravel/framework:${{ matrix.laravel }}" --dev --no-interaction --no-update
           composer update --${{ matrix.stability }} --prefer-dist --no-interaction
-
 
       - name: Execute tests
         run: ./vendor/bin/pest --coverage-clover build/clover.xml
