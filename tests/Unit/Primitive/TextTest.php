@@ -72,7 +72,7 @@ test('text fails when no argument passed', function () {
     new Text;
 });
 
-test('integer is makeable', function () {
+test('text is makeable', function () {
     $valueObject = Text::make(1);
     $this->assertSame('1', $valueObject->value());
     $valueObject = Text::make(1.1);
@@ -92,7 +92,7 @@ test('integer is makeable', function () {
     $this->assertSame('', $valueObject->value());
 });
 
-test('integer is macroable', function () {
+test('text is macroable', function () {
     Text::macro('getLength', function () {
         return str($this->value())->length();
     });
@@ -100,18 +100,18 @@ test('integer is macroable', function () {
     $this->assertSame(4, $valueObject->getLength());
 });
 
-test('integer is conditionable', function () {
+test('text is conditionable', function () {
     $valueObject = new Text('1');
     $this->assertSame('1', $valueObject->when(true)->value());
     $this->assertSame($valueObject, $valueObject->when(false)->value());
 });
 
-test('integer is arrayable', function () {
-    $array = (new Text(1))->toArray();
-    $this->assertSame(['1'], $array);
+test('text is arrayable', function () {
+    $array = (new Text('Lorem Ipsum is simply dummy text.'))->toArray();
+    $this->assertSame(['Lorem Ipsum is simply dummy text.'], $array);
 });
 
-test('integer is stringable', function () {
+test('text is stringable', function () {
     $valueObject = new Text(1);
     $this->assertSame('1', (string) $valueObject);
     $valueObject = new Text(1.2);
