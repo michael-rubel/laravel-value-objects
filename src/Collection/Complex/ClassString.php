@@ -43,6 +43,28 @@ class ClassString extends ValueObject
     }
 
     /**
+     * Instantiate the class string if possible.
+     *
+     * @return object
+     */
+    public function instantiate(): object
+    {
+        return app($this->value());
+    }
+
+    /**
+     * Instantiate the class string if possible.
+     *
+     * @param  array  $parameters
+     *
+     * @return object
+     */
+    public function instantiateWith(array $parameters = []): object
+    {
+        return app($this->value(), $parameters);
+    }
+
+    /**
      * Get the object value.
      *
      * @return string

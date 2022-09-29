@@ -56,6 +56,13 @@ test('class string is null', function () {
     $this->assertSame('', (string) $classString);
 });
 
+test('can instantiate a class from class string value', function () {
+    $classString = new ClassString('Exception');
+
+    $this->assertEquals(new \Exception, $classString->instantiate());
+    $this->assertEquals(new \Exception('test'), $classString->instantiateWith(['message' => 'test']));
+});
+
 test('class string is makeable', function () {
     $valueObject = ClassString::make('Exception');
     $this->assertSame('Exception', $valueObject->value());
