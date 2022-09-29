@@ -7,6 +7,11 @@ use MichaelRubel\ValueObjects\Collection\Complex\ClassString;
 use MichaelRubel\ValueObjects\Collection\Complex\FullName;
 use MichaelRubel\ValueObjects\Collection\Complex\TaxNumber;
 use MichaelRubel\ValueObjects\Collection\Complex\Uuid;
+use MichaelRubel\ValueObjects\Collection\Primitive\Boolean;
+use MichaelRubel\ValueObjects\Collection\Primitive\Decimal;
+use MichaelRubel\ValueObjects\Collection\Primitive\Integer;
+use MichaelRubel\ValueObjects\Collection\Primitive\Text;
+use PHP\Math\BigNumber\BigNumber;
 
 test('class string value object is immutable', function () {
     $valueObject              = new ClassString('Exception');
@@ -27,4 +32,24 @@ test('uuid value object is immutable', function () {
     $uuid                    = (string) Str::uuid();
     $valueObject             = new Uuid($uuid);
     $valueObject->tax_number = 'immutable';
+})->expectException(\InvalidArgumentException::class);
+
+test('boolean value object is immutable', function () {
+    $valueObject = new Boolean('1');
+    $valueObject->value = '0';
+})->expectException(\InvalidArgumentException::class);
+
+test('decimal value object is immutable', function () {
+    $valueObject = new Decimal('1.2000');
+    $valueObject->number = new BigNumber('1.20');
+})->expectException(\InvalidArgumentException::class);
+
+test('integer value object is immutable', function () {
+    $valueObject = new Integer(1);
+    $valueObject->number = new BigNumber(1);
+})->expectException(\InvalidArgumentException::class);
+
+test('text value object is immutable', function () {
+    $valueObject = new Text('Lorem ipsum');
+    $valueObject->value = 'test';
 })->expectException(\InvalidArgumentException::class);
