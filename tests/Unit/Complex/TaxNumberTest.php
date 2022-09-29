@@ -185,7 +185,7 @@ test('tax number is arrayable', function () {
     $this->assertSame([
         'fullTaxNumber' => 'PL0123456789',
         'taxNumber'     => '0123456789',
-        'country'       => 'PL',
+        'prefix'        => 'PL',
     ], $valueObject->toArray());
 });
 

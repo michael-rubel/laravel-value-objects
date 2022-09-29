@@ -131,7 +131,7 @@ class TaxNumber extends ValueObject
         return [
             'fullTaxNumber' => $this->fullTaxNumber(),
             'taxNumber'     => $this->taxNumber(),
-            'country'       => $this->country(),
+            'prefix'        => $this->prefix(),
         ];
     }
 }
