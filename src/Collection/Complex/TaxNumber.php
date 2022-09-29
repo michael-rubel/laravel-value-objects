@@ -8,8 +8,8 @@ use MichaelRubel\Formatters\Collection\TaxNumberFormatter;
 use MichaelRubel\ValueObjects\ValueObject;
 
 /**
- * @method static static make(string|null $number, string|null $country = null)
- * @method static static from(string|null $number, string|null $country = null)
+ * @method static static make(string|null $number, string|null $prefix = null)
+ * @method static static from(string|null $number, string|null $prefix = null)
  */
 class TaxNumber extends ValueObject
 {
@@ -17,15 +17,15 @@ class TaxNumber extends ValueObject
      * Create a new instance of the value object.
      *
      * @param  string|null  $number
-     * @param  string|null  $country
+     * @param  string|null  $prefix
      */
     public function __construct(
         protected ?string $number = null,
-        protected ?string $country = null,
+        protected ?string $prefix = null,
     ) {
         $this->number = $this->format();
 
-        if ($this->isWithCountry()) {
+        if ($this->isWithPrefix()) {
             $this->split();
         }
     }
@@ -35,7 +35,7 @@ class TaxNumber extends ValueObject
      *
      * @return bool
      */
-    public function isWithCountry(): bool
+    public function isWithPrefix(): bool
     {
         return strlen($this->number) >= 2 && ! is_numeric($this->number);
     }
@@ -63,15 +63,25 @@ class TaxNumber extends ValueObject
     }
 
     /**
+     * Get the tax number prefix.
+     *
+     * @return string
+     */
+    public function prefix(): string
+    {
+        return str($this->prefix)
+            ->upper()
+            ->value();
+    }
+
+    /**
      * Get the country prefix for a given tax number.
      *
      * @return string
      */
     public function country(): string
     {
-        return str($this->country)
-            ->upper()
-            ->value();
+        return $this->prefix();
     }
 
     /**
@@ -101,7 +111,7 @@ class TaxNumber extends ValueObject
      */
     protected function split(): void
     {
-        $this->country = str($this->number)
+        $this->prefix = str($this->number)
             ->substr(0, 2)
             ->upper()
             ->value();

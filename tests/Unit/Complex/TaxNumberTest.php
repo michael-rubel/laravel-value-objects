@@ -6,18 +6,21 @@ use MichaelRubel\ValueObjects\Collection\Complex\TaxNumber;
 
 test('data in tax number is null and country is null', function () {
     $data = new TaxNumber;
+    $this->assertEmpty($data->prefix());
     $this->assertEmpty($data->country());
     $this->assertEmpty($data->taxNumber());
 });
 
 test('data in tax number is number plus prefix country is null', function () {
     $data = new TaxNumber('PL1234567890');
+    $this->assertEquals('PL', $data->prefix());
     $this->assertEquals('PL', $data->country());
     $this->assertEquals('1234567890', $data->taxNumber());
 });
 
 test('data in tax number is number plus prefix country is null and prefix lowercase char', function () {
     $data = new TaxNumber('pl1234567890');
+    $this->assertEquals('PL', $data->prefix());
     $this->assertEquals('PL', $data->country());
     $this->assertEquals('1234567890', $data->taxNumber());
 });
@@ -30,12 +33,14 @@ test('data in tax number is number without prefix country is null', function () 
 
 test('data in tax number is number plus prefix country is ok', function () {
     $data = new TaxNumber('PL1234567890', 'PL');
+    $this->assertEquals('PL', $data->prefix());
     $this->assertEquals('PL', $data->country());
     $this->assertEquals('1234567890', $data->taxNumber());
 });
 
 test('data in tax number is number country is added', function () {
     $data = new TaxNumber('1234567890', 'pL');
+    $this->assertEquals('PL', $data->prefix());
     $this->assertEquals('PL', $data->country());
     $this->assertEquals('1234567890', $data->taxNumber());
 });
