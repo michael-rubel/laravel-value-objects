@@ -32,8 +32,8 @@ test('tax number value object is immutable', function () {
 })->expectException(\InvalidArgumentException::class);
 
 test('uuid value object is immutable', function () {
-    $uuid = (string) Str::uuid();
-    $valueObject  = new Uuid($uuid);
+    $uuid        = (string) Str::uuid();
+    $valueObject = new Uuid($uuid);
     $this->assertSame($uuid, $valueObject->value);
     $valueObject->tax_number = 'immutable';
 })->expectException(\InvalidArgumentException::class);
