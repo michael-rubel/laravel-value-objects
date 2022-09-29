@@ -7,8 +7,8 @@ namespace MichaelRubel\ValueObjects\Collection\Complex;
 use MichaelRubel\ValueObjects\ValueObject;
 
 /**
- * @method static static make(string $string)
- * @method static static from(string $string)
+ * @method static static make(string|null $string)
+ * @method static static from(string|null $string)
  */
 class ClassString extends ValueObject
 {

@@ -9,8 +9,8 @@ use MichaelRubel\Formatters\Collection\FullNameFormatter;
 use MichaelRubel\ValueObjects\ValueObject;
 
 /**
- * @method static static make(string $value)
- * @method static static from(string $value)
+ * @method static static make(string|null $value)
+ * @method static static from(string|null $value)
  */
 class FullName extends ValueObject
 {
