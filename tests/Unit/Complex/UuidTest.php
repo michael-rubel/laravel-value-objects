@@ -5,11 +5,6 @@ namespace Olsza\ValueObjects\Tests\Feature\ValueObjects;
 use Illuminate\Support\Str;
 use MichaelRubel\ValueObjects\Collection\Complex\Uuid;
 
-test('no error if uuid string is wrong', function () {
-    $valueObject = new Uuid('test');
-    $this->assertSame('test', $valueObject->value());
-});
-
 test('can get uuid using uuid method', function () {
     $uuid        = (string) Str::uuid();
     $valueObject = new Uuid($uuid);
@@ -32,6 +27,18 @@ test('can cast uuid to string', function () {
     $uuid   = (string) Str::uuid();
     $string = (string) new Uuid($uuid);
     $this->assertSame($uuid, $string);
+});
+
+test('ails when wrong uuid passed to uuid object', function () {
+    $this->expectException(\InvalidArgumentException::class);
+
+    new Uuid('123');
+});
+
+test('fails when null passed to uuid', function () {
+    $this->expectException(\TypeError::class);
+
+    new Uuid(null);
 });
 
 test('full name is makeable', function () {

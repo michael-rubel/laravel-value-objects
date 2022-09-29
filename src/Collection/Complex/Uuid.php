@@ -4,25 +4,28 @@ declare(strict_types=1);
 
 namespace MichaelRubel\ValueObjects\Collection\Complex;
 
+use Illuminate\Support\Str;
 use MichaelRubel\ValueObjects\ValueObject;
 
 /**
- * @method static static make(string $value, string $name = null)
- * @method static static from(string $value, string $name = null)
+ * @method static static make(string $value, string|null $name = null)
+ * @method static static from(string $value, string|null $name = null)
  */
 class Uuid extends ValueObject
 {
     /**
      * Create a new instance of the value object.
      *
-     * @param  string|null  $value
+     * @param  string  $value
      * @param  string|null  $name
      */
     public function __construct(
-        protected ?string $value,
+        protected string $value,
         protected ?string $name = null,
     ) {
-        //
+        if (! Str::isUuid($this->value)) {
+            throw new \InvalidArgumentException('UUID is invalid.');
+        }
     }
 
     /**
@@ -34,11 +37,11 @@ class Uuid extends ValueObject
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function name(): string
+    public function name(): ?string
     {
-        return (string) $this->name;
+        return $this->name;
     }
 
     /**
@@ -48,7 +51,7 @@ class Uuid extends ValueObject
      */
     public function value(): string
     {
-        return (string) $this->value;
+        return $this->value;
     }
 
     /**
