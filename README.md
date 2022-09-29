@@ -63,6 +63,8 @@ $name->lastName();  // 'Otwell'
 
 ```php
 $taxNumber = new TaxNumber('0123456789', 'PL');
+$taxNumber = TaxNumber::make('0123456789', 'PL');
+$taxNumber = TaxNumber::from('0123456789', 'PL');
 
 $taxNumber->value();   // 'PL0123456789'
 (string) $taxNumber;   // 'PL0123456789'
@@ -79,6 +81,8 @@ $taxNumber->prefix();        // 'PL'
 
 ```php
 $uuid = new Uuid('8547d10c-7a37-492a-8d33-be0e5ae6119b', 'Optional name');
+$uuid = Uuid::make('8547d10c-7a37-492a-8d33-be0e5ae6119b', 'Optional name');
+$uuid = Uuid::from('8547d10c-7a37-492a-8d33-be0e5ae6119b', 'Optional name');
 
 $uuid->value();   // '8547d10c-7a37-492a-8d33-be0e5ae6119b'
 (string) $uuid;   // '8547d10c-7a37-492a-8d33-be0e5ae6119b'
@@ -94,6 +98,8 @@ $uuid->name(); // '8547d10c-7a37-492a-8d33-be0e5ae6119b'
 
 ```php
 $bool = new Boolean('1');
+$bool = Boolean::make('1');
+$bool = Boolean::from('1');
 
 $bool->value();   // true
 (string) $uuid;   // 'true'
@@ -106,6 +112,8 @@ $uuid->toArray(); // ['true']
 
 ```php
 $decimal = new Decimal('10.20999', scale: 2);
+$decimal = Decimal::make('10.20999', scale: 2);
+$decimal = Decimal::from('10.20999', scale: 2);
 
 $decimal->value();   // '10.20'
 (string) $decimal;   // '10.20'
@@ -118,6 +126,8 @@ $decimal->toArray(); // ['10.20']
 
 ```php
 $integer = new Integer(10);
+$integer = Integer::make(10);
+$integer = Integer::from(10);
 
 $integer->value();   // 10
 (string) $integer;   // 10
@@ -130,6 +140,8 @@ $integer->toArray(); // [10]
 
 ```php
 $text = new Text('Lorem Ipsum is simply dummy text.');
+$text = Text::make('Lorem Ipsum is simply dummy text.');
+$text = Text::from('Lorem Ipsum is simply dummy text.');
 
 $text->value();   // 'Lorem Ipsum is simply dummy text.'
 (string) $text;   // 'Lorem Ipsum is simply dummy text.'
