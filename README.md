@@ -21,9 +21,119 @@ Install the package using composer:
 composer require michael-rubel/laravel-value-objects
 ```
 
-## Usage
+## Available objects
+- [`ClassString`](https://github.com/michael-rubel/laravel-value-objects/blob/main/src/Collection/Complex/ClassString.php)
+
 ```php
-//
+$classString = new ClassString('\Exception');
+$classString = ClassString::make('\Exception');
+$classString = ClassString::from('\Exception');
+
+$classString->value(); // '\Exception'
+(string) $classString; // '\Exception'
+$name->toArray();      // ['\Exception']
+
+$classString->classExists();     // true
+$classString->interfaceExists(); // false
+$classString->instantiate();     // Exception { ... }
+$classString->instantiateWith(['message' => 'My message.']); // Exception { #message: "test" ... }
+```
+
+---
+
+- [`FullName`](https://github.com/michael-rubel/laravel-value-objects/blob/main/src/Collection/Complex/FullName.php)
+
+```php
+$name = new FullName(' Taylor   Otwell ');
+$name = FullName::make(' Taylor   Otwell ');
+$name = FullName::from(' Taylor   Otwell ');
+
+$name->value();   // 'Taylor Otwell'
+(string) $name;   // 'Taylor Otwell'
+$name->toArray(); // ['Taylor Otwell']
+
+$name->fullName();  // 'Taylor Otwell'
+$name->firstName(); // 'Taylor'
+$name->lastName();  // 'Otwell'
+```
+
+---
+
+- [`TaxNumber`](https://github.com/michael-rubel/laravel-value-objects/blob/main/src/Collection/Complex/TaxNumber.php)
+
+```php
+$taxNumber = new TaxNumber('0123456789', 'PL');
+
+$taxNumber->value();   // 'PL0123456789'
+(string) $taxNumber;   // 'PL0123456789'
+$taxNumber->toArray(); // ['fullTaxNumber' => 'PL0123456789', 'taxNumber' => '0123456789', 'prefix' => 'PL']
+
+$taxNumber->fullTaxNumber(); // 'PL0123456789'
+$taxNumber->taxNumber();     // '0123456789'
+$taxNumber->prefix();        // 'PL'
+```
+
+---
+
+- [`Uuid`](https://github.com/michael-rubel/laravel-value-objects/blob/main/src/Collection/Complex/Uuid.php)
+
+```php
+$uuid = new Uuid('8547d10c-7a37-492a-8d33-be0e5ae6119b', 'Optional name');
+
+$uuid->value();   // '8547d10c-7a37-492a-8d33-be0e5ae6119b'
+(string) $uuid;   // '8547d10c-7a37-492a-8d33-be0e5ae6119b'
+$uuid->toArray(); // ['name' => 'Optional name', 'value' => '8547d10c-7a37-492a-8d33-be0e5ae6119b']
+
+$uuid->uuid(); // '8547d10c-7a37-492a-8d33-be0e5ae6119b'
+$uuid->name(); // '8547d10c-7a37-492a-8d33-be0e5ae6119b'
+```
+
+---
+
+- [`Boolean`](https://github.com/michael-rubel/laravel-value-objects/blob/main/src/Collection/Primitive/Boolean.php)
+
+```php
+$bool = new Boolean('1');
+
+$bool->value();   // true
+(string) $uuid;   // 'true'
+$uuid->toArray(); // ['true']
+```
+
+---
+
+- [`Decimal`](https://github.com/michael-rubel/laravel-value-objects/blob/main/src/Collection/Primitive/Decimal.php)
+
+```php
+$decimal = new Decimal('10.20999', scale: 2);
+
+$decimal->value();   // '10.20'
+(string) $decimal;   // '10.20'
+$decimal->toArray(); // ['10.20']
+```
+
+---
+
+- [`Integer`](https://github.com/michael-rubel/laravel-value-objects/blob/main/src/Collection/Primitive/Integer.php)
+
+```php
+$integer = new Integer(10);
+
+$integer->value();   // 10
+(string) $integer;   // 10
+$integer->toArray(); // [10]
+```
+
+---
+
+- [`Text`](https://github.com/michael-rubel/laravel-value-objects/blob/main/src/Collection/Primitive/Text.php)
+
+```php
+$text = new Text('Lorem Ipsum is simply dummy text.');
+
+$text->value();   // 'Lorem Ipsum is simply dummy text.'
+(string) $text;   // 'Lorem Ipsum is simply dummy text.'
+$text->toArray(); // ['Lorem Ipsum is simply dummy text.']
 ```
 
 ## Testing
