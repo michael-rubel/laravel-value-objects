@@ -101,7 +101,7 @@ class TaxNumber extends ValueObject
      */
     protected function format(): string
     {
-        return format(TaxNumberFormatter::class, $this->taxNumber(), $this->country());
+        return format(TaxNumberFormatter::class, $this->taxNumber(), $this->prefix());
     }
 
     /**
