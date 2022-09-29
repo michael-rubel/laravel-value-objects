@@ -89,6 +89,18 @@ abstract class ValueObject implements Arrayable
     }
 
     /**
+     * Get the internal property value.
+     *
+     * @param  string  $name
+     *
+     * @return mixed
+     */
+    public function __get(string $name): mixed
+    {
+        return $this->{$name};
+    }
+
+    /**
      * Make sure value object is immutable.
      *
      * @param  string  $name
