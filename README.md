@@ -146,7 +146,7 @@ $uuid->value();   // '8547d10c-7a37-492a-8d33-be0e5ae6119b'
 $uuid->toArray(); // ['name' => 'Optional name', 'value' => '8547d10c-7a37-492a-8d33-be0e5ae6119b']
 
 $uuid->uuid(); // '8547d10c-7a37-492a-8d33-be0e5ae6119b'
-$uuid->name(); // '8547d10c-7a37-492a-8d33-be0e5ae6119b'
+$uuid->name(); // 'Optional name'
 ```
 
 ## Artisan command
