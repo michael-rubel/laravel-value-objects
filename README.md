@@ -59,7 +59,7 @@ $integer = Integer::make(10);
 $integer = Integer::from(10);
 
 $integer->value();   // 10
-(string) $integer;   // 10
+(string) $integer;   // '10'
 $integer->toArray(); // [10]
 ```
 
