@@ -150,7 +150,11 @@ $uuid->name(); // 'Optional name'
 ```
 
 ## Artisan command
-You can generate a custom value objects from stub using `php artisan make:value-object NameValueObject`
+You can generate a custom value objects from stub using:
+
+```shell
+php artisan make:value-object YourNameValueObject
+```
 
 ## Extending functionality
 All value objects are [Macroable](https://laravel.com/api/5.8/Illuminate/Support/Traits/Macroable.html).
