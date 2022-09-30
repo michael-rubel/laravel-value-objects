@@ -149,6 +149,23 @@ $uuid->uuid(); // '8547d10c-7a37-492a-8d33-be0e5ae6119b'
 $uuid->name(); // '8547d10c-7a37-492a-8d33-be0e5ae6119b'
 ```
 
+## Artisan command
+You can generate a custom value objects from stub using `php artisan make:value-object NameValueObject`
+
+## Extending functionality
+All value objects are [Macroable](https://laravel.com/api/5.8/Illuminate/Support/Traits/Macroable.html).
+This way you can add new methods dynamically. If you need to extend existing methods, you can create a value object locally with `make:value-object` command and use inheritance.
+
+Example macro:
+```php
+FullName::macro('middleName', function () {
+    return $this->split[1];
+});
+
+$name = new FullName('Anna Eva Watson');
+$name->middleName(); // 'Eva'
+```
+
 ## Testing
 ```bash
 composer test
