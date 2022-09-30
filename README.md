@@ -107,7 +107,7 @@ $name = FullName::from(' Taylor   Otwell ');
 
 $name->value();   // 'Taylor Otwell'
 (string) $name;   // 'Taylor Otwell'
-$name->toArray(); // ['Taylor Otwell']
+$name->toArray(); // ['fullName' => 'Taylor Otwell', 'firstName' => 'Taylor', 'lastName' => 'Otwell']
 
 $name->fullName();  // 'Taylor Otwell'
 $name->firstName(); // 'Taylor'
