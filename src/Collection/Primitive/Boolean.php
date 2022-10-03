@@ -51,7 +51,7 @@ class Boolean extends ValueObject
     }
 
     /**
-     * Determine if the passed boolean is a positive value.
+     * Determine if the passed boolean is true.
      *
      * @return bool
      */
@@ -61,7 +61,7 @@ class Boolean extends ValueObject
     }
 
     /**
-     * Determine if the passed boolean is a negative value.
+     * Determine if the passed boolean is false.
      *
      * @return bool
      */
