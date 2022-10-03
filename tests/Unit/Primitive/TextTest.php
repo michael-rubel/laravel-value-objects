@@ -6,13 +6,6 @@ namespace Olsza\ValueObjects\Tests\Feature\ValueObjects;
 
 use MichaelRubel\ValueObjects\Collection\Primitive\Text;
 
-test('text can accept integer', function () {
-    $valueObject = new Text(1);
-    $this->assertSame('1', $valueObject->value());
-    $valueObject = new Text(2);
-    $this->assertSame('2', $valueObject->value());
-});
-
 test('text can accept string', function () {
     $valueObject = new Text('1');
     $this->assertSame('1', $valueObject->value());
@@ -28,6 +21,12 @@ test('text can accept string', function () {
     $this->assertSame('2', $valueObject->value());
     $valueObject = new Text('3.1');
     $this->assertSame('3.1', $valueObject->value());
+});
+
+test('text can pass stringable', function () {
+    $stringable = str('Test');
+    $valueObject = new Text($stringable);
+    $this->assertSame('Test', $valueObject->value());
 });
 
 test('text can accept long text', function () {
@@ -48,19 +47,6 @@ test('text can accept long text', function () {
     $this->assertSame($string, $text->value());
 });
 
-test('text can accept float', function () {
-    $valueObject = new Text(1.2);
-    $this->assertSame('1.2', $valueObject->value());
-    $valueObject = new Text(1.3);
-    $this->assertSame('1.3', $valueObject->value());
-    $valueObject = new Text(1.7);
-    $this->assertSame('1.7', $valueObject->value());
-    $valueObject = new Text(1.8);
-    $this->assertSame('1.8', $valueObject->value());
-    $valueObject = new Text(2.1);
-    $this->assertSame('2.1', $valueObject->value());
-});
-
 test('text can accept null', function () {
     $valueObject = new Text(null);
     $this->assertSame('', $valueObject->value());
@@ -73,19 +59,11 @@ test('text fails when no argument passed', function () {
 });
 
 test('text is makeable', function () {
-    $valueObject = Text::make(1);
-    $this->assertSame('1', $valueObject->value());
-    $valueObject = Text::make(1.1);
-    $this->assertSame('1.1', $valueObject->value());
     $valueObject = Text::make('1');
     $this->assertSame('1', $valueObject->value());
     $valueObject = Text::make(null);
     $this->assertSame('', $valueObject->value());
 
-    $valueObject = Text::from(1);
-    $this->assertSame('1', $valueObject->value());
-    $valueObject = Text::from(1.1);
-    $this->assertSame('1.1', $valueObject->value());
     $valueObject = Text::from('1');
     $this->assertSame('1', $valueObject->value());
     $valueObject = Text::from(null);
@@ -114,14 +92,14 @@ test('text is arrayable', function () {
 });
 
 test('text is stringable', function () {
-    $valueObject = new Text(1);
+    $valueObject = new Text('1');
     $this->assertSame('1', (string) $valueObject);
-    $valueObject = new Text(1.2);
+    $valueObject = new Text('1.2');
     $this->assertSame('1.2', (string) $valueObject);
-    $valueObject = new Text(1.3);
+    $valueObject = new Text('1.3');
     $this->assertSame('1.3', (string) $valueObject);
-    $valueObject = new Text(1.7);
+    $valueObject = new Text('1.7');
     $this->assertSame('1.7', (string) $valueObject);
-    $valueObject = new Text(1.8);
+    $valueObject = new Text('1.8');
     $this->assertSame('1.8', (string) $valueObject);
 });

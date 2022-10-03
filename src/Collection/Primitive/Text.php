@@ -4,20 +4,21 @@ declare(strict_types=1);
 
 namespace MichaelRubel\ValueObjects\Collection\Primitive;
 
+use Illuminate\Support\Stringable;
 use MichaelRubel\ValueObjects\ValueObject;
 
 /**
- * @method static static make(int|float|string|null $value)
- * @method static static from(int|float|string|null $value)
+ * @method static static make(string|Stringable|null $value)
+ * @method static static from(string|Stringable|null $value)
  */
 class Text extends ValueObject
 {
     /**
      * Create a new instance of the value object.
      *
-     * @param  int|float|string|null  $value
+     * @param  string|Stringable|null  $value
      */
-    public function __construct(protected int|float|string|null $value)
+    public function __construct(protected string|Stringable|null $value)
     {
         //
     }
