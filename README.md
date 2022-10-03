@@ -171,6 +171,17 @@ $name = new Text('Lorem ipsum');
 $name->str()->is('Lorem ipsum'); // true
 ```
 
+Or:
+```php
+ValueObject::macro('collect', function () {
+    return collect($this->value());
+});
+
+$valueObject = new Text('Lorem ipsum');
+
+$valueObject->collect(); // Illuminate\Support\Collection { #items ... }
+```
+
 ## Testing
 ```bash
 composer test
