@@ -93,11 +93,13 @@ test('text is makeable', function () {
 });
 
 test('text is macroable', function () {
-    Text::macro('getLength', function () {
-        return str($this->value())->length();
+    Text::macro('str', function () {
+        return str($this->value());
     });
-    $valueObject = new Text(12.3);
-    $this->assertSame(4, $valueObject->getLength());
+
+    $valueObject = new Text('Lorem ipsum');
+
+    $this->assertTrue($valueObject->str()->is('Lorem ipsum'));
 });
 
 test('text is conditionable', function () {

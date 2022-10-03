@@ -162,12 +162,13 @@ This way you can add new methods dynamically. If you need to extend existing met
 
 Example macro:
 ```php
-FullName::macro('middleName', function () {
-    return $this->split[1];
+Text::macro('str', function () {
+    return str($this->value());
 });
 
-$name = new FullName('Anna Eva Watson');
-$name->middleName(); // 'Eva'
+$name = new Text('Lorem ipsum');
+
+$name->str()->is('Lorem ipsum'); // true
 ```
 
 ## Testing
