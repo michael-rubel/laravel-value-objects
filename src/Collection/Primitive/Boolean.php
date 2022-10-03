@@ -34,8 +34,8 @@ class Boolean extends ValueObject
     public function __construct(protected bool|int|string $value)
     {
         $this->value = match (true) {
-            $this->isTrue()  => true,
-            $this->isFalse() => false,
+            $this->isInTrueValues()  => true,
+            $this->isInFalseValues() => false,
             default => throw new \InvalidArgumentException('Invalid boolean'),
         };
     }
@@ -55,7 +55,7 @@ class Boolean extends ValueObject
      *
      * @return bool
      */
-    protected function isTrue(): bool
+    protected function isInTrueValues(): bool
     {
         return in_array($this->value, $this->trueValues, strict: true);
     }
@@ -65,7 +65,7 @@ class Boolean extends ValueObject
      *
      * @return bool
      */
-    protected function isFalse(): bool
+    protected function isInFalseValues(): bool
     {
         return in_array($this->value, $this->falseValues, strict: true);
     }
