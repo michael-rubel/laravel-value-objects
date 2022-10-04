@@ -42,19 +42,9 @@ class TaxNumber extends ValueObject
     ) {
         $this->number = $this->format();
 
-        if ($this->isWithPrefix()) {
+        if (! is_numeric($this->number)) {
             $this->split();
         }
-    }
-
-    /**
-     * Check if the tax number length is less or equal two.
-     *
-     * @return bool
-     */
-    public function isWithPrefix(): bool
-    {
-        return strlen($this->number) >= 2 && ! is_numeric($this->number);
     }
 
     /**
@@ -64,7 +54,7 @@ class TaxNumber extends ValueObject
      */
     public function fullTaxNumber(): string
     {
-        return $this->country() . $this->taxNumber();
+        return $this->prefix() . $this->taxNumber();
     }
 
     /**

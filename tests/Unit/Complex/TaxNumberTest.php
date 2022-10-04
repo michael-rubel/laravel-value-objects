@@ -175,8 +175,12 @@ test('tax number is macroable', function () {
 
 test('tax number is conditionable', function () {
     $valueObject = new TaxNumber('PL0123456789');
-    $this->assertSame('PL', $valueObject->when(true)->country());
-    $this->assertSame($valueObject, $valueObject->when(false)->country());
+    $this->assertSame('PL', $valueObject->when(function ($vat) {
+        return $vat->prefix() !== null;
+    })->prefix());
+    $this->assertSame($valueObject, $valueObject->when(function ($vat) {
+        return $vat->prefix() === null;
+    })->prefix());
 });
 
 test('tax number is arrayable', function () {
