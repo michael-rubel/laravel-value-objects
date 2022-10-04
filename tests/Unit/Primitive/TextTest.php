@@ -24,7 +24,7 @@ test('text can accept string', function () {
 });
 
 test('text can pass stringable', function () {
-    $stringable = str('Test');
+    $stringable  = str('Test');
     $valueObject = new Text($stringable);
     $this->assertSame('Test', $valueObject->value());
 });
