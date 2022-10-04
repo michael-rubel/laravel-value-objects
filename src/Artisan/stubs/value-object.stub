@@ -8,6 +8,7 @@ use MichaelRubel\ValueObjects\ValueObject;
 
 /**
  * @method static static make(mixed ...$values)
+ * @method static static from(mixed ...$values)
  */
 class {{ class }} extends ValueObject
 {
