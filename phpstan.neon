@@ -23,5 +23,3 @@ parameters:
     reportUnmatchedIgnoredErrors: false
 
     checkOctaneCompatibility: true
-
-    checkGenericClassInNonGenericObjectType: false

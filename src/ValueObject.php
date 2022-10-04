@@ -8,6 +8,12 @@ use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
 
+/**
+ * @template TKey of array-key
+ * @template TValue
+ *
+ * @implements Arrayable<TKey, TValue>
+ */
 abstract class ValueObject implements Arrayable
 {
     use Macroable, Conditionable;
@@ -47,7 +53,7 @@ abstract class ValueObject implements Arrayable
      * Check if objects are instances of same class
      * and share the same properties and values.
      *
-     * @param  ValueObject  $object
+     * @param  ValueObject<int|string, mixed>  $object
      *
      * @return bool
      */
@@ -59,7 +65,7 @@ abstract class ValueObject implements Arrayable
     /**
      * Inversion for `equals` method.
      *
-     * @param  ValueObject  $object
+     * @param  ValueObject<int|string, mixed>  $object
      *
      * @return bool
      */

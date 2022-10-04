@@ -2,13 +2,29 @@
 
 declare(strict_types=1);
 
+/**
+ * This file is part of michael-rubel/laravel-value-objects. (https://github.com/michael-rubel/laravel-value-objects)
+ *
+ * @link https://github.com/michael-rubel/laravel-value-objects for the canonical source repository
+ * @copyright Copyright (c) 2022 Michael Rubél. (https://github.com/michael-rubel/)
+ * @license https://raw.githubusercontent.com/michael-rubel/laravel-value-objects/main/LICENSE.md MIT
+ */
 namespace MichaelRubel\ValueObjects\Collection\Primitive;
 
 use MichaelRubel\ValueObjects\ValueObject;
 
 /**
+ * "Boolean" object presenting a boolean value.
+ *
+ * @author Michael Rubél <michael@laravel.software>
+ *
+ * @template TKey of array-key
+ * @template TValue
+ *
  * @method static static make(bool|int|string $value)
  * @method static static from(bool|int|string $value)
+ *
+ * @extends ValueObject<TKey, TValue>
  */
 class Boolean extends ValueObject
 {

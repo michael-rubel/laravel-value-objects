@@ -2,14 +2,30 @@
 
 declare(strict_types=1);
 
+/**
+ * This file is part of michael-rubel/laravel-value-objects. (https://github.com/michael-rubel/laravel-value-objects)
+ *
+ * @link https://github.com/michael-rubel/laravel-value-objects for the canonical source repository
+ * @copyright Copyright (c) 2022 Michael Rubél. (https://github.com/michael-rubel/)
+ * @license https://raw.githubusercontent.com/michael-rubel/laravel-value-objects/main/LICENSE.md MIT
+ */
 namespace MichaelRubel\ValueObjects\Collection\Complex;
 
 use MichaelRubel\Formatters\Collection\TaxNumberFormatter;
 use MichaelRubel\ValueObjects\ValueObject;
 
 /**
+ * "TaxNumber" object presenting VAT identification number.
+ *
+ * @author Michael Rubél <michael@laravel.software>
+ *
+ * @template TKey of array-key
+ * @template TValue
+ *
  * @method static static make(string|null $number, string|null $prefix = null)
  * @method static static from(string|null $number, string|null $prefix = null)
+ *
+ * @extends ValueObject<TKey, TValue>
  */
 class TaxNumber extends ValueObject
 {
