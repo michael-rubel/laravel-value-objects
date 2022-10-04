@@ -7,8 +7,13 @@ namespace {{ namespace }};
 use MichaelRubel\ValueObjects\ValueObject;
 
 /**
+ * @template TKey of array-key
+ * @template TValue
+ *
  * @method static static make(mixed ...$values)
  * @method static static from(mixed ...$values)
+ *
+ * @extends ValueObject<TKey, TValue>
  */
 class {{ class }} extends ValueObject
 {
