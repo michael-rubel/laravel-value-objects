@@ -159,12 +159,12 @@ $uuid->name(); // 'Optional name'
 ```
 
 ## Extending functionality
-All value objects are [Macroable](https://laravel.com/api/5.8/Illuminate/Support/Traits/Macroable.html).
+All value objects are [Macroable](https://laravel.com/api/9.x/Illuminate/Support/Traits/Macroable.html).
 This way you can add new methods dynamically. If you need to extend existing methods, you can create a value object locally with `make:value-object` command and use inheritance.
 
-Example macro:
+For example:
 ```php
-Text::macro('str', function () {
+ValueObject::macro('str', function () {
     return str($this->value());
 });
 
@@ -173,15 +173,14 @@ $name = new Text('Lorem ipsum');
 $name->str()->is('Lorem ipsum'); // true
 ```
 
-Or:
+## Conditionable
+Value objects utilize a [Conditionable](https://laravel.com/api/9.x/Illuminate/Support/Traits/Conditionable.html) trait.
+You can use `when` and `unless` methods.
+
 ```php
-ValueObject::macro('collect', function () {
-    return collect($this->value());
-});
-
-$valueObject = new Text('Lorem ipsum');
-
-$valueObject->collect(); // Illuminate\Support\Collection { #items ... }
+TaxNumber::from('PL0123456789')->when(function ($number) {
+    return $number->prefix() !== null;
+})->prefix();
 ```
 
 ## Testing
