@@ -42,7 +42,7 @@ class TaxNumber extends ValueObject
     ) {
         $this->number = $this->format();
 
-        if (! is_numeric($this->number)) {
+        if ($this->canSplit()) {
             $this->split();
         }
     }
@@ -109,6 +109,16 @@ class TaxNumber extends ValueObject
     protected function format(): string
     {
         return format(TaxNumberFormatter::class, $this->taxNumber(), $this->prefix());
+    }
+
+    /**
+     * Determines whether to split the value.
+     *
+     * @return bool
+     */
+    protected function canSplit(): bool
+    {
+        return ! is_numeric($this->number);
     }
 
     /**
