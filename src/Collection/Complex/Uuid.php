@@ -9,6 +9,7 @@ declare(strict_types=1);
  * @copyright Copyright (c) 2022 Michael Rubél. (https://github.com/michael-rubel/)
  * @license https://raw.githubusercontent.com/michael-rubel/laravel-value-objects/main/LICENSE.md MIT
  */
+
 namespace MichaelRubel\ValueObjects\Collection\Complex;
 
 use Illuminate\Support\Str;
