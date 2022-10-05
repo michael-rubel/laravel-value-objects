@@ -94,7 +94,7 @@ class ClassString extends ValueObject
     }
 
     /**
-     * Verify the value object input.
+     * Validate the value object data.
      *
      * @return void
      */
