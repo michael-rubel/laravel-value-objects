@@ -2,6 +2,7 @@
 
 namespace Olsza\ValueObjects\Tests\Feature\ValueObjects;
 
+use Illuminate\Contracts\Container\BindingResolutionException;
 use MichaelRubel\ValueObjects\Collection\Complex\ClassString;
 use MichaelRubel\ValueObjects\Tests\TestCase;
 
@@ -23,11 +24,19 @@ test('can get class string', function () {
     $this->assertSame('My\Test\Class', $classString->value());
 });
 
-test('class string not instantiable and class and interface are undefined', function () {
-    $classString = new ClassString('My\Test\Class\NotInstantiable');
+test('class string non-instantiable and class and interface are undefined', function () {
+    $classString = new ClassString('My\Test\Class\NonInstantiable');
 
     $this->assertFalse($classString->classExists());
     $this->assertFalse($classString->interfaceExists());
+});
+
+test('class string throws binding resolution exception when trying to instantiate non-instantiable class', function () {
+    $classString = new ClassString('My\Test\Class\NonInstantiable');
+
+    $this->expectException(BindingResolutionException::class);
+
+    $classString->instantiate();
 });
 
 test('class string is exists but interface dont', function () {
