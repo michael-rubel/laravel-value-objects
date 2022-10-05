@@ -12,7 +12,6 @@ declare(strict_types=1);
 
 namespace MichaelRubel\ValueObjects\Collection\Complex;
 
-use Illuminate\Support\Str;
 use MichaelRubel\ValueObjects\ValueObject;
 
 /**
@@ -93,7 +92,7 @@ class Uuid extends ValueObject
      */
     protected function validate(): void
     {
-        if (! Str::isUuid($this->value)) {
+        if (! str($this->value)->isUuid()) {
             throw new \InvalidArgumentException('UUID is invalid.');
         }
     }
