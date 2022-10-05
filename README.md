@@ -47,8 +47,8 @@ $bool = Boolean::make('1');
 $bool = Boolean::from('1');
 
 $bool->value();   // true
-(string) $uuid;   // 'true'
-$uuid->toArray(); // ['true']
+(string) $bool;   // 'true'
+$bool->toArray(); // ['true']
 ```
 
 ---
