@@ -56,7 +56,7 @@ class FullName extends ValueObject
      */
     public function fullName(): string
     {
-        return (string) $this->value;
+        return $this->value;
     }
 
     /**
