@@ -100,7 +100,7 @@ class ClassString extends ValueObject
      */
     protected function validate(): void
     {
-        if (empty($this->string)) {
+        if (blank($this->string)) {
             throw new \InvalidArgumentException('Class string cannot be empty.');
         }
     }

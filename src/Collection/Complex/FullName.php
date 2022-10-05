@@ -110,7 +110,7 @@ class FullName extends ValueObject
      */
     protected function validate(): void
     {
-        if (empty($this->value)) {
+        if (blank($this->value)) {
             throw new \InvalidArgumentException('Full name cannot be empty.');
         }
     }
