@@ -24,7 +24,7 @@ class {{ class }} extends ValueObject
      */
     public function __construct()
     {
-        //
+        $this->validate();
     }
 
     /**
@@ -55,5 +55,15 @@ class {{ class }} extends ValueObject
     public function __toString(): string
     {
         // TODO: Implement value() method.
+    }
+
+    /**
+     * Validate the value object data.
+     *
+     * @return void
+     */
+    protected function validate(): void
+    {
+        // TODO: Implement validate() method.
     }
 }
