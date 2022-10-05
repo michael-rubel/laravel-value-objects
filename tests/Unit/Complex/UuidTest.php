@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Olsza\ValueObjects\Tests\Feature\ValueObjects;
 
 use Illuminate\Support\Str;

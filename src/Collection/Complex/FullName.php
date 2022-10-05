@@ -39,10 +39,12 @@ class FullName extends ValueObject
     /**
      * Create a new instance of the value object.
      *
-     * @param  string|null  $value
+     * @param  string  $value
      */
-    public function __construct(protected ?string $value)
+    public function __construct(protected string $value)
     {
+        $this->validate();
+
         $this->value = $this->format();
         $this->split = $this->split();
     }
@@ -88,6 +90,32 @@ class FullName extends ValueObject
     }
 
     /**
+     * Get an array representation of the value object.
+     *
+     * @return array<string, string|null>
+     */
+    public function toArray(): array
+    {
+        return [
+            'fullName'  => $this->fullName(),
+            'firstName' => $this->firstName(),
+            'lastName'  => $this->lastName(),
+        ];
+    }
+
+    /**
+     * Verify the value object input.
+     *
+     * @return void
+     */
+    protected function validate(): void
+    {
+        if (empty($this->value)) {
+            throw new \InvalidArgumentException('Full name cannot be empty.');
+        }
+    }
+
+    /**
      * Format the value.
      *
      * @return string
@@ -105,19 +133,5 @@ class FullName extends ValueObject
     protected function split(): Collection
     {
         return str($this->value())->split('/\s/');
-    }
-
-    /**
-     * Get an array representation of the value object.
-     *
-     * @return array<string, string|null>
-     */
-    public function toArray(): array
-    {
-        return [
-            'fullName'  => $this->fullName(),
-            'firstName' => $this->firstName(),
-            'lastName'  => $this->lastName(),
-        ];
     }
 }

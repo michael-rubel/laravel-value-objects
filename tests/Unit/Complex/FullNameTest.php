@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Olsza\ValueObjects\Tests\Feature\ValueObjects;
 
 use MichaelRubel\ValueObjects\Collection\Complex\FullName;
@@ -51,14 +49,15 @@ test('can get cast to string', function () {
     $this->assertSame('Michael Rubél', (string) $name);
 });
 
-test('can pass nulls and returns empty string', function () {
+test('cannot pass empty string', function () {
+    $this->expectException(\InvalidArgumentException::class);
     $name = new FullName('');
     $this->assertSame('', $name->fullName());
+});
 
+test('cannot pass null', function () {
+    $this->expectException(\TypeError::class);
     $name = new FullName(null);
-    $this->assertSame('', $name->fullName());
-
-    $name = new FullName(null, null);
     $this->assertSame('', $name->fullName());
 });
 

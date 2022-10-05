@@ -33,13 +33,15 @@ class TaxNumber extends ValueObject
     /**
      * Create a new instance of the value object.
      *
-     * @param  string|null  $number
+     * @param  string  $number
      * @param  string|null  $prefix
      */
     public function __construct(
-        protected ?string $number = null,
+        protected string $number,
         protected ?string $prefix = null,
     ) {
+        $this->validate();
+
         $this->number = $this->format();
 
         if ($this->canSplit()) {
@@ -102,6 +104,20 @@ class TaxNumber extends ValueObject
     }
 
     /**
+     * Get an array representation of the value object.
+     *
+     * @return array
+     */
+    public function toArray(): array
+    {
+        return [
+            'fullTaxNumber' => $this->fullTaxNumber(),
+            'taxNumber'     => $this->taxNumber(),
+            'prefix'        => $this->prefix(),
+        ];
+    }
+
+    /**
      * Format the value.
      *
      * @return string
@@ -139,16 +155,14 @@ class TaxNumber extends ValueObject
     }
 
     /**
-     * Get an array representation of the value object.
+     * Verify the value object input.
      *
-     * @return array
+     * @return void
      */
-    public function toArray(): array
+    protected function validate(): void
     {
-        return [
-            'fullTaxNumber' => $this->fullTaxNumber(),
-            'taxNumber'     => $this->taxNumber(),
-            'prefix'        => $this->prefix(),
-        ];
+        if (empty($this->number)) {
+            throw new \InvalidArgumentException('Tax number cannot be empty.');
+        }
     }
 }

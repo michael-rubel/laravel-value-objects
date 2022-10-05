@@ -1,17 +1,20 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Olsza\ValueObjects\Tests\Feature\ValueObjects;
 
 use MichaelRubel\ValueObjects\Collection\Complex\ClassString;
 use MichaelRubel\ValueObjects\Tests\TestCase;
 
-test('class string is empty string', function () {
-    $classString = new ClassString('');
+test('class string cannot be empty string', function () {
+    $this->expectException(\InvalidArgumentException::class);
 
-    $this->assertFalse($classString->classExists());
-    $this->assertFalse($classString->interfaceExists());
+    new ClassString('');
+});
+
+test('class string cannot be null', function () {
+    $this->expectException(\TypeError::class);
+
+    new ClassString(null);
 });
 
 test('can get class string', function () {
@@ -45,17 +48,6 @@ test('can cast class string to string', function () {
     $classString = new ClassString(ClassString::class);
 
     $this->assertSame('MichaelRubel\ValueObjects\Collection\Complex\ClassString', (string) $classString);
-});
-
-test('class string is null', function () {
-    $classString = new ClassString('');
-    $this->assertSame('', $classString->value());
-
-    $classString = new ClassString(null);
-    $this->assertSame('', $classString->value());
-
-    $classString = new ClassString(null);
-    $this->assertSame('', (string) $classString);
 });
 
 test('can instantiate a class from class string value', function () {

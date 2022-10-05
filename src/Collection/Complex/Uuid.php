@@ -40,9 +40,7 @@ class Uuid extends ValueObject
         protected string $value,
         protected ?string $name = null,
     ) {
-        if (! Str::isUuid($this->value)) {
-            throw new \InvalidArgumentException('UUID is invalid.');
-        }
+        $this->validate();
     }
 
     /**
@@ -86,5 +84,17 @@ class Uuid extends ValueObject
             'name'  => $this->name(),
             'value' => $this->value(),
         ];
+    }
+
+    /**
+     * Verify the value object input.
+     *
+     * @return void
+     */
+    protected function validate(): void
+    {
+        if (! Str::isUuid($this->value)) {
+            throw new \InvalidArgumentException('UUID is invalid.');
+        }
     }
 }

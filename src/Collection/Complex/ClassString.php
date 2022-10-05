@@ -32,11 +32,11 @@ class ClassString extends ValueObject
     /**
      * Create a new instance of the value object.
      *
-     * @param  string|null  $string
+     * @param  string  $string
      */
-    public function __construct(protected ?string $string)
+    public function __construct(protected string $string)
     {
-        //
+        $this->validate();
     }
 
     /**
@@ -90,6 +90,18 @@ class ClassString extends ValueObject
      */
     public function value(): string
     {
-        return (string) $this->string;
+        return $this->string;
+    }
+
+    /**
+     * Verify the value object input.
+     *
+     * @return void
+     */
+    protected function validate(): void
+    {
+        if (empty($this->string)) {
+            throw new \InvalidArgumentException('Class string cannot be empty.');
+        }
     }
 }

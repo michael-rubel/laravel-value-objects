@@ -1,16 +1,13 @@
 <?php
 
-declare(strict_types=1);
-
 namespace MichaelRubel\ValueObjects\Tests\Feature\ValueObjects;
 
 use MichaelRubel\ValueObjects\Collection\Complex\TaxNumber;
 
-test('data in tax number is null and country is null', function () {
-    $data = new TaxNumber;
-    $this->assertEmpty($data->prefix());
-    $this->assertEmpty($data->country());
-    $this->assertEmpty($data->taxNumber());
+test('tax number cannot be null', function () {
+    $this->expectException(\TypeError::class);
+
+    new TaxNumber(null);
 });
 
 test('data in tax number is number plus prefix country is null', function () {
@@ -92,71 +89,40 @@ test('tests that are used in the examples in ReadMe', function () {
 });
 
 test('passed null values to value object', function () {
-    $data = new TaxNumber(null, null);
-    $this->assertEquals('', $data->country());
-    $this->assertEquals('', $data->taxNumber());
+    $data = new TaxNumber('AB0123456789', null);
+    $this->assertEquals('AB', $data->country());
+    $this->assertEquals('0123456789', $data->taxNumber());
 
-    $data = (new TaxNumber(null, null))
+    $data = (new TaxNumber('AB0123456789', null))
         ->fullTaxNumber();
-    $this->assertEquals('', $data);
+    $this->assertEquals('AB0123456789', $data);
 
-    $data = new TaxNumber(null, null);
-    $this->assertEquals('', $data->country());
-    $this->assertEquals('', $data->taxNumber());
+    $data = new TaxNumber('AB0123456789', null);
+    $this->assertEquals('AB', $data->country());
+    $this->assertEquals('0123456789', $data->taxNumber());
 
-    $data = (new TaxNumber(null, null))->fullTaxNumber();
-    $this->assertEquals('', $data);
+    $data = (new TaxNumber('AB0123456789', null))->fullTaxNumber();
+    $this->assertEquals('AB0123456789', $data);
 });
 
 test('passed empty values to value object', function () {
-    $data = new TaxNumber('', '');
-    $this->assertEquals('', $data->country());
-    $this->assertEquals('', $data->taxNumber());
+    $data = new TaxNumber('AB0123456789', '');
+    $this->assertEquals('AB', $data->country());
+    $this->assertEquals('0123456789', $data->taxNumber());
 
-    $data = (new TaxNumber('', ''))
+    $data = (new TaxNumber('AB0123456789', ''))
         ->fullTaxNumber();
-    $this->assertEquals('', $data);
+    $this->assertEquals('AB0123456789', $data);
 
-    $data = new TaxNumber('', '');
-    $this->assertEquals('', $data->country());
-    $this->assertEquals('', $data->taxNumber());
+    $data = new TaxNumber('AB0123456789', '');
+    $this->assertEquals('AB', $data->country());
+    $this->assertEquals('0123456789', $data->taxNumber());
 
-    $data = (new TaxNumber('', ''))->fullTaxNumber();
-    $this->assertEquals('', $data);
-});
+    $data = (new TaxNumber('AB0123456789', ''))->fullTaxNumber();
+    $this->assertEquals('AB0123456789', $data);
 
-test('passed empty tax number and null country', function () {
-    $data = new TaxNumber('', null);
-    $this->assertEquals('', $data->country());
-    $this->assertEquals('', $data->taxNumber());
-
-    $data = (new TaxNumber('', null))
-        ->fullTaxNumber();
-    $this->assertEquals('', $data);
-
-    $data = new TaxNumber('', null);
-    $this->assertEquals('', $data->country());
-    $this->assertEquals('', $data->taxNumber());
-
-    $data = (new TaxNumber('', null))->fullTaxNumber();
-    $this->assertEquals('', $data);
-});
-
-test('passed null tax number and empty country', function () {
-    $data = new TaxNumber(null, '');
-    $this->assertEquals('', $data->country());
-    $this->assertEquals('', $data->taxNumber());
-
-    $data = (new TaxNumber(null, ''))
-        ->fullTaxNumber();
-    $this->assertEquals('', $data);
-
-    $data = new TaxNumber(null, '');
-    $this->assertEquals('', $data->country());
-    $this->assertEquals('', $data->taxNumber());
-
-    $data = (new TaxNumber(null, ''))->fullTaxNumber();
-    $this->assertEquals('', $data);
+    $this->expectException(\InvalidArgumentException::class);
+    new TaxNumber('', '');
 });
 
 test('tax number is makeable', function () {
