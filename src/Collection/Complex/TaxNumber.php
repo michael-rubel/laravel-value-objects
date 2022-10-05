@@ -162,7 +162,7 @@ class TaxNumber extends ValueObject
     protected function validate(): void
     {
         if (blank($this->number)) {
-            throw new \InvalidArgumentException('Tax number cannot be empty.');
+            throw new \InvalidArgumentException('Tax number cannot be blank.');
         }
     }
 }
