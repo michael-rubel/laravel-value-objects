@@ -78,7 +78,7 @@ class ClassString extends ValueObject
      *
      * @return object
      */
-    public function instantiateWith(array $parameters = []): object
+    public function instantiateWith(array $parameters): object
     {
         return $this->instantiate($parameters);
     }
