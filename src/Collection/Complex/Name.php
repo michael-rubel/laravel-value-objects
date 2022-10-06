@@ -25,7 +25,7 @@ use MichaelRubel\ValueObjects\Collection\Primitive\Text;
  *
  * @method static static make(string|Stringable $value)
  * @method static static from(string|Stringable $value)
- * @method static static makeOrNull(string|Stringable $value)
+ * @method static static makeOrNull(string|Stringable|null $value)
  *
  * @extends Text<TKey, TValue>
  */
