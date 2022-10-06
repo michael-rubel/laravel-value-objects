@@ -42,8 +42,7 @@ class TaxNumber extends ValueObject
         protected ?string $prefix = null,
     ) {
         $this->validate();
-
-        $this->number = $this->format();
+        $this->format();
 
         if ($this->canSplit()) {
             $this->split();
@@ -119,13 +118,25 @@ class TaxNumber extends ValueObject
     }
 
     /**
+     * Validate the value object data.
+     *
+     * @return void
+     */
+    protected function validate(): void
+    {
+        if (empty($this->value())) {
+            throw new InvalidArgumentException('Tax number cannot be empty.');
+        }
+    }
+
+    /**
      * Format the value.
      *
-     * @return string
+     * @return void
      */
-    protected function format(): string
+    protected function format(): void
     {
-        return format(TaxNumberFormatter::class, $this->taxNumber(), $this->prefix());
+        $this->number = format(TaxNumberFormatter::class, $this->taxNumber(), $this->prefix());
     }
 
     /**
@@ -153,17 +164,5 @@ class TaxNumber extends ValueObject
         $this->number = str($this->number)
             ->substr(2)
             ->value();
-    }
-
-    /**
-     * Validate the value object data.
-     *
-     * @return void
-     */
-    protected function validate(): void
-    {
-        if (empty($this->value())) {
-            throw new InvalidArgumentException('Tax number cannot be empty.');
-        }
     }
 }
