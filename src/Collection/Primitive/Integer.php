@@ -24,8 +24,9 @@ use PHP\Math\BigNumber\BigNumber;
  * @template TKey of array-key
  * @template TValue
  *
- * @method static static make(int|string $number)
- * @method static static from(int|string $number)
+ * @method static make(int|string $number)
+ * @method static from(int|string $number)
+ * @method static makeOrNull(int|string $number)
  *
  * @extends ValueObject<TKey, TValue>
  */
