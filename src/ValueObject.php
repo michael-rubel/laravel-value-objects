@@ -51,6 +51,18 @@ abstract class ValueObject implements Arrayable
     }
 
     /**
+     * Create a value object or return null.
+     *
+     * @param  mixed  $values
+     *
+     * @return static|null
+     */
+    public static function makeOrNull(mixed ...$values): static|null
+    {
+        return rescue(fn () => static::make(...$values), report: false);
+    }
+
+    /**
      * Check if objects are instances of same class
      * and share the same properties and values.
      *
