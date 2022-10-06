@@ -131,7 +131,7 @@ class TaxNumber extends ValueObject
     }
 
     /**
-     * Format the value.
+     * Sanitize the value.
      *
      * @return void
      */

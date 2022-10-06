@@ -122,7 +122,7 @@ class FullName extends ValueObject
     }
 
     /**
-     * Format the value.
+     * Sanitize the value.
      *
      * @return void
      */
