@@ -62,9 +62,9 @@ class FullName extends ValueObject
     /**
      * Get the first name.
      *
-     * @return string|null
+     * @return string
      */
-    public function firstName(): ?string
+    public function firstName(): string
     {
         return $this->split->first();
     }
@@ -72,9 +72,9 @@ class FullName extends ValueObject
     /**
      * Get the last name.
      *
-     * @return string|null
+     * @return string
      */
-    public function lastName(): ?string
+    public function lastName(): string
     {
         return $this->split->last();
     }
