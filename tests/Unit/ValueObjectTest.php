@@ -12,3 +12,11 @@ test('base value object is macroable', function () {
     $valueObject = new Text('Lorem ipsum');
     $this->assertSame(['Lorem ipsum'], $valueObject->collect()->toArray());
 });
+
+test('can use makeOrNull', function () {
+    $this->assertNull(Text::makeOrNull(''));
+    $this->assertNull(Text::makeOrNull('')?->value());
+
+    $this->assertEquals(Text::make('Lorem ipsum'), Text::makeOrNull('Lorem ipsum'));
+    $this->assertSame('Lorem ipsum', Text::makeOrNull('Lorem ipsum')->value());
+});

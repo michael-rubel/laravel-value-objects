@@ -158,6 +158,16 @@ $uuid->uuid(); // '8547d10c-7a37-492a-8d33-be0e5ae6119b'
 $uuid->name(); // 'Optional name'
 ```
 
+## Handle failed validation
+
+If you want to avoid try/catching your value object when the validation fails, you can use `makeOrNull` method:
+
+```php
+$bool = Boolean::makeOrNull('bad input'); // null
+
+$bool?->value(); // null
+```
+
 ## Extending functionality
 All value objects are [Macroable](https://laravel.com/api/9.x/Illuminate/Support/Traits/Macroable.html).
 This way you can add new methods dynamically. If you need to extend existing methods, you can create a value object locally with `make:value-object` command and use inheritance.
