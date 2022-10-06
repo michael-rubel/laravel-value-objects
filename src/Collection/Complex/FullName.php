@@ -25,8 +25,8 @@ use MichaelRubel\ValueObjects\ValueObject;
  * @template TKey of array-key
  * @template TValue
  *
- * @method static static make(string|null $value)
- * @method static static from(string|null $value)
+ * @method static static make(string $value)
+ * @method static static from(string $value)
  *
  * @extends ValueObject<TKey, TValue>
  */
