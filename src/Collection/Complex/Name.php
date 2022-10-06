@@ -14,7 +14,6 @@ namespace MichaelRubel\ValueObjects\Collection\Complex;
 
 use Illuminate\Support\Stringable;
 use MichaelRubel\ValueObjects\Collection\Primitive\Text;
-use MichaelRubel\ValueObjects\ValueObject;
 
 /**
  * "Name" object presenting a generic name.
@@ -28,7 +27,7 @@ use MichaelRubel\ValueObjects\ValueObject;
  * @method static static from(string $value)
  * @method static static makeOrNull(string $value)
  *
- * @extends ValueObject<TKey, TValue>
+ * @extends Text<TKey, TValue>
  */
 class Name extends Text
 {
@@ -51,7 +50,7 @@ class Name extends Text
      */
     protected function sanitize(): void
     {
-        $this->value = str($this->value)
+        $this->value = str($this->value())
             ->replaceMatches('/\p{C}+/u', '')
             ->replace(['\r', '\n', '\t'], '')
             ->squish()
