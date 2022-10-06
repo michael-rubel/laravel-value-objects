@@ -29,6 +29,7 @@ composer require michael-rubel/laravel-value-objects
 - [`Text`](https://github.com/michael-rubel/laravel-value-objects/blob/main/src/Collection/Primitive/Text.php)
 - [`ClassString`](https://github.com/michael-rubel/laravel-value-objects/blob/main/src/Collection/Complex/ClassString.php)
 - [`FullName`](https://github.com/michael-rubel/laravel-value-objects/blob/main/src/Collection/Complex/FullName.php)
+- [`Name`](https://github.com/michael-rubel/laravel-value-objects/blob/main/src/Collection/Complex/Name.php)
 - [`TaxNumber`](https://github.com/michael-rubel/laravel-value-objects/blob/main/src/Collection/Complex/TaxNumber.php)
 - [`Uuid`](https://github.com/michael-rubel/laravel-value-objects/blob/main/src/Collection/Complex/Uuid.php)
 
@@ -123,6 +124,19 @@ $name->toArray(); // ['fullName' => 'Taylor Otwell', 'firstName' => 'Taylor', 'l
 $name->fullName();  // 'Taylor Otwell'
 $name->firstName(); // 'Taylor'
 $name->lastName();  // 'Otwell'
+```
+
+---
+
+### Name
+```php
+$name = new Name(' Company name! ');
+$name = Name::make(' Company name! ');
+$name = Name::from(' Company name! ');
+
+$name->value();   // 'Company name!'
+(string) $name;   // 'Company name!'
+$name->toArray(); // ['Company name!']
 ```
 
 ---

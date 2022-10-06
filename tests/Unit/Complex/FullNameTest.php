@@ -105,6 +105,11 @@ test('full name is stringable', function () {
     $this->assertSame($valueObject->value(), (string) $valueObject);
 });
 
+test('full name accepts stringable', function () {
+    $valueObject = new FullName(str('Name Name'));
+    $this->assertSame('Name Name', $valueObject->value());
+});
+
 test('full name fails when passed only first name', function () {
     $this->expectException(\InvalidArgumentException::class);
 
