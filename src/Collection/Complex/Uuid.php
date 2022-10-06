@@ -92,7 +92,7 @@ class Uuid extends ValueObject
      */
     protected function validate(): void
     {
-        if (! str($this->value)->isUuid()) {
+        if (! str($this->value())->isUuid()) {
             throw new \InvalidArgumentException('UUID is invalid.');
         }
     }
