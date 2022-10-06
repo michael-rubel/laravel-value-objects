@@ -66,7 +66,7 @@ class FullName extends ValueObject
      */
     public function firstName(): string
     {
-        return $this->split->first();
+        return (string) $this->split->first();
     }
 
     /**
@@ -76,7 +76,7 @@ class FullName extends ValueObject
      */
     public function lastName(): string
     {
-        return $this->split->last();
+        return (string) $this->split->last();
     }
 
     /**
