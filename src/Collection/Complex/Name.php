@@ -37,9 +37,9 @@ class Name extends Text
      *
      * @param  string|Stringable  $value
      */
-    public function __construct(string|Stringable $value)
+    public function __construct(protected string|Stringable $value)
     {
-        parent::__construct($value);
+        parent::__construct($this->value);
 
         $this->sanitize();
     }
