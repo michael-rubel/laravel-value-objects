@@ -46,7 +46,7 @@ class FullName extends ValueObject
     public function __construct(protected string $value)
     {
         $this->split();
-        $this->format();
+        $this->sanitize();
         $this->validate();
     }
 
@@ -125,7 +125,7 @@ class FullName extends ValueObject
      *
      * @return void
      */
-    protected function format(): void
+    protected function sanitize(): void
     {
         $this->value = format(FullNameFormatter::class, $this->value());
     }

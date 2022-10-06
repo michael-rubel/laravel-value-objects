@@ -43,7 +43,7 @@ class TaxNumber extends ValueObject
         protected ?string $prefix = null,
     ) {
         $this->validate();
-        $this->format();
+        $this->sanitize();
 
         if ($this->canSplit()) {
             $this->split();
@@ -135,7 +135,7 @@ class TaxNumber extends ValueObject
      *
      * @return void
      */
-    protected function format(): void
+    protected function sanitize(): void
     {
         $this->number = format(TaxNumberFormatter::class, $this->taxNumber(), $this->prefix());
     }
