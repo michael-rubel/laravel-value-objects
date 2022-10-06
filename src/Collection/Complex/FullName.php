@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace MichaelRubel\ValueObjects\Collection\Complex;
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\Stringable;
 use InvalidArgumentException;
 use MichaelRubel\Formatters\Collection\FullNameFormatter;
 use MichaelRubel\ValueObjects\ValueObject;
@@ -25,9 +26,9 @@ use MichaelRubel\ValueObjects\ValueObject;
  * @template TKey of array-key
  * @template TValue
  *
- * @method static static make(string $value)
- * @method static static from(string $value)
- * @method static static makeOrNull(string $value)
+ * @method static static make(string|Stringable $value)
+ * @method static static from(string|Stringable $value)
+ * @method static static makeOrNull(string|Stringable $value)
  *
  * @extends ValueObject<TKey, TValue>
  */
@@ -41,9 +42,9 @@ class FullName extends ValueObject
     /**
      * Create a new instance of the value object.
      *
-     * @param  string  $value
+     * @param  string|Stringable  $value
      */
-    public function __construct(protected string $value)
+    public function __construct(protected string|Stringable $value)
     {
         $this->split();
         $this->sanitize();
@@ -57,7 +58,7 @@ class FullName extends ValueObject
      */
     public function fullName(): string
     {
-        return $this->value;
+        return $this->value();
     }
 
     /**
@@ -87,7 +88,7 @@ class FullName extends ValueObject
      */
     public function value(): string
     {
-        return $this->fullName();
+        return (string) $this->value;
     }
 
     /**
