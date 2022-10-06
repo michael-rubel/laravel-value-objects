@@ -4,14 +4,20 @@ declare(strict_types=1);
 
 namespace Olsza\ValueObjects\Tests\Feature\ValueObjects;
 
+use Illuminate\Contracts\Container\BindingResolutionException;
 use MichaelRubel\ValueObjects\Collection\Complex\ClassString;
 use MichaelRubel\ValueObjects\Tests\TestCase;
 
-test('class string is empty string', function () {
-    $classString = new ClassString('');
+test('class string cannot be empty string', function () {
+    $this->expectException(\InvalidArgumentException::class);
 
-    $this->assertFalse($classString->classExists());
-    $this->assertFalse($classString->interfaceExists());
+    new ClassString('');
+});
+
+test('class string cannot be null', function () {
+    $this->expectException(\TypeError::class);
+
+    new ClassString(null);
 });
 
 test('can get class string', function () {
@@ -20,11 +26,19 @@ test('can get class string', function () {
     $this->assertSame('My\Test\Class', $classString->value());
 });
 
-test('class string not instantiable and class and interface are undefined', function () {
-    $classString = new ClassString('My\Test\Class\NotInstantiable');
+test('class string non-instantiable and class and interface are undefined', function () {
+    $classString = new ClassString('My\Test\Class\NonInstantiable');
 
     $this->assertFalse($classString->classExists());
     $this->assertFalse($classString->interfaceExists());
+});
+
+test('class string throws binding resolution exception when trying to instantiate non-instantiable class', function () {
+    $classString = new ClassString('My\Test\Class\NonInstantiable');
+
+    $this->expectException(BindingResolutionException::class);
+
+    $classString->instantiate();
 });
 
 test('class string is exists but interface dont', function () {
@@ -45,17 +59,6 @@ test('can cast class string to string', function () {
     $classString = new ClassString(ClassString::class);
 
     $this->assertSame('MichaelRubel\ValueObjects\Collection\Complex\ClassString', (string) $classString);
-});
-
-test('class string is null', function () {
-    $classString = new ClassString('');
-    $this->assertSame('', $classString->value());
-
-    $classString = new ClassString(null);
-    $this->assertSame('', $classString->value());
-
-    $classString = new ClassString(null);
-    $this->assertSame('', (string) $classString);
 });
 
 test('can instantiate a class from class string value', function () {

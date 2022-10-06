@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace MichaelRubel\ValueObjects\Collection\Complex;
 
 use Illuminate\Support\Collection;
+use InvalidArgumentException;
 use MichaelRubel\Formatters\Collection\FullNameFormatter;
 use MichaelRubel\ValueObjects\ValueObject;
 
@@ -24,8 +25,8 @@ use MichaelRubel\ValueObjects\ValueObject;
  * @template TKey of array-key
  * @template TValue
  *
- * @method static static make(string|null $value)
- * @method static static from(string|null $value)
+ * @method static static make(string $value)
+ * @method static static from(string $value)
  *
  * @extends ValueObject<TKey, TValue>
  */
@@ -39,12 +40,13 @@ class FullName extends ValueObject
     /**
      * Create a new instance of the value object.
      *
-     * @param  string|null  $value
+     * @param  string  $value
      */
-    public function __construct(protected ?string $value)
+    public function __construct(protected string $value)
     {
-        $this->value = $this->format();
-        $this->split = $this->split();
+        $this->split();
+        $this->format();
+        $this->validate();
     }
 
     /**
@@ -54,27 +56,27 @@ class FullName extends ValueObject
      */
     public function fullName(): string
     {
-        return (string) $this->value;
+        return $this->value;
     }
 
     /**
      * Get the first name.
      *
-     * @return string|null
+     * @return string
      */
-    public function firstName(): ?string
+    public function firstName(): string
     {
-        return $this->split->first();
+        return (string) $this->split->first();
     }
 
     /**
      * Get the last name.
      *
-     * @return string|null
+     * @return string
      */
-    public function lastName(): ?string
+    public function lastName(): string
     {
-        return $this->split->last();
+        return (string) $this->split->last();
     }
 
     /**
@@ -85,26 +87,6 @@ class FullName extends ValueObject
     public function value(): string
     {
         return $this->fullName();
-    }
-
-    /**
-     * Format the value.
-     *
-     * @return string
-     */
-    protected function format(): string
-    {
-        return format(FullNameFormatter::class, $this->value());
-    }
-
-    /**
-     * Split the value.
-     *
-     * @return Collection<int, string>
-     */
-    protected function split(): Collection
-    {
-        return str($this->value())->split('/\s/');
     }
 
     /**
@@ -119,5 +101,41 @@ class FullName extends ValueObject
             'firstName' => $this->firstName(),
             'lastName'  => $this->lastName(),
         ];
+    }
+
+    /**
+     * Validate the value object data.
+     *
+     * @return void
+     */
+    protected function validate(): void
+    {
+        if (empty($this->value())) {
+            throw new InvalidArgumentException('Full name cannot be empty.');
+        }
+
+        if (count($this->split) < 2) {
+            throw new InvalidArgumentException('Full name should have a first name and last name.');
+        }
+    }
+
+    /**
+     * Format the value.
+     *
+     * @return void
+     */
+    protected function format(): void
+    {
+        $this->value = format(FullNameFormatter::class, $this->value());
+    }
+
+    /**
+     * Split the value.
+     *
+     * @return void
+     */
+    protected function split(): void
+    {
+        $this->split = str($this->value())->split('/\s/');
     }
 }

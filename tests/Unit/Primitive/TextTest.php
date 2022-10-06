@@ -47,9 +47,10 @@ test('text can accept long text', function () {
     $this->assertSame($string, $text->value());
 });
 
-test('text can accept null', function () {
-    $valueObject = new Text(null);
-    $this->assertSame('', $valueObject->value());
+test('text cannot accept null', function () {
+    $this->expectException(\TypeError::class);
+
+    new Text(null);
 });
 
 test('text fails when no argument passed', function () {
@@ -58,16 +59,18 @@ test('text fails when no argument passed', function () {
     new Text;
 });
 
+test('text fails when empty string passed', function () {
+    $this->expectException(\InvalidArgumentException::class);
+
+    new Text('');
+});
+
 test('text is makeable', function () {
     $valueObject = Text::make('1');
     $this->assertSame('1', $valueObject->value());
-    $valueObject = Text::make(null);
-    $this->assertSame('', $valueObject->value());
 
     $valueObject = Text::from('1');
     $this->assertSame('1', $valueObject->value());
-    $valueObject = Text::from(null);
-    $this->assertSame('', $valueObject->value());
 });
 
 test('text is macroable', function () {
@@ -102,4 +105,15 @@ test('text is stringable', function () {
     $this->assertSame('1.7', (string) $valueObject);
     $valueObject = new Text('1.8');
     $this->assertSame('1.8', (string) $valueObject);
+});
+
+test('text accepts stringable', function () {
+    $valueObject = new Text(str('Lorem ipsum'));
+    $this->assertSame('Lorem ipsum', $valueObject->value());
+});
+
+test('text fails when empty stringable passed', function () {
+    $this->expectException(\InvalidArgumentException::class);
+
+    new Text(str(''));
 });

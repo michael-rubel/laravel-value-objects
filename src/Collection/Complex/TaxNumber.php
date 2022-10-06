@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace MichaelRubel\ValueObjects\Collection\Complex;
 
+use InvalidArgumentException;
 use MichaelRubel\Formatters\Collection\TaxNumberFormatter;
 use MichaelRubel\ValueObjects\ValueObject;
 
@@ -23,8 +24,8 @@ use MichaelRubel\ValueObjects\ValueObject;
  * @template TKey of array-key
  * @template TValue
  *
- * @method static static make(string|null $number, string|null $prefix = null)
- * @method static static from(string|null $number, string|null $prefix = null)
+ * @method static static make(string $number, string|null $prefix = null)
+ * @method static static from(string $number, string|null $prefix = null)
  *
  * @extends ValueObject<TKey, TValue>
  */
@@ -33,14 +34,15 @@ class TaxNumber extends ValueObject
     /**
      * Create a new instance of the value object.
      *
-     * @param  string|null  $number
+     * @param  string  $number
      * @param  string|null  $prefix
      */
     public function __construct(
-        protected ?string $number = null,
+        protected string $number,
         protected ?string $prefix = null,
     ) {
-        $this->number = $this->format();
+        $this->validate();
+        $this->format();
 
         if ($this->canSplit()) {
             $this->split();
@@ -102,13 +104,39 @@ class TaxNumber extends ValueObject
     }
 
     /**
+     * Get an array representation of the value object.
+     *
+     * @return array
+     */
+    public function toArray(): array
+    {
+        return [
+            'fullTaxNumber' => $this->fullTaxNumber(),
+            'taxNumber'     => $this->taxNumber(),
+            'prefix'        => $this->prefix(),
+        ];
+    }
+
+    /**
+     * Validate the value object data.
+     *
+     * @return void
+     */
+    protected function validate(): void
+    {
+        if (empty($this->value())) {
+            throw new InvalidArgumentException('Tax number cannot be empty.');
+        }
+    }
+
+    /**
      * Format the value.
      *
-     * @return string
+     * @return void
      */
-    protected function format(): string
+    protected function format(): void
     {
-        return format(TaxNumberFormatter::class, $this->taxNumber(), $this->prefix());
+        $this->number = format(TaxNumberFormatter::class, $this->taxNumber(), $this->prefix());
     }
 
     /**
@@ -136,19 +164,5 @@ class TaxNumber extends ValueObject
         $this->number = str($this->number)
             ->substr(2)
             ->value();
-    }
-
-    /**
-     * Get an array representation of the value object.
-     *
-     * @return array
-     */
-    public function toArray(): array
-    {
-        return [
-            'fullTaxNumber' => $this->fullTaxNumber(),
-            'taxNumber'     => $this->taxNumber(),
-            'prefix'        => $this->prefix(),
-        ];
     }
 }

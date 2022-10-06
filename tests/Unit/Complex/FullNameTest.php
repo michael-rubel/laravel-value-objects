@@ -7,13 +7,13 @@ namespace Olsza\ValueObjects\Tests\Feature\ValueObjects;
 use MichaelRubel\ValueObjects\Collection\Complex\FullName;
 
 test('can get first name', function () {
-    $name = new FullName('Michael');
+    $name = new FullName('Michael Rubél');
 
     $this->assertSame('Michael', $name->firstName());
 });
 
 test('can get last name', function () {
-    $name = new FullName('Rubél');
+    $name = new FullName('Michael Rubél');
 
     $this->assertSame('Rubél', $name->lastName());
 });
@@ -51,14 +51,15 @@ test('can get cast to string', function () {
     $this->assertSame('Michael Rubél', (string) $name);
 });
 
-test('can pass nulls and returns empty string', function () {
-    $name = new FullName('');
-    $this->assertSame('', $name->fullName());
+test('cannot pass empty string', function () {
+    $this->expectException(\InvalidArgumentException::class);
 
+    new FullName('');
+});
+
+test('cannot pass null', function () {
+    $this->expectException(\TypeError::class);
     $name = new FullName(null);
-    $this->assertSame('', $name->fullName());
-
-    $name = new FullName(null, null);
     $this->assertSame('', $name->fullName());
 });
 
@@ -100,6 +101,12 @@ test('full name is arrayable', function () {
 });
 
 test('full name is stringable', function () {
-    $valueObject = new FullName('Name');
+    $valueObject = new FullName('Name Name');
     $this->assertSame($valueObject->value(), (string) $valueObject);
+});
+
+test('full name fails when passed only first name', function () {
+    $this->expectException(\InvalidArgumentException::class);
+
+    new FullName('Name');
 });

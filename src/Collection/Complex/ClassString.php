@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace MichaelRubel\ValueObjects\Collection\Complex;
 
+use InvalidArgumentException;
 use MichaelRubel\ValueObjects\ValueObject;
 
 /**
@@ -22,8 +23,8 @@ use MichaelRubel\ValueObjects\ValueObject;
  * @template TKey of array-key
  * @template TValue
  *
- * @method static static make(string|null $string)
- * @method static static from(string|null $string)
+ * @method static static make(string $string)
+ * @method static static from(string $string)
  *
  * @extends ValueObject<TKey, TValue>
  */
@@ -32,11 +33,11 @@ class ClassString extends ValueObject
     /**
      * Create a new instance of the value object.
      *
-     * @param  string|null  $string
+     * @param  string  $string
      */
-    public function __construct(protected ?string $string)
+    public function __construct(protected string $string)
     {
-        //
+        $this->validate();
     }
 
     /**
@@ -78,7 +79,7 @@ class ClassString extends ValueObject
      *
      * @return object
      */
-    public function instantiateWith(array $parameters = []): object
+    public function instantiateWith(array $parameters): object
     {
         return $this->instantiate($parameters);
     }
@@ -90,6 +91,18 @@ class ClassString extends ValueObject
      */
     public function value(): string
     {
-        return (string) $this->string;
+        return $this->string;
+    }
+
+    /**
+     * Validate the value object data.
+     *
+     * @return void
+     */
+    protected function validate(): void
+    {
+        if (empty($this->value())) {
+            throw new InvalidArgumentException('Class string cannot be empty.');
+        }
     }
 }
