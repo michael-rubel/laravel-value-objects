@@ -14,6 +14,7 @@ test('base value object is macroable', function () {
 });
 
 test('can use makeOrNull', function () {
+    $this->assertNull(Text::makeOrNull(null));
     $this->assertNull(Text::makeOrNull(''));
     $this->assertNull(Text::makeOrNull('')?->value());
 

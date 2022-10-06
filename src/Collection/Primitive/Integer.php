@@ -26,7 +26,7 @@ use PHP\Math\BigNumber\BigNumber;
  *
  * @method static static make(int|string $number)
  * @method static static from(int|string $number)
- * @method static static makeOrNull(int|string $number)
+ * @method static static makeOrNull(int|string|null $number)
  *
  * @extends ValueObject<TKey, TValue>
  */

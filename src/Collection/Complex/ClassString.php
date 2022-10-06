@@ -25,7 +25,7 @@ use MichaelRubel\ValueObjects\ValueObject;
  *
  * @method static static make(string $string)
  * @method static static from(string $string)
- * @method static static makeOrNull(string $string)
+ * @method static static makeOrNull(string|null $string)
  *
  * @extends ValueObject<TKey, TValue>
  */
