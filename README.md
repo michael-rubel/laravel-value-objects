@@ -163,7 +163,8 @@ $uuid->name(); // 'Optional name'
 If you want to avoid try/catching your value object when the validation fails, you can use `makeOrNull` method:
 
 ```php
-Boolean::makeOrNull('wrong input - validation fails'); // null
+$bool = Boolean::makeOrNull('bad input'); // null
+$bool?->value(); // null
 ```
 
 ## Extending functionality
