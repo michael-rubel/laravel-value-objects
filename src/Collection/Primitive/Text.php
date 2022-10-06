@@ -23,8 +23,8 @@ use MichaelRubel\ValueObjects\ValueObject;
  * @template TKey of array-key
  * @template TValue
  *
- * @method static static make(string|Stringable|null $value)
- * @method static static from(string|Stringable|null $value)
+ * @method static static make(string|Stringable $value)
+ * @method static static from(string|Stringable $value)
  *
  * @extends ValueObject<TKey, TValue>
  */
@@ -33,11 +33,11 @@ class Text extends ValueObject
     /**
      * Create a new instance of the value object.
      *
-     * @param  string|Stringable|null  $value
+     * @param  string|Stringable  $value
      */
-    public function __construct(protected string|Stringable|null $value)
+    public function __construct(protected string|Stringable $value)
     {
-        //
+        $this->validate();
     }
 
     /**
@@ -48,5 +48,17 @@ class Text extends ValueObject
     public function value(): string
     {
         return (string) $this->value;
+    }
+
+    /**
+     * Validate the value object data.
+     *
+     * @return void
+     */
+    protected function validate(): void
+    {
+        if (empty($this->value())) {
+            throw new \InvalidArgumentException('Text cannot be empty.');
+        }
     }
 }
