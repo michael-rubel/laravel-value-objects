@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace MichaelRubel\ValueObjects\Collection\Primitive;
 
 use Illuminate\Support\Stringable;
+use InvalidArgumentException;
 use MichaelRubel\ValueObjects\ValueObject;
 
 /**
@@ -58,7 +59,7 @@ class Text extends ValueObject
     protected function validate(): void
     {
         if (empty($this->value())) {
-            throw new \InvalidArgumentException('Text cannot be empty.');
+            throw new InvalidArgumentException('Text cannot be empty.');
         }
     }
 }

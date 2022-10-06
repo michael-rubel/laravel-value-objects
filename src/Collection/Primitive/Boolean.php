@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace MichaelRubel\ValueObjects\Collection\Primitive;
 
+use InvalidArgumentException;
 use MichaelRubel\ValueObjects\ValueObject;
 
 /**
@@ -53,7 +54,7 @@ class Boolean extends ValueObject
         $this->value = match (true) {
             $this->isInTrueValues()  => true,
             $this->isInFalseValues() => false,
-            default => throw new \InvalidArgumentException('Invalid boolean'),
+            default => throw new InvalidArgumentException('Invalid boolean'),
         };
     }
 

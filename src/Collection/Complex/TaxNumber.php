@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace MichaelRubel\ValueObjects\Collection\Complex;
 
+use InvalidArgumentException;
 use MichaelRubel\Formatters\Collection\TaxNumberFormatter;
 use MichaelRubel\ValueObjects\ValueObject;
 
@@ -162,7 +163,7 @@ class TaxNumber extends ValueObject
     protected function validate(): void
     {
         if (empty($this->value())) {
-            throw new \InvalidArgumentException('Tax number cannot be empty.');
+            throw new InvalidArgumentException('Tax number cannot be empty.');
         }
     }
 }

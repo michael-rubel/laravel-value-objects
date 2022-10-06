@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace MichaelRubel\ValueObjects\Collection\Complex;
 
+use InvalidArgumentException;
 use MichaelRubel\ValueObjects\ValueObject;
 
 /**
@@ -101,7 +102,7 @@ class ClassString extends ValueObject
     protected function validate(): void
     {
         if (empty($this->value())) {
-            throw new \InvalidArgumentException('Class string cannot be empty.');
+            throw new InvalidArgumentException('Class string cannot be empty.');
         }
     }
 }

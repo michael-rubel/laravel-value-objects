@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace MichaelRubel\ValueObjects\Collection\Complex;
 
 use Illuminate\Support\Collection;
+use InvalidArgumentException;
 use MichaelRubel\Formatters\Collection\FullNameFormatter;
 use MichaelRubel\ValueObjects\ValueObject;
 
@@ -111,7 +112,7 @@ class FullName extends ValueObject
     protected function validate(): void
     {
         if (empty($this->value())) {
-            throw new \InvalidArgumentException('Full name cannot be empty.');
+            throw new InvalidArgumentException('Full name cannot be empty.');
         }
     }
 

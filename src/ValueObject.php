@@ -7,6 +7,7 @@ namespace MichaelRubel\ValueObjects;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
+use InvalidArgumentException;
 
 /**
  * @template TKey of array-key
@@ -116,6 +117,6 @@ abstract class ValueObject implements Arrayable
      */
     public function __set(string $name, mixed $value): void
     {
-        throw new \InvalidArgumentException('Value objects are immutable. You cannot modify properties, create a new object instead.');
+        throw new InvalidArgumentException('Value objects are immutable, you cannot modify properties. Create a new object instead.');
     }
 }
