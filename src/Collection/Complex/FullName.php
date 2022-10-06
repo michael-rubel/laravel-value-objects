@@ -44,10 +44,9 @@ class FullName extends ValueObject
      */
     public function __construct(protected string $value)
     {
+        $this->split();
+        $this->format();
         $this->validate();
-
-        $this->value = $this->format();
-        $this->split = $this->split();
     }
 
     /**
@@ -114,25 +113,29 @@ class FullName extends ValueObject
         if (empty($this->value())) {
             throw new InvalidArgumentException('Full name cannot be empty.');
         }
+
+        if (count($this->split) < 2) {
+            throw new InvalidArgumentException('Full name should have a first name and last name.');
+        }
     }
 
     /**
      * Format the value.
      *
-     * @return string
+     * @return void
      */
-    protected function format(): string
+    protected function format(): void
     {
-        return format(FullNameFormatter::class, $this->value());
+        $this->value = format(FullNameFormatter::class, $this->value());
     }
 
     /**
      * Split the value.
      *
-     * @return Collection<int, string>
+     * @return void
      */
-    protected function split(): Collection
+    protected function split(): void
     {
-        return str($this->value())->split('/\s/');
+        $this->split = str($this->value())->split('/\s/');
     }
 }
