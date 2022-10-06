@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace MichaelRubel\ValueObjects\Tests\Feature\ValueObjects;
 
 use MichaelRubel\ValueObjects\Collection\Complex\TaxNumber;
