@@ -164,6 +164,7 @@ If you want to avoid try/catching your value object when the validation fails, y
 
 ```php
 $bool = Boolean::makeOrNull('bad input'); // null
+
 $bool?->value(); // null
 ```
 
