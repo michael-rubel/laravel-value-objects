@@ -2,6 +2,14 @@
 
 declare(strict_types=1);
 
+/**
+ * This file is part of michael-rubel/laravel-value-objects. (https://github.com/michael-rubel/laravel-value-objects)
+ *
+ * @link https://github.com/michael-rubel/laravel-value-objects for the canonical source repository
+ * @copyright Copyright (c) 2022 Michael Rubél. (https://github.com/michael-rubel/)
+ * @license https://raw.githubusercontent.com/michael-rubel/laravel-value-objects/main/LICENSE.md MIT
+ */
+
 namespace MichaelRubel\ValueObjects;
 
 use Illuminate\Contracts\Support\Arrayable;
@@ -10,6 +18,10 @@ use Illuminate\Support\Traits\Macroable;
 use InvalidArgumentException;
 
 /**
+ * Base "ValueObject".
+ *
+ * @author Michael Rubél <michael@laravel.software>
+ *
  * @template TKey of array-key
  * @template TValue
  *
