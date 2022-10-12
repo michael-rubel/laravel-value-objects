@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-
-
 use MichaelRubel\ValueObjects\Collection\Complex\TaxNumber;
 
 test('tax number cannot be null', function () {
