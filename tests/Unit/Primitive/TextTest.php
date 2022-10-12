@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-namespace MichaelRubel\ValueObjects\Tests\Feature\ValueObjects;
-
 use MichaelRubel\ValueObjects\Collection\Primitive\Text;
 
 test('text can accept string', function () {

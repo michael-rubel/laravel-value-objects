@@ -1,7 +1,5 @@
 <?php
 
-namespace MichaelRubel\ValueObjects\Tests\Feature\ValueObjects;
-
 use Illuminate\Support\Str;
 use MichaelRubel\ValueObjects\Collection\Complex\ClassString;
 use MichaelRubel\ValueObjects\Collection\Complex\FullName;

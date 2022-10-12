@@ -1,7 +1,5 @@
 <?php
 
-namespace MichaelRubel\ValueObjects\Tests\Feature\ValueObjects;
-
 use MichaelRubel\ValueObjects\Collection\Primitive\Text;
 use MichaelRubel\ValueObjects\ValueObject;
 

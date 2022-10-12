@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-namespace MichaelRubel\ValueObjects\Tests\Feature\ValueObjects;
-
 use Illuminate\Contracts\Container\BindingResolutionException;
 use MichaelRubel\ValueObjects\Collection\Complex\ClassString;
 use MichaelRubel\ValueObjects\Tests\TestCase;
