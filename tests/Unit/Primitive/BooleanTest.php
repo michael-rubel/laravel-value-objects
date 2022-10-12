@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Olsza\ValueObjects\Tests\Feature\ValueObjects;
+namespace MichaelRubel\ValueObjects\Tests\Feature\ValueObjects;
 
 use MichaelRubel\ValueObjects\Collection\Primitive\Boolean;
 

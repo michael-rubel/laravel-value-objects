@@ -1,6 +1,6 @@
 <?php
 
-namespace Olsza\ValueObjects\Tests\Feature\ValueObjects;
+namespace MichaelRubel\ValueObjects\Tests\Feature\ValueObjects;
 
 use Illuminate\Support\Facades\File;
 
