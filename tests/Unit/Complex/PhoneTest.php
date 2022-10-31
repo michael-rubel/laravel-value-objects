@@ -28,6 +28,10 @@ test('phone is sanitized', function () {
 
     $phone = new Phone('00 000 00 00');
     $this->assertSame('000000000', $phone->sanitized());
+
+    $phone = new Phone('+38 000
+000 00 00');
+    $this->assertSame('+380000000000', $phone->sanitized());
 });
 
 test('phone is wrong', function () {

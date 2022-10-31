@@ -51,6 +51,7 @@ class Phone extends Text
     {
         return str($this->value())
             ->replace(' ', '')
+            ->replaceMatches('/\p{C}+/u', '')
             ->value();
     }
 
