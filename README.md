@@ -99,14 +99,27 @@ $classString = new ClassString('\Exception');
 $classString = ClassString::make('\Exception');
 $classString = ClassString::from('\Exception');
 
-$classString->value(); // '\Exception'
-(string) $classString; // '\Exception'
-$name->toArray();      // ['\Exception']
+$classString->value();   // '\Exception'
+(string) $classString;   // '\Exception'
+$classString->toArray(); // ['\Exception']
 
 $classString->classExists();     // true
 $classString->interfaceExists(); // false
 $classString->instantiate();     // Exception { ... }
 $classString->instantiateWith(['message' => 'My message.']); // Exception { #message: "test" ... }
+```
+
+---
+
+### Email
+```php
+$email = new Email('michael@laravel.software');
+$email = Email::make('michael@laravel.software');
+$email = Email::from('michael@laravel.software');
+
+$email->value();   // 'michael@laravel.software'
+(string) $email;   // 'michael@laravel.software'
+$email->toArray(); // ['michael@laravel.software']
 ```
 
 ---
