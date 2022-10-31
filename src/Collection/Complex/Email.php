@@ -52,10 +52,20 @@ class Email extends Text
      */
     protected function validate(): void
     {
-        $toValidate = ['email', $this->value(), ['filter', 'dns']];
+        $toValidate = ['email', $this->value(), $this->validationParameters()];
 
         if (! $this->validateEmail(...$toValidate)) {
             throw ValidationException::withMessages(['Your email is invalid.']);
         }
+    }
+
+    /**
+     * Define how you want to validate the email.
+     *
+     * @return array
+     */
+    protected function validationParameters(): array
+    {
+        return ['filter', 'spoof', 'dns'];
     }
 }
