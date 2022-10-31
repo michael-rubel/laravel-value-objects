@@ -13,8 +13,8 @@ test('number can accept integer', function () {
 });
 
 test('number can cast to integer', function () {
-    $valueObject = new Number(1);
-    $this->assertSame(1, $valueObject->asInteger());
+    $valueObject = new Number('100');
+    $this->assertSame(100, $valueObject->asInteger());
 });
 
 test('number can accept string', function () {
