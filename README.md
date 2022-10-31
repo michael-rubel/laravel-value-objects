@@ -111,6 +111,19 @@ $classString->instantiateWith(['message' => 'My message.']); // Exception { #mes
 
 ---
 
+### Email
+```php
+$email = new Email('michael@laravel.software');
+$email = Email::make('michael@laravel.software');
+$email = Email::from('michael@laravel.software');
+
+$email->value();   // 'michael@laravel.software'
+(string) $email;   // 'michael@laravel.software'
+$email->toArray(); // ['michael@laravel.software']
+```
+
+---
+
 ### FullName
 ```php
 $name = new FullName(' Taylor   Otwell ');
