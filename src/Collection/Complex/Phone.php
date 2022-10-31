@@ -56,7 +56,7 @@ class Phone extends Text
     }
 
     /**
-     * Validate the email.
+     * Validate the phone number.
      *
      * @return void
      */
