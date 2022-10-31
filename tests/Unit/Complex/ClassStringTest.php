@@ -3,11 +3,12 @@
 declare(strict_types=1);
 
 use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Validation\ValidationException;
 use MichaelRubel\ValueObjects\Collection\Complex\ClassString;
 use MichaelRubel\ValueObjects\Tests\TestCase;
 
 test('class string cannot be empty string', function () {
-    $this->expectException(\InvalidArgumentException::class);
+    $this->expectException(ValidationException::class);
 
     new ClassString('');
 });

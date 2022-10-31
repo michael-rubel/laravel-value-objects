@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Illuminate\Validation\ValidationException;
 use MichaelRubel\ValueObjects\Collection\Complex\FullName;
 
 test('can get first name', function () {
@@ -50,7 +51,7 @@ test('can get cast to string', function () {
 });
 
 test('cannot pass empty string', function () {
-    $this->expectException(\InvalidArgumentException::class);
+    $this->expectException(ValidationException::class);
 
     new FullName('');
 });
@@ -109,7 +110,7 @@ test('full name accepts stringable', function () {
 });
 
 test('full name fails when passed only first name', function () {
-    $this->expectException(\InvalidArgumentException::class);
+    $this->expectException(ValidationException::class);
 
     new FullName('Name');
 });

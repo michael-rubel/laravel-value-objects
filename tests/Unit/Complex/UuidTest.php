@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 use MichaelRubel\ValueObjects\Collection\Complex\Uuid;
 
 test('can get uuid using uuid method', function () {
@@ -30,7 +31,7 @@ test('can cast uuid to string', function () {
 });
 
 test('ails when wrong uuid passed to uuid object', function () {
-    $this->expectException(\InvalidArgumentException::class);
+    $this->expectException(ValidationException::class);
 
     new Uuid('123');
 });

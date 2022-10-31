@@ -14,7 +14,7 @@ namespace MichaelRubel\ValueObjects\Collection\Complex;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Stringable;
-use InvalidArgumentException;
+use Illuminate\Validation\ValidationException;
 use MichaelRubel\Formatters\Collection\FullNameFormatter;
 use MichaelRubel\ValueObjects\ValueObject;
 
@@ -113,11 +113,11 @@ class FullName extends ValueObject
     protected function validate(): void
     {
         if (empty($this->value())) {
-            throw new InvalidArgumentException('Full name cannot be empty.');
+            throw ValidationException::withMessages([__('Full name cannot be empty.')]);
         }
 
         if (count($this->split) < 2) {
-            throw new InvalidArgumentException('Full name should have a first name and last name.');
+            throw ValidationException::withMessages([__('Full name should have a first name and last name.')]);
         }
     }
 

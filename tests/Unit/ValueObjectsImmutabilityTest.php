@@ -17,8 +17,8 @@ test('class string value object is immutable', function () {
 })->expectException(\InvalidArgumentException::class);
 
 test('full name value object is immutable', function () {
-    $valueObject = new FullName('Michael');
-    $this->assertSame('Michael', $valueObject->value);
+    $valueObject = new FullName('Michael Rubél');
+    $this->assertSame('Michael Rubél', $valueObject->value);
     $valueObject->full_name = 'immutable';
 })->expectException(\InvalidArgumentException::class);
 
