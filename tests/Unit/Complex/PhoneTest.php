@@ -14,7 +14,9 @@ test('phone is ok', function () {
 
     $phone = new Phone('+48000000000');
     $this->assertSame('+48000000000', $phone->value());
+});
 
+test('phone allows short version', function () {
     $phone = new Phone('000 000 000');
     $this->assertSame('000 000 000', $phone->value());
 
@@ -28,13 +30,15 @@ test('phone is sanitized', function () {
 
     $phone = new Phone('00 000 00 00');
     $this->assertSame('000000000', $phone->sanitized());
+});
 
+test('phone deals with line-break', function () {
     $phone = new Phone('+38 000
 000 00 00');
     $this->assertSame('+380000000000', $phone->sanitized());
 });
 
-test('phone is wrong', function () {
+test('phone fails when wrong number passed', function () {
     $this->expectException(ValidationException::class);
 
     new Phone('123123');
