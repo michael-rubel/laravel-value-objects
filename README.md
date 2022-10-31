@@ -24,8 +24,7 @@ composer require michael-rubel/laravel-value-objects
 ## Built-in value objects
 
 - [`Boolean`](https://github.com/michael-rubel/laravel-value-objects/blob/main/src/Collection/Primitive/Boolean.php)
-- [`Decimal`](https://github.com/michael-rubel/laravel-value-objects/blob/main/src/Collection/Primitive/Decimal.php)
-- [`Integer`](https://github.com/michael-rubel/laravel-value-objects/blob/main/src/Collection/Primitive/Integer.php)
+- [`Number`](https://github.com/michael-rubel/laravel-value-objects/blob/main/src/Collection/Primitive/Number.php)
 - [`Text`](https://github.com/michael-rubel/laravel-value-objects/blob/main/src/Collection/Primitive/Text.php)
 - [`ClassString`](https://github.com/michael-rubel/laravel-value-objects/blob/main/src/Collection/Complex/ClassString.php)
 - [`FullName`](https://github.com/michael-rubel/laravel-value-objects/blob/main/src/Collection/Complex/FullName.php)
@@ -54,15 +53,15 @@ $bool->toArray(); // ['true']
 
 ---
 
-### Decimal
+### Number
 ```php
-$decimal = new Decimal('10.20999', scale: 2);
-$decimal = Decimal::make('10.20999', scale: 2);
-$decimal = Decimal::from('10.20999', scale: 2);
+$number = new Number('10.20999', scale: 2);
+$number = Number::make('10.20999', scale: 2);
+$number = Number::from('10.20999', scale: 2);
 
-$decimal->value();   // '10.20'
-(string) $decimal;   // '10.20'
-$decimal->toArray(); // ['10.20']
+$number->value();   // '10.20'
+(string) $number;   // '10.20'
+$number->toArray(); // ['10.20']
 ```
 
 ---

@@ -17,7 +17,7 @@ use MichaelRubel\ValueObjects\ValueObject;
 use PHP\Math\BigNumber\BigNumber;
 
 /**
- * "Decimal" object presenting decimal values.
+ * "Number" object presenting decimal values.
  *
  * @author Michael Rubél <michael@laravel.software>
  *
@@ -30,7 +30,7 @@ use PHP\Math\BigNumber\BigNumber;
  *
  * @extends ValueObject<TKey, TValue>
  */
-class Decimal extends ValueObject
+class Number extends ValueObject
 {
     use SanitizesNumbers;
 
