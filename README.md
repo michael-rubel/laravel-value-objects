@@ -99,9 +99,9 @@ $classString = new ClassString('\Exception');
 $classString = ClassString::make('\Exception');
 $classString = ClassString::from('\Exception');
 
-$classString->value(); // '\Exception'
-(string) $classString; // '\Exception'
-$name->toArray();      // ['\Exception']
+$classString->value();   // '\Exception'
+(string) $classString;   // '\Exception'
+$classString->toArray(); // ['\Exception']
 
 $classString->classExists();     // true
 $classString->interfaceExists(); // false
