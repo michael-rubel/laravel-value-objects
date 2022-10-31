@@ -6,6 +6,9 @@ use Illuminate\Validation\ValidationException;
 use MichaelRubel\ValueObjects\Collection\Complex\Phone;
 
 test('phone is ok', function () {
+    $phone = new Phone('+38 000 000 00 00');
+    $this->assertSame('+38 000 000 00 00', $phone->value());
+
     $phone = new Phone('+48 00 000 00 00');
     $this->assertSame('+48 00 000 00 00', $phone->value());
 

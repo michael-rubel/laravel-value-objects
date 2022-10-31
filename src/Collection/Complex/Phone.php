@@ -62,7 +62,7 @@ class Phone extends Text
      */
     protected function validate(): void
     {
-        if (! preg_match('/^[0-9+ ]{7,16}$/', $this->value()) > 0) {
+        if (! preg_match('/^[0-9+ ]{7,17}$/', $this->value()) > 0) {
             throw ValidationException::withMessages([__('Your phone number is invalid.')]);
         }
     }
