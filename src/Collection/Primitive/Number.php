@@ -17,7 +17,7 @@ use MichaelRubel\ValueObjects\ValueObject;
 use PHP\Math\BigNumber\BigNumber;
 
 /**
- * "Number" object presenting decimal values.
+ * "Number" object that presents numeric values.
  *
  * @author Michael Rubél <michael@laravel.software>
  *
