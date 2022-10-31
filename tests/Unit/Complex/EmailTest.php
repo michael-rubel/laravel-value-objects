@@ -23,12 +23,6 @@ test('email is wrong with at', function () {
     new Email('laravel@framework');
 });
 
-test('email fails when non-existing domain', function () {
-    $this->expectException(ValidationException::class);
-
-    new Email('test@non-existing.domain');
-});
-
 test('email cannot accept null', function () {
     $this->expectException(\TypeError::class);
 
