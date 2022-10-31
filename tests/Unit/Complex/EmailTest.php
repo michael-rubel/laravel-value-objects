@@ -85,3 +85,10 @@ test('email fails when empty stringable passed', function () {
 
     new Email(str(''));
 });
+
+test('email is immutable', function () {
+    $this->expectException(\InvalidArgumentException::class);
+    $valueObject = new Email('contact@observer.name');
+    $this->assertSame('contact@observer.name', $valueObject->value);
+    $valueObject->value = 'immutable';
+});

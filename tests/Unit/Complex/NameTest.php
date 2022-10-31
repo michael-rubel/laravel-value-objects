@@ -84,3 +84,10 @@ test('text fails when empty stringable passed', function () {
 
     new Name(str(''));
 });
+
+test('name is immutable', function () {
+    $this->expectException(\InvalidArgumentException::class);
+    $valueObject = new Name('Lorem ipsum');
+    $this->assertSame('Lorem ipsum', $valueObject->value);
+    $valueObject->value = 'immutable';
+});

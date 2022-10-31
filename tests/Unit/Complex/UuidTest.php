@@ -82,3 +82,11 @@ test('uuid is stringable', function () {
     $valueObject = new Uuid($uuid);
     $this->assertSame($valueObject->value(), (string) $valueObject);
 });
+
+test('uuid value object is immutable', function () {
+    $this->expectException(\InvalidArgumentException::class);
+    $uuid = (string) Str::uuid();
+    $valueObject = new Uuid($uuid);
+    $this->assertSame($uuid, $valueObject->value);
+    $valueObject->tax_number = 'immutable';
+});

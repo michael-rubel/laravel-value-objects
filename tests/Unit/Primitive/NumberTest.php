@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use MichaelRubel\ValueObjects\Collection\Primitive\Number;
+use PHP\Math\BigNumber\BigNumber;
 
 test('number can accept integer', function () {
     $valueObject = new Number(1);
@@ -169,4 +170,11 @@ test('number is stringable', function () {
     $this->assertSame('1.70', (string) $valueObject);
     $valueObject = new Number('1.8');
     $this->assertSame('1.80', (string) $valueObject);
+});
+
+test('number is immutable', function () {
+    $this->expectException(\InvalidArgumentException::class);
+    $valueObject = new Number('1.2000');
+    $this->assertEquals(new BigNumber('1.20', 2), $valueObject->number);
+    $valueObject->number = new BigNumber('1.20');
 });

@@ -166,3 +166,10 @@ test('tax number is stringable', function () {
     $valueObject = new TaxNumber('PL0123456789');
     $this->assertSame($valueObject->value(), (string) $valueObject);
 });
+
+test('tax number is immutable', function () {
+    $this->expectException(\InvalidArgumentException::class);
+    $valueObject = new TaxNumber('PL0123456789');
+    $this->assertSame('0123456789', $valueObject->number);
+    $valueObject->tax_number = 'immutable';
+});
