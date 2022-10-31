@@ -18,4 +18,5 @@ test('can make value object using command', function () {
     $this->assertStringContainsString('public function value(): string', $fileString);
     $this->assertStringContainsString('public function toArray(): array', $fileString);
     $this->assertStringContainsString('public function __toString(): string', $fileString);
+    $this->assertStringContainsString('Value of TestValueObject cannot be empty.', $fileString);
 });
