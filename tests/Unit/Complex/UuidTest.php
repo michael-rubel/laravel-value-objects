@@ -30,7 +30,7 @@ test('can cast uuid to string', function () {
     $this->assertSame($uuid, $string);
 });
 
-test('ails when wrong uuid passed to uuid object', function () {
+test('fails when wrong uuid passed to uuid object', function () {
     $this->expectException(ValidationException::class);
 
     new Uuid('123');
