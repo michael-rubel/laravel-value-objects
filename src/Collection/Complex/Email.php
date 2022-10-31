@@ -66,6 +66,6 @@ class Email extends Text
      */
     protected function validationParameters(): array
     {
-        return ['filter', 'spoof', 'dns'];
+        return ['filter', 'spoof'];
     }
 }
