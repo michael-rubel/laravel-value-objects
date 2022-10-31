@@ -16,7 +16,7 @@ use Illuminate\Validation\ValidationException;
 use MichaelRubel\ValueObjects\Collection\Primitive\Text;
 
 /**
- * "Email" object presenting a generic name.
+ * "Email" object that represents the email address.
  *
  * @author Michael Rubél <michael@laravel.software>
  *
