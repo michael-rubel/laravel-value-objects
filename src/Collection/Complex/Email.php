@@ -55,7 +55,7 @@ class Email extends Text
         $toValidate = ['email', $this->value(), $this->validationParameters()];
 
         if (! $this->validateEmail(...$toValidate)) {
-            throw ValidationException::withMessages(['Your email is invalid.']);
+            throw ValidationException::withMessages([__('Your email is invalid.')]);
         }
     }
 
