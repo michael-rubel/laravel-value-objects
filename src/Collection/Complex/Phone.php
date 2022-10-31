@@ -50,7 +50,6 @@ class Phone extends Text
     public function sanitized(): string
     {
         return str($this->value())
-            ->squish()
             ->replace(' ', '')
             ->value();
     }
