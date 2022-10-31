@@ -139,3 +139,10 @@ test('boolean is stringable', function () {
     $valueObject = new Boolean('false');
     $this->assertSame('false', (string) $valueObject);
 });
+
+test('boolean is immutable', function () {
+    $this->expectException(\InvalidArgumentException::class);
+    $valueObject = new Boolean('1');
+    $this->assertTrue($valueObject->value);
+    $valueObject->value = '0';
+});

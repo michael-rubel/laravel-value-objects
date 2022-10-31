@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Illuminate\Validation\ValidationException;
 use MichaelRubel\ValueObjects\Collection\Complex\TaxNumber;
 
 test('tax number cannot be null', function () {
@@ -121,7 +122,7 @@ test('passed empty values to value object', function () {
     $data = (new TaxNumber('AB0123456789', ''))->fullTaxNumber();
     $this->assertEquals('AB0123456789', $data);
 
-    $this->expectException(\InvalidArgumentException::class);
+    $this->expectException(ValidationException::class);
     new TaxNumber('', '');
 });
 
@@ -164,4 +165,11 @@ test('tax number is arrayable', function () {
 test('tax number is stringable', function () {
     $valueObject = new TaxNumber('PL0123456789');
     $this->assertSame($valueObject->value(), (string) $valueObject);
+});
+
+test('tax number is immutable', function () {
+    $this->expectException(\InvalidArgumentException::class);
+    $valueObject = new TaxNumber('PL0123456789');
+    $this->assertSame('0123456789', $valueObject->number);
+    $valueObject->tax_number = 'immutable';
 });

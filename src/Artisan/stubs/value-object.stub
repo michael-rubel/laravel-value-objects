@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace {{ namespace }};
 
+use Illuminate\Validation\ValidationException;
 use MichaelRubel\ValueObjects\ValueObject;
 
 /**
@@ -65,5 +66,9 @@ class {{ class }} extends ValueObject
     protected function validate(): void
     {
         // TODO: Implement validate() method.
+
+        if (empty($this->value())) {
+            throw ValidationException::withMessages([__('Value of {{ class }} cannot be empty.')]);
+        }
     }
 }

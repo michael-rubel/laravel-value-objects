@@ -3,11 +3,12 @@
 declare(strict_types=1);
 
 use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Validation\ValidationException;
 use MichaelRubel\ValueObjects\Collection\Complex\ClassString;
 use MichaelRubel\ValueObjects\Tests\TestCase;
 
 test('class string cannot be empty string', function () {
-    $this->expectException(\InvalidArgumentException::class);
+    $this->expectException(ValidationException::class);
 
     new ClassString('');
 });
@@ -97,4 +98,11 @@ test('class string is arrayable', function () {
 test('class string is stringable', function () {
     $valueObject = new ClassString('Throwable');
     $this->assertSame($valueObject->value(), (string) $valueObject);
+});
+
+test('class string is immutable', function () {
+    $this->expectException(\InvalidArgumentException::class);
+    $valueObject = new ClassString('\Exception');
+    $this->assertSame('\Exception', $valueObject->string);
+    $valueObject->classString = 'immutable';
 });

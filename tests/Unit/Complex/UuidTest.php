@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 use MichaelRubel\ValueObjects\Collection\Complex\Uuid;
 
 test('can get uuid using uuid method', function () {
@@ -29,8 +30,8 @@ test('can cast uuid to string', function () {
     $this->assertSame($uuid, $string);
 });
 
-test('ails when wrong uuid passed to uuid object', function () {
-    $this->expectException(\InvalidArgumentException::class);
+test('fails when wrong uuid passed to uuid object', function () {
+    $this->expectException(ValidationException::class);
 
     new Uuid('123');
 });
@@ -80,4 +81,12 @@ test('uuid is stringable', function () {
     $uuid        = (string) Str::uuid();
     $valueObject = new Uuid($uuid);
     $this->assertSame($valueObject->value(), (string) $valueObject);
+});
+
+test('uuid value object is immutable', function () {
+    $this->expectException(\InvalidArgumentException::class);
+    $uuid        = (string) Str::uuid();
+    $valueObject = new Uuid($uuid);
+    $this->assertSame($uuid, $valueObject->value);
+    $valueObject->tax_number = 'immutable';
 });

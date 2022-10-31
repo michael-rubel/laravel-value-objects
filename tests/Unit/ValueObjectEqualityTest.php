@@ -1,7 +1,7 @@
 <?php
 
 use MichaelRubel\ValueObjects\Collection\Complex\ClassString;
-use MichaelRubel\ValueObjects\Collection\Primitive\Decimal;
+use MichaelRubel\ValueObjects\Collection\Primitive\Number;
 
 test('value objects are equal', function () {
     $vo1 = new ClassString('Exception');
@@ -32,9 +32,9 @@ test('value objects are not equal', function () {
 });
 
 test('decimal object equality works as expected', function () {
-    $vo1 = new Decimal(777177711191777.97999999999998, scale: 2);
-    $vo2 = new Decimal('777177711191777.97999999999998', scale: 3);
-    $vo3 = new Decimal('777177711191777.97999999999998', scale: 2);
+    $vo1 = new Number(777177711191777.97999999999998, scale: 2);
+    $vo2 = new Number('777177711191777.97999999999998', scale: 3);
+    $vo3 = new Number('777177711191777.97999999999998', scale: 2);
     $vo4 = clone $vo1;
 
     $this->assertFalse($vo1->equals($vo2));
