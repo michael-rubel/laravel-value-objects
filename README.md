@@ -67,19 +67,6 @@ $decimal->toArray(); // ['10.20']
 
 ---
 
-### Integer
-```php
-$integer = new Integer(10);
-$integer = Integer::make(10);
-$integer = Integer::from(10);
-
-$integer->value();   // 10
-(string) $integer;   // '10'
-$integer->toArray(); // [10]
-```
-
----
-
 ### Text
 ```php
 $text = new Text('Lorem Ipsum is simply dummy text.');
