@@ -7,7 +7,6 @@ use MichaelRubel\ValueObjects\Collection\Complex\TaxNumber;
 use MichaelRubel\ValueObjects\Collection\Complex\Uuid;
 use MichaelRubel\ValueObjects\Collection\Primitive\Boolean;
 use MichaelRubel\ValueObjects\Collection\Primitive\Decimal;
-use MichaelRubel\ValueObjects\Collection\Primitive\Integer;
 use MichaelRubel\ValueObjects\Collection\Primitive\Text;
 use PHP\Math\BigNumber\BigNumber;
 
@@ -46,12 +45,6 @@ test('decimal value object is immutable', function () {
     $valueObject = new Decimal('1.2000');
     $this->assertEquals(new BigNumber('1.20', 2), $valueObject->number);
     $valueObject->number = new BigNumber('1.20');
-})->expectException(\InvalidArgumentException::class);
-
-test('integer value object is immutable', function () {
-    $valueObject = new Integer(1);
-    $this->assertEquals(new BigNumber('1', 0), $valueObject->number);
-    $valueObject->number = new BigNumber(1);
 })->expectException(\InvalidArgumentException::class);
 
 test('text value object is immutable', function () {
