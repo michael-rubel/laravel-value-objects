@@ -12,6 +12,11 @@ test('number can accept integer', function () {
     $this->assertSame('2.00', $valueObject->value());
 });
 
+test('number can cast to integer', function () {
+    $valueObject = new Number(1);
+    $this->assertSame(1, $valueObject->asInteger());
+});
+
 test('number can accept string', function () {
     $valueObject = new Number('1');
     $this->assertSame('1.00', $valueObject->value());
@@ -175,6 +180,6 @@ test('number is stringable', function () {
 test('number is immutable', function () {
     $this->expectException(\InvalidArgumentException::class);
     $valueObject = new Number('1.2000');
-    $this->assertEquals(new BigNumber('1.20', 2), $valueObject->number);
-    $valueObject->number = new BigNumber('1.20');
+    $this->assertEquals(new BigNumber('1.20', 2), $valueObject->bigNumber);
+    $valueObject->bigNumber = new BigNumber('1.20');
 });

@@ -37,7 +37,7 @@ class Number extends ValueObject
     /**
      * @var BigNumber
      */
-    protected BigNumber $number;
+    protected BigNumber $bigNumber;
 
     /**
      * Create a new instance of the value object.
@@ -47,7 +47,7 @@ class Number extends ValueObject
      */
     public function __construct(int|string $number, protected int $scale = 2)
     {
-        $this->number = new BigNumber($this->sanitize($number), $this->scale);
+        $this->bigNumber = new BigNumber($this->sanitize($number), $this->scale);
     }
 
     /**
@@ -57,6 +57,16 @@ class Number extends ValueObject
      */
     public function value(): string
     {
-        return (string) $this->number;
+        return $this->bigNumber->getValue();
+    }
+
+    /**
+     * Get the number as an integer.
+     *
+     * @return int
+     */
+    public function asInteger(): int
+    {
+        return (int) $this->bigNumber->getValue();
     }
 }
