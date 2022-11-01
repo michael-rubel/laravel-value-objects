@@ -38,27 +38,38 @@ test('phone deals with line-break', function () {
     $this->assertSame('+380000000000', $phone->sanitized());
 });
 
+test('phone accepts only one plus character', function () {
+    $this->expectException(ValidationException::class);
+    new Phone('++38 000 000 00');
+});
+
+test('phone rejects plus if it is not the first char', function () {
+    $this->expectException(ValidationException::class);
+    new Phone('38 000 +000 000');
+});
+
+test('phone rejects plus when it is the last char', function () {
+    $this->expectException(ValidationException::class);
+    new Phone('38 000 000 000+');
+});
+
 test('phone fails when wrong number passed', function () {
     $this->expectException(ValidationException::class);
-
     new Phone('123123');
 });
 
 test('phone cannot accept null', function () {
     $this->expectException(\TypeError::class);
-
     new Phone(null);
 });
 
 test('phone fails when no argument passed', function () {
     $this->expectException(\TypeError::class);
-
     new Phone;
 });
 
 test('phone fails when empty string passed', function () {
     $this->expectException(ValidationException::class);
-
     new Phone('');
 });
 
@@ -103,7 +114,6 @@ test('phone accepts stringable', function () {
 
 test('phone fails when empty stringable passed', function () {
     $this->expectException(ValidationException::class);
-
     new Phone(str(''));
 });
 
