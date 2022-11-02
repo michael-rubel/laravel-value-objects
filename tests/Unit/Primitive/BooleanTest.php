@@ -140,9 +140,15 @@ test('boolean is stringable', function () {
     $this->assertSame('false', (string) $valueObject);
 });
 
-test('boolean is immutable', function () {
+test('boolean has immutable properties', function () {
     $this->expectException(\InvalidArgumentException::class);
     $valueObject = new Boolean('1');
     $this->assertTrue($valueObject->value);
     $valueObject->value = '0';
+});
+
+test('boolean has immutable constructor', function () {
+    $this->expectException(\InvalidArgumentException::class);
+    $valueObject = new Boolean('1');
+    $valueObject->__construct('false');
 });
