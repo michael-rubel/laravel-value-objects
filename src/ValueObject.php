@@ -32,6 +32,11 @@ abstract class ValueObject implements Arrayable
     use Macroable, Conditionable;
 
     /**
+     * @var string
+     */
+    public const IMMUTABLE_MESSAGE = 'Value objects are immutable, create a new object instead.';
+
+    /**
      * Get the object value.
      *
      * @return mixed
@@ -141,6 +146,6 @@ abstract class ValueObject implements Arrayable
      */
     public function __set(string $name, mixed $value): void
     {
-        throw new InvalidArgumentException('Value objects are immutable, you cannot modify properties. Create a new object instead.');
+        throw new InvalidArgumentException(static::IMMUTABLE_MESSAGE);
     }
 }
