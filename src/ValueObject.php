@@ -32,6 +32,8 @@ abstract class ValueObject implements Arrayable
     use Macroable, Conditionable;
 
     /**
+     * Immutability message.
+     *
      * @var string
      */
     public const IMMUTABLE_MESSAGE = 'Value objects are immutable, create a new object instead.';
