@@ -32,6 +32,11 @@ use MichaelRubel\ValueObjects\ValueObject;
 class Boolean extends ValueObject
 {
     /**
+     * @var bool|int|string
+     */
+    protected bool|int|string $value;
+
+    /**
      * Allowed values that are treated as `true`.
      *
      * @var array
@@ -50,8 +55,14 @@ class Boolean extends ValueObject
      *
      * @param  bool|int|string  $value
      */
-    public function __construct(protected bool|int|string $value)
+    public function __construct(bool|int|string $value)
     {
+        if (isset($this->value)) {
+            throw new InvalidArgumentException(static::IMMUTABLE_MESSAGE);
+        }
+
+        $this->value = $value;
+
         $this->value = match (true) {
             $this->isInTrueValues()  => true,
             $this->isInFalseValues() => false,

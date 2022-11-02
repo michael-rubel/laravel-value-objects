@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace MichaelRubel\ValueObjects\Collection\Complex;
 
 use Illuminate\Validation\ValidationException;
+use InvalidArgumentException;
 use MichaelRubel\Formatters\Collection\TaxNumberFormatter;
 use MichaelRubel\ValueObjects\ValueObject;
 
@@ -33,15 +34,30 @@ use MichaelRubel\ValueObjects\ValueObject;
 class TaxNumber extends ValueObject
 {
     /**
+     * @var string
+     */
+    protected string $number;
+
+    /**
+     * @var string|null
+     */
+    protected ?string $prefix = null;
+
+    /**
      * Create a new instance of the value object.
      *
      * @param  string  $number
      * @param  string|null  $prefix
      */
-    public function __construct(
-        protected string $number,
-        protected ?string $prefix = null,
-    ) {
+    public function __construct(string $number, ?string $prefix = null)
+    {
+        if (isset($this->number)) {
+            throw new InvalidArgumentException(static::IMMUTABLE_MESSAGE);
+        }
+
+        $this->number = $number;
+        $this->prefix = $prefix;
+
         $this->validate();
         $this->sanitize();
 

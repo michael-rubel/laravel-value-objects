@@ -38,9 +38,9 @@ class Email extends Text
      *
      * @param  string|Stringable  $value
      */
-    public function __construct(protected string|Stringable $value)
+    public function __construct(string|Stringable $value)
     {
-        parent::__construct($this->value);
+        parent::__construct($value);
 
         $this->validate();
     }

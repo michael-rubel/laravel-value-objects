@@ -115,9 +115,15 @@ test('full name fails when passed only first name', function () {
     new FullName('Name');
 });
 
-test('full name is immutable', function () {
+test('full name has immutable properties', function () {
     $this->expectException(\InvalidArgumentException::class);
     $valueObject = new FullName('Michael Rubél');
     $this->assertSame('Michael Rubél', $valueObject->value);
     $valueObject->full_name = 'immutable';
+});
+
+test('full name has immutable constructor', function () {
+    $this->expectException(\InvalidArgumentException::class);
+    $valueObject = new FullName('Michael Rubél');
+    $valueObject->__construct(' Michael Rubél ');
 });

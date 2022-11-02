@@ -85,9 +85,15 @@ test('text fails when empty stringable passed', function () {
     new Name(str(''));
 });
 
-test('name is immutable', function () {
+test('name has immutable properties', function () {
     $this->expectException(\InvalidArgumentException::class);
     $valueObject = new Name('Lorem ipsum');
     $this->assertSame('Lorem ipsum', $valueObject->value);
     $valueObject->value = 'immutable';
+});
+
+test('name has immutable constructor', function () {
+    $this->expectException(\InvalidArgumentException::class);
+    $valueObject = new Name('Lorem ipsum');
+    $valueObject->__construct(' Lorem ipsum ');
 });

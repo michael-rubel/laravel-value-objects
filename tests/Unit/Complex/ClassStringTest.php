@@ -100,9 +100,15 @@ test('class string is stringable', function () {
     $this->assertSame($valueObject->value(), (string) $valueObject);
 });
 
-test('class string is immutable', function () {
+test('class string has immutable properties', function () {
     $this->expectException(\InvalidArgumentException::class);
     $valueObject = new ClassString('\Exception');
     $this->assertSame('\Exception', $valueObject->string);
     $valueObject->classString = 'immutable';
+});
+
+test('class string has immutable constructor', function () {
+    $this->expectException(\InvalidArgumentException::class);
+    $valueObject = new ClassString('\Exception');
+    $valueObject->__construct('\Throwable');
 });

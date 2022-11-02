@@ -131,3 +131,16 @@ test('phone is immutable', function () {
     $this->assertSame('+48 00 000 00 00', $valueObject->value);
     $valueObject->value = 'immutable';
 });
+
+test('phone has immutable properties', function () {
+    $this->expectException(\InvalidArgumentException::class);
+    $valueObject = new Phone('+48 00 000 00 00');
+    $this->assertSame('+48 00 000 00 00', $valueObject->value);
+    $valueObject->value = 'immutable';
+});
+
+test('phone has immutable constructor', function () {
+    $this->expectException(\InvalidArgumentException::class);
+    $valueObject = new Phone('+48 00 000 00 00');
+    $valueObject->__construct('+38 000 000 00 00');
+});

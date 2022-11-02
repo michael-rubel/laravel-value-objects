@@ -16,7 +16,6 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Stringable;
 use Illuminate\Validation\ValidationException;
 use MichaelRubel\Formatters\Collection\FullNameFormatter;
-use MichaelRubel\ValueObjects\ValueObject;
 
 /**
  * "FullName" object presenting a full name.
@@ -30,9 +29,9 @@ use MichaelRubel\ValueObjects\ValueObject;
  * @method static static from(string|Stringable $value)
  * @method static static makeOrNull(string|Stringable|null $value)
  *
- * @extends ValueObject<TKey, TValue>
+ * @extends Name<TKey, TValue>
  */
-class FullName extends ValueObject
+class FullName extends Name
 {
     /**
      * @var Collection<int, string>
@@ -44,11 +43,11 @@ class FullName extends ValueObject
      *
      * @param  string|Stringable  $value
      */
-    public function __construct(protected string|Stringable $value)
+    public function __construct(string|Stringable $value)
     {
-        $this->split();
-        $this->sanitize();
-        $this->validate();
+        static::beforeParentCalls(fn () => $this->split());
+
+        parent::__construct($value);
     }
 
     /**
@@ -79,16 +78,6 @@ class FullName extends ValueObject
     public function lastName(): string
     {
         return (string) $this->split->last();
-    }
-
-    /**
-     * Get the object value.
-     *
-     * @return string
-     */
-    public function value(): string
-    {
-        return (string) $this->value;
     }
 
     /**

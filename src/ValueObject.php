@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace MichaelRubel\ValueObjects;
 
+use Closure;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
@@ -30,6 +31,21 @@ use InvalidArgumentException;
 abstract class ValueObject implements Arrayable
 {
     use Macroable, Conditionable;
+
+    /**
+     * Immutability message.
+     *
+     * @var string
+     */
+    public const IMMUTABLE_MESSAGE = 'Value objects are immutable, create a new object instead.';
+
+    /**
+     * Callback to hook into parent construct
+     * before any other call is performed.
+     *
+     * @var Closure
+     */
+    protected Closure $before;
 
     /**
      * Get the object value.
@@ -100,6 +116,18 @@ abstract class ValueObject implements Arrayable
     }
 
     /**
+     * Set the "before" callback.
+     *
+     * @param  Closure  $callback
+     *
+     * @return void
+     */
+    protected function beforeParentCalls(Closure $callback): void
+    {
+        $this->before = $callback;
+    }
+
+    /**
      * Get an array representation of the value object.
      *
      * @return array
@@ -141,6 +169,6 @@ abstract class ValueObject implements Arrayable
      */
     public function __set(string $name, mixed $value): void
     {
-        throw new InvalidArgumentException('Value objects are immutable, you cannot modify properties. Create a new object instead.');
+        throw new InvalidArgumentException(__(static::IMMUTABLE_MESSAGE));
     }
 }

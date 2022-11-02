@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace MichaelRubel\ValueObjects\Collection\Complex;
 
 use Illuminate\Validation\ValidationException;
+use InvalidArgumentException;
 use MichaelRubel\ValueObjects\ValueObject;
 
 /**
@@ -32,15 +33,30 @@ use MichaelRubel\ValueObjects\ValueObject;
 class Uuid extends ValueObject
 {
     /**
+     * @var string
+     */
+    protected string $value;
+
+    /**
+     * @var string|null
+     */
+    protected ?string $name = null;
+
+    /**
      * Create a new instance of the value object.
      *
      * @param  string  $value
      * @param  string|null  $name
      */
-    public function __construct(
-        protected string $value,
-        protected ?string $name = null,
-    ) {
+    public function __construct(string $value, ?string $name = null)
+    {
+        if (isset($this->value)) {
+            throw new InvalidArgumentException(static::IMMUTABLE_MESSAGE);
+        }
+
+        $this->value = $value;
+        $this->name  = $name;
+
         $this->validate();
     }
 
