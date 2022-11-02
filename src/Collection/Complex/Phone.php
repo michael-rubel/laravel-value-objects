@@ -75,8 +75,6 @@ class Phone extends Text
      */
     protected function trim(): void
     {
-        $this->value = str($this->value())
-            ->squish()
-            ->value();
+        $this->value = trim($this->value());
     }
 }
