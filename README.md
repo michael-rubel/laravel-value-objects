@@ -124,7 +124,7 @@ $name->fullName();  // 'Taylor Otwell'
 $name->firstName(); // 'Taylor'
 $name->lastName();  // 'Otwell'
 
-$name = new FullName('Richard Le Poidevin', parts: 2);
+$name = new FullName('Richard Le Poidevin', parts: 3);
 
 $name->toArray();
 
