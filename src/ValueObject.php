@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace MichaelRubel\ValueObjects;
 
+use Closure;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
@@ -37,6 +38,14 @@ abstract class ValueObject implements Arrayable
      * @var string
      */
     public const IMMUTABLE_MESSAGE = 'Value objects are immutable, create a new object instead.';
+
+    /**
+     * Callback to hook into parent construct
+     * before any other call is performed.
+     *
+     * @var Closure
+     */
+    protected Closure $before;
 
     /**
      * Get the object value.
@@ -104,6 +113,18 @@ abstract class ValueObject implements Arrayable
     public function notEquals(ValueObject $object): bool
     {
         return ! $this->equals($object);
+    }
+
+    /**
+     * Set the "before" callback.
+     *
+     * @param  Closure  $callback
+     *
+     * @return void
+     */
+    protected function beforeParentCalls(Closure $callback): void
+    {
+        $this->before = $callback;
     }
 
     /**

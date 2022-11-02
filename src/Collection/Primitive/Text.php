@@ -50,6 +50,10 @@ class Text extends ValueObject
 
         $this->value = $value;
 
+        if (isset($this->before)) {
+            ($this->before)();
+        }
+
         $this->validate();
     }
 
