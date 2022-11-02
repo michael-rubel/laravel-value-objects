@@ -17,6 +17,7 @@ use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
 use InvalidArgumentException;
 use MichaelRubel\ValueObjects\Concerns\HandlesCallbacks;
+use MichaelRubel\ValueObjects\Contracts\Immutable;
 
 /**
  * Base "ValueObject".
@@ -28,16 +29,9 @@ use MichaelRubel\ValueObjects\Concerns\HandlesCallbacks;
  *
  * @implements Arrayable<TKey, TValue>
  */
-abstract class ValueObject implements Arrayable
+abstract class ValueObject implements Arrayable, Immutable
 {
     use Macroable, Conditionable, HandlesCallbacks;
-
-    /**
-     * Immutability message.
-     *
-     * @var string
-     */
-    public const IMMUTABLE_MESSAGE = 'Value objects are immutable, create a new object instead.';
 
     /**
      * Get the object value.
