@@ -119,11 +119,23 @@ $name = FullName::from(' Taylor   Otwell ');
 
 $name->value();   // 'Taylor Otwell'
 (string) $name;   // 'Taylor Otwell'
-$name->toArray(); // ['fullName' => 'Taylor Otwell', 'firstName' => 'Taylor', 'lastName' => 'Otwell']
 
 $name->fullName();  // 'Taylor Otwell'
 $name->firstName(); // 'Taylor'
 $name->lastName();  // 'Otwell'
+
+$name = 'Richard Le Poidevin';
+$parts = str_word_count($name);
+
+$fullName = new FullName($name, $parts);
+
+$fullName->toArray();
+
+// array:3 [
+//  "fullName" => "Richard Le Poidevin"
+//  "firstName" => "Richard"
+//  "lastName" => "Le Poidevin"
+// ]
 ```
 
 ---

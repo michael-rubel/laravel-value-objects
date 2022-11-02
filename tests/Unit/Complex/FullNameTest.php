@@ -30,18 +30,24 @@ test('can get full name minus case', function () {
     $this->assertSame('Nowak-Kowalska', $name->lastName());
 });
 
-test('can get full name space case', function () {
-    $name = new FullName('Alicja', 'Bachleda Curuś');
-
+test('full name with break control', function () {
+    $name = new FullName('Alicja Bachleda Curuś', parts: 3);
     $this->assertSame('Alicja', $name->firstName());
     $this->assertSame('Bachleda Curuś', $name->lastName());
-})->skip('edge case with spaces in last name');
+});
 
 test('can get full name with name in between', function () {
     $name = new FullName('Anna Ewa Kowalska');
 
     $this->assertSame('Anna', $name->firstName());
     $this->assertSame('Kowalska', $name->lastName());
+});
+
+test('can break control using word count', function () {
+    $name = 'Richard Le Poidevin';
+    $name = new FullName($name, str_word_count($name));
+    $this->assertSame('Richard', $name->firstName());
+    $this->assertSame('Le Poidevin', $name->lastName());
 });
 
 test('can get cast to string', function () {
@@ -96,6 +102,13 @@ test('full name is arrayable', function () {
         'fullName'  => 'Michael Rubél',
         'firstName' => 'Michael',
         'lastName'  => 'Rubél',
+    ], $valueObject->toArray());
+
+    $valueObject = new FullName('Richard Le Poidevin', parts: 3);
+    $this->assertSame([
+        'fullName'  => 'Richard Le Poidevin',
+        'firstName' => 'Richard',
+        'lastName'  => 'Le Poidevin',
     ], $valueObject->toArray());
 });
 
