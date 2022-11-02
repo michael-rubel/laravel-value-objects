@@ -40,6 +40,7 @@ class Phone extends Text
         parent::__construct($this->value);
 
         $this->validate();
+        $this->squish();
     }
 
     /**
@@ -50,8 +51,8 @@ class Phone extends Text
     public function sanitized(): string
     {
         return str($this->value())
-            ->replace(' ', '')
             ->replaceMatches('/\p{C}+/u', '')
+            ->replace(' ', '')
             ->value();
     }
 
@@ -65,5 +66,17 @@ class Phone extends Text
         if (! preg_match('/^[+]?[0-9 ]{5,15}$/', $this->sanitized())) {
             throw ValidationException::withMessages([__('Your phone number is invalid.')]);
         }
+    }
+
+    /**
+     * Squish the value.
+     *
+     * @return void
+     */
+    protected function squish(): void
+    {
+        $this->value = str($this->value())
+            ->squish()
+            ->value();
     }
 }
