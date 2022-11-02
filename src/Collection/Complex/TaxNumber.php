@@ -51,7 +51,7 @@ class TaxNumber extends ValueObject
      */
     public function __construct(string $number, ?string $prefix = null)
     {
-        if (isset($this->number) || isset($this->prefix)) {
+        if (isset($this->number)) {
             throw new InvalidArgumentException(static::IMMUTABLE_MESSAGE);
         }
 
