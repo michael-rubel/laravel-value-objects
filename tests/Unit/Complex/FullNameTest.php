@@ -100,6 +100,13 @@ test('full name is arrayable', function () {
         'firstName' => 'Michael',
         'lastName'  => 'Rubél',
     ], $valueObject->toArray());
+
+    $valueObject = new FullName('Richard Le Poidevin', break: 2);
+    $this->assertSame([
+        'fullName'  => 'Richard Le Poidevin',
+        'firstName' => 'Richard',
+        'lastName'  => 'Le Poidevin',
+    ], $valueObject->toArray());
 });
 
 test('full name is stringable', function () {
