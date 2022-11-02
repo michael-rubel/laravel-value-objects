@@ -42,8 +42,9 @@ class FullName extends Name
      * Create a new instance of the value object.
      *
      * @param  string|Stringable  $value
+     * @param  int  $break
      */
-    public function __construct(string|Stringable $value)
+    public function __construct(string|Stringable $value, protected int $break = -1)
     {
         static::beforeParentCalls(fn () => $this->split());
 
@@ -127,6 +128,6 @@ class FullName extends Name
      */
     protected function split(): void
     {
-        $this->split = str($this->value())->split('/\s/');
+        $this->split = str($this->value())->split('/\s/', $this->break);
     }
 }
