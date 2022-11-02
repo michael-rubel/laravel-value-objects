@@ -177,9 +177,15 @@ test('number is stringable', function () {
     $this->assertSame('1.80', (string) $valueObject);
 });
 
-test('number is immutable', function () {
+test('number has immutable properties', function () {
     $this->expectException(\InvalidArgumentException::class);
     $valueObject = new Number('1.2000');
     $this->assertEquals(new BigNumber('1.20', 2), $valueObject->bigNumber);
     $valueObject->bigNumber = new BigNumber('1.20');
+});
+
+test('number has immutable constructor', function () {
+    $this->expectException(\InvalidArgumentException::class);
+    $valueObject = new Number('1.2000');
+    $valueObject->__construct('1.5000');
 });
