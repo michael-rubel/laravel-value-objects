@@ -29,6 +29,7 @@ composer require michael-rubel/laravel-value-objects
 - [`ClassString`](https://github.com/michael-rubel/laravel-value-objects/blob/main/src/Collection/Complex/ClassString.php)
 - [`FullName`](https://github.com/michael-rubel/laravel-value-objects/blob/main/src/Collection/Complex/FullName.php)
 - [`Name`](https://github.com/michael-rubel/laravel-value-objects/blob/main/src/Collection/Complex/Name.php)
+- [`Phone`](https://github.com/michael-rubel/laravel-value-objects/blob/main/src/Collection/Complex/Phone.php)
 - [`TaxNumber`](https://github.com/michael-rubel/laravel-value-objects/blob/main/src/Collection/Complex/TaxNumber.php)
 - [`Uuid`](https://github.com/michael-rubel/laravel-value-objects/blob/main/src/Collection/Complex/Uuid.php)
 
@@ -136,6 +137,21 @@ $name = Name::from(' Company name! ');
 $name->value();   // 'Company name!'
 (string) $name;   // 'Company name!'
 $name->toArray(); // ['Company name!']
+```
+
+---
+
+### Phone
+```php
+$phone = new Phone(' +38 000 000 00 00 ');
+$phone = Phone::make(' +38 000 000 00 00 ');
+$phone = Phone::from(' +38 000 000 00 00 ');
+
+$phone->value();   // '+38 000 000 00 00'
+(string) $phone;   // '+38 000 000 00 00'
+$phone->toArray(); // ['+38 000 000 00 00']
+
+$phone->sanitized(); // '+380000000000'
 ```
 
 ---

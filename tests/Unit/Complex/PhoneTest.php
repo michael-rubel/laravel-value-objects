@@ -16,6 +16,11 @@ test('phone is ok', function () {
     $this->assertSame('+48000000000', $phone->value());
 });
 
+test('phone is squished', function () {
+    $phone = new Phone(' +38 000 000 00 00 ');
+    $this->assertSame('+38 000 000 00 00', $phone->value());
+});
+
 test('phone allows short version', function () {
     $phone = new Phone('00000');
     $this->assertSame('00000', $phone->value());
