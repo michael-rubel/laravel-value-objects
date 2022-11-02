@@ -17,6 +17,9 @@ test('phone is ok', function () {
 });
 
 test('phone allows short version', function () {
+    $phone = new Phone('00000');
+    $this->assertSame('00000', $phone->value());
+
     $phone = new Phone('000 000 000');
     $this->assertSame('000 000 000', $phone->value());
 
@@ -55,7 +58,7 @@ test('phone rejects plus when it is the last char', function () {
 
 test('phone fails when wrong number passed', function () {
     $this->expectException(ValidationException::class);
-    new Phone('123123');
+    new Phone('123');
 });
 
 test('phone cannot accept null', function () {
