@@ -222,6 +222,9 @@ TaxNumber::from('PL0123456789')->when(function ($number) {
 })->prefix();
 ```
 
+## Contributing
+If you see any way we can improve the package, or maybe you want to make your own custom value object as built-in, PRs are welcome.
+
 ## Testing
 ```bash
 composer test
