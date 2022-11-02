@@ -33,12 +33,23 @@ use MichaelRubel\ValueObjects\ValueObject;
 class Text extends ValueObject
 {
     /**
+     * @var string|Stringable
+     */
+    protected string|Stringable $value;
+
+    /**
      * Create a new instance of the value object.
      *
      * @param  string|Stringable  $value
      */
-    public function __construct(protected string|Stringable $value)
+    public function __construct(string|Stringable $value)
     {
+        if (isset($this->value)) {
+            throw new InvalidArgumentException(static::IMMUTABLE_MESSAGE);
+        }
+
+        $this->value = $value;
+
         $this->validate();
     }
 

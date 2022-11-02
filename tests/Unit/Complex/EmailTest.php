@@ -86,9 +86,15 @@ test('email fails when empty stringable passed', function () {
     new Email(str(''));
 });
 
-test('email is immutable', function () {
+test('email has immutable properties', function () {
     $this->expectException(\InvalidArgumentException::class);
     $valueObject = new Email('contact@observer.name');
     $this->assertSame('contact@observer.name', $valueObject->value);
     $valueObject->value = 'immutable';
+});
+
+test('email has immutable constructor', function () {
+    $this->expectException(\InvalidArgumentException::class);
+    $valueObject = new Email('contact@observer.name');
+    $valueObject->__construct('contact@observer.com');
 });
