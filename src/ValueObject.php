@@ -140,6 +140,7 @@ abstract class ValueObject implements Arrayable, Immutable
      * @param  mixed  $value
      *
      * @return void
+     * @throws InvalidArgumentException
      */
     public function __set(string $name, mixed $value): void
     {

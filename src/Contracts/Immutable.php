@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace MichaelRubel\ValueObjects\Contracts;
 
+use InvalidArgumentException;
+
 interface Immutable
 {
     /**
@@ -19,6 +21,7 @@ interface Immutable
      * @param  string  $name
      * @param  mixed  $value
      * @return void
+     * @throws InvalidArgumentException
      */
     public function __set(string $name, mixed $value): void;
 }
