@@ -16,7 +16,6 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Stringable;
 use Illuminate\Validation\ValidationException;
 use MichaelRubel\Formatters\Collection\FullNameFormatter;
-use MichaelRubel\ValueObjects\ValueObject;
 
 /**
  * "FullName" object presenting a full name.
@@ -30,7 +29,7 @@ use MichaelRubel\ValueObjects\ValueObject;
  * @method static static from(string|Stringable $value)
  * @method static static makeOrNull(string|Stringable|null $value)
  *
- * @extends ValueObject<TKey, TValue>
+ * @extends Name<TKey, TValue>
  */
 class FullName extends Name
 {
