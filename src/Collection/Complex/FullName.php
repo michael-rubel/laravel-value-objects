@@ -32,7 +32,7 @@ use MichaelRubel\ValueObjects\ValueObject;
  *
  * @extends ValueObject<TKey, TValue>
  */
-class FullName extends ValueObject
+class FullName extends Name
 {
     /**
      * @var Collection<int, string>
@@ -44,11 +44,11 @@ class FullName extends ValueObject
      *
      * @param  string|Stringable  $value
      */
-    public function __construct(protected string|Stringable $value)
+    public function __construct(string|Stringable $value)
     {
-        $this->split();
-        $this->sanitize();
-        $this->validate();
+        static::beforeParentCalls(fn () => $this->split());
+
+        parent::__construct($value);
     }
 
     /**
@@ -79,16 +79,6 @@ class FullName extends ValueObject
     public function lastName(): string
     {
         return (string) $this->split->last();
-    }
-
-    /**
-     * Get the object value.
-     *
-     * @return string
-     */
-    public function value(): string
-    {
-        return (string) $this->value;
     }
 
     /**
