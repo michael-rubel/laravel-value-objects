@@ -25,9 +25,9 @@ use MichaelRubel\Formatters\Collection\FullNameFormatter;
  * @template TKey of array-key
  * @template TValue
  *
- * @method static static make(string|Stringable $value, int $spacing = -1)
- * @method static static from(string|Stringable $value, int $spacing = -1)
- * @method static static makeOrNull(string|Stringable|null $value, int $spacing = -1)
+ * @method static static make(string|Stringable $value, int $parts = -1)
+ * @method static static from(string|Stringable $value, int $parts = -1)
+ * @method static static makeOrNull(string|Stringable|null $value, int $parts = -1)
  *
  * @extends Name<TKey, TValue>
  */
@@ -42,9 +42,9 @@ class FullName extends Name
      * Create a new instance of the value object.
      *
      * @param  string|Stringable  $value
-     * @param  int  $spacing
+     * @param  int  $parts
      */
-    public function __construct(string|Stringable $value, protected int $spacing = -1)
+    public function __construct(string|Stringable $value, protected int $parts = -1)
     {
         static::beforeParentCalls(fn () => $this->split());
 
@@ -128,6 +128,6 @@ class FullName extends Name
      */
     protected function split(): void
     {
-        $this->split = str($this->value())->split('/\s/', $this->spacing);
+        $this->split = str($this->value())->split('/\s/', $this->parts);
     }
 }

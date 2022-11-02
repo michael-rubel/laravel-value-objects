@@ -31,11 +31,11 @@ test('can get full name minus case', function () {
 });
 
 test('can get full name when space case', function () {
-    $name = new FullName('Alicja Bachleda Curuś', spacing: 2);
+    $name = new FullName('Alicja Bachleda Curuś', parts: 2);
     $this->assertSame('Alicja', $name->firstName());
     $this->assertSame('Bachleda Curuś', $name->lastName());
 
-    $name = new FullName('Richard Le Poidevin', spacing: 2);
+    $name = new FullName('Richard Le Poidevin', parts: 2);
     $this->assertSame('Richard', $name->firstName());
     $this->assertSame('Le Poidevin', $name->lastName());
 });
@@ -101,7 +101,7 @@ test('full name is arrayable', function () {
         'lastName'  => 'Rubél',
     ], $valueObject->toArray());
 
-    $valueObject = new FullName('Richard Le Poidevin', spacing: 2);
+    $valueObject = new FullName('Richard Le Poidevin', parts: 2);
     $this->assertSame([
         'fullName'  => 'Richard Le Poidevin',
         'firstName' => 'Richard',
