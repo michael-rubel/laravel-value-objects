@@ -119,11 +119,20 @@ $name = FullName::from(' Taylor   Otwell ');
 
 $name->value();   // 'Taylor Otwell'
 (string) $name;   // 'Taylor Otwell'
-$name->toArray(); // ['fullName' => 'Taylor Otwell', 'firstName' => 'Taylor', 'lastName' => 'Otwell']
 
 $name->fullName();  // 'Taylor Otwell'
 $name->firstName(); // 'Taylor'
 $name->lastName();  // 'Otwell'
+
+$name = new FullName('Richard Le Poidevin', break: 2);
+
+$name->toArray();
+
+// array:3 [
+//  "fullName" => "Richard Le Poidevin"
+//  "firstName" => "Richard"
+//  "lastName" => "Le Poidevin"
+// ]
 ```
 
 ---
