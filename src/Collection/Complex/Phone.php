@@ -39,7 +39,6 @@ class Phone extends Text
     {
         parent::__construct($value);
 
-        $this->validate();
         $this->trim();
     }
 
