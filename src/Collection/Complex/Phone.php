@@ -40,7 +40,7 @@ class Phone extends Text
         parent::__construct($this->value);
 
         $this->validate();
-        $this->squish();
+        $this->trim();
     }
 
     /**
@@ -69,11 +69,11 @@ class Phone extends Text
     }
 
     /**
-     * Squish the value.
+     * Trim the value.
      *
      * @return void
      */
-    protected function squish(): void
+    protected function trim(): void
     {
         $this->value = str($this->value())
             ->squish()
