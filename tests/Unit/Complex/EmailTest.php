@@ -11,6 +11,18 @@ test('email is ok', function () {
     $this->assertSame('michael@laravel.software', $email->value());
 });
 
+test('email has username', function () {
+    $email = new Email('michael@laravel.software');
+
+    $this->assertSame('michael', $email->username());
+});
+
+test('email has domain', function () {
+    $email = new Email('michael@laravel.software');
+
+    $this->assertSame('laravel.software', $email->domain());
+});
+
 test('email is wrong', function () {
     $this->expectException(ValidationException::class);
 
