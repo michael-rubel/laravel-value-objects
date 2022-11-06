@@ -35,7 +35,7 @@ class Email extends Text
     use ValidatesAttributes;
 
     /**
-     * @var Collection
+     * @var Collection<int, string>
      */
     protected Collection $split;
 
@@ -57,7 +57,7 @@ class Email extends Text
      */
     public function username(): string
     {
-        return $this->split->first();
+        return (string) $this->split->first();
     }
 
     /**
@@ -65,7 +65,7 @@ class Email extends Text
      */
     public function domain(): string
     {
-        return $this->split->last();
+        return (string) $this->split->last();
     }
 
     /**
