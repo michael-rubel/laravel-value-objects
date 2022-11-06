@@ -69,6 +69,20 @@ class Email extends Text
     }
 
     /**
+     * Get an array representation of the value object.
+     *
+     * @return array
+     */
+    public function toArray(): array
+    {
+        return [
+            'email'    => $this->value(),
+            'username' => $this->username(),
+            'domain'   => $this->domain(),
+        ];
+    }
+
+    /**
      * Validate the email.
      *
      * @return void

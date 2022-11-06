@@ -79,7 +79,11 @@ test('email is conditionable', function () {
 
 test('email is arrayable', function () {
     $array = (new Email('michael@laravel.software'))->toArray();
-    $this->assertSame(['michael@laravel.software'], $array);
+    $this->assertSame([
+        'email'    => 'michael@laravel.software',
+        'username' => 'michael',
+        'domain'   => 'laravel.software',
+    ], $array);
 });
 
 test('email is stringable', function () {
