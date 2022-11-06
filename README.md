@@ -108,7 +108,7 @@ $email = Email::from('michael@laravel.software');
 
 $email->value();   // 'michael@laravel.software'
 (string) $email;   // 'michael@laravel.software'
-$email->toArray(); // ['michael@laravel.software']
+$email->toArray(); // ['email' => 'michael@laravel.software', 'username' => 'michael', 'domain' => 'laravel.software']
 ```
 
 ---

@@ -10,6 +10,7 @@
 
 namespace MichaelRubel\ValueObjects\Collection\Complex;
 
+use Illuminate\Support\Collection;
 use Illuminate\Support\Stringable;
 use Illuminate\Validation\Concerns\ValidatesAttributes;
 use Illuminate\Validation\ValidationException;
@@ -34,6 +35,11 @@ class Email extends Text
     use ValidatesAttributes;
 
     /**
+     * @var Collection<int, string>
+     */
+    protected Collection $split;
+
+    /**
      * Create a new instance of the value object.
      *
      * @param  string|Stringable  $value
@@ -43,6 +49,37 @@ class Email extends Text
         parent::__construct($value);
 
         $this->validate();
+        $this->split();
+    }
+
+    /**
+     * @return string
+     */
+    public function username(): string
+    {
+        return (string) $this->split->first();
+    }
+
+    /**
+     * @return string
+     */
+    public function domain(): string
+    {
+        return (string) $this->split->last();
+    }
+
+    /**
+     * Get an array representation of the value object.
+     *
+     * @return array
+     */
+    public function toArray(): array
+    {
+        return [
+            'email'    => $this->value(),
+            'username' => $this->username(),
+            'domain'   => $this->domain(),
+        ];
     }
 
     /**
@@ -67,5 +104,15 @@ class Email extends Text
     protected function validationParameters(): array
     {
         return ['filter', 'spoof'];
+    }
+
+    /**
+     * Split the value by at symbol.
+     *
+     * @return void
+     */
+    protected function split(): void
+    {
+        $this->split = str($this->value())->split('/@/');
     }
 }
