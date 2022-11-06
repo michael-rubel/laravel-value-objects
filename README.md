@@ -1,3 +1,5 @@
+![Value Objects for Laravel](https://user-images.githubusercontent.com/37669560/200172635-6b2ca8d8-fb2b-4037-a697-b8f6e4c8c615.png)
+
 # Laravel Value Objects
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/michael-rubel/laravel-value-objects.svg?style=flat-square&logo=packagist)](https://packagist.org/packages/michael-rubel/laravel-value-objects)
 [![Total Downloads](https://img.shields.io/packagist/dt/michael-rubel/laravel-value-objects.svg?style=flat-square&logo=packagist)](https://packagist.org/packages/michael-rubel/laravel-value-objects)
