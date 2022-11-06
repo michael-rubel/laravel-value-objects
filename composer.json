@@ -18,7 +18,7 @@
     "require": {
         "php": "^8.0",
         "illuminate/contracts": "^9.7",
-        "michael-rubel/laravel-formatters": "^6.2",
+        "michael-rubel/laravel-formatters": "^6.3",
         "phpmath/bignumber": "^1.2",
         "spatie/laravel-package-tools": "^1.12"
     },
