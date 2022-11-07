@@ -23,19 +23,19 @@
         "spatie/laravel-package-tools": "^1.12"
     },
     "require-dev": {
+        "brianium/paratest": "^6.3",
+        "laravel/pint": "^1.2",
+        "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^6.0",
         "nunomaduro/larastan": "^2.2",
-        "phpunit/phpunit": "^9.5",
+        "ondrejmirtes/backward-compatibility-check": "7.3.0.1",
         "orchestra/testbench": "^7.4",
-        "brianium/paratest": "^6.3",
-        "mockery/mockery": "^1.4.4",
-        "roave/backward-compatibility-check": "^7.0",
         "pestphp/pest": "^1.16",
         "pestphp/pest-plugin-global-assertions": "^1.0",
         "pestphp/pest-plugin-laravel": "^1.1",
         "pestphp/pest-plugin-mock": "^1.0",
         "pestphp/pest-plugin-parallel": "^0.2.0",
-        "laravel/pint": "^1.2"
+        "phpunit/phpunit": "^9.5"
     },
     "autoload": {
         "psr-4": {
