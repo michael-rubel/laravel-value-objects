@@ -32,8 +32,6 @@ use MichaelRubel\ValueObjects\Collection\Primitive\Text;
  */
 class Email extends Text
 {
-    use ValidatesAttributes;
-
     /**
      * @var Collection<int, string>
      */
@@ -90,8 +88,12 @@ class Email extends Text
     protected function validate(): void
     {
         $toValidate = ['email', $this->value(), $this->validationParameters()];
+        $validator = new class
+        {
+            use ValidatesAttributes;
+        };
 
-        if (! $this->validateEmail(...$toValidate)) {
+        if (!$validator->validateEmail(...$toValidate)) {
             throw ValidationException::withMessages([__('Your email is invalid.')]);
         }
     }
