@@ -11,8 +11,8 @@
 namespace MichaelRubel\ValueObjects\Collection\Complex;
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Stringable;
-use Illuminate\Validation\Concerns\ValidatesAttributes;
 use Illuminate\Validation\ValidationException;
 use MichaelRubel\ValueObjects\Collection\Primitive\Text;
 
@@ -32,8 +32,6 @@ use MichaelRubel\ValueObjects\Collection\Primitive\Text;
  */
 class Email extends Text
 {
-    use ValidatesAttributes;
-
     /**
      * @var Collection<int, string>
      */
@@ -89,15 +87,30 @@ class Email extends Text
      */
     protected function validate(): void
     {
-        $toValidate = ['email', $this->value(), $this->validationParameters()];
+        $validator = Validator::make(
+            ['email' => $this->value()],
+            ['email' => $this->validationRules()],
+        );
 
-        if (! $this->validateEmail(...$toValidate)) {
+        if ($validator->fails()) {
             throw ValidationException::withMessages([__('Your email is invalid.')]);
         }
     }
 
     /**
+     * Define the rules for email validator.
+     *
+     * @return array
+     */
+    protected function validationRules(): array
+    {
+        return ['required', 'email:' . implode(',', $this->validationParameters())];
+    }
+
+    /**
      * Define how you want to validate the email.
+     *
+     * @deprecated
      *
      * @return array
      */
