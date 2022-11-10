@@ -105,8 +105,18 @@ class Boolean extends ValueObject
      *
      * @return string
      */
-    public function __toString(): string
+    public function toString(): string
     {
         return ! empty($this->value()) ? 'true' : 'false';
+    }
+
+    /**
+     * Get string representation of the value object.
+     *
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return $this->toString();
     }
 }
