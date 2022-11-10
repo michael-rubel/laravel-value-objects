@@ -65,6 +65,17 @@ $number = Number::from('10.20999', scale: 2);
 $number->value();   // '10.20'
 (string) $number;   // '10.20'
 $number->toArray(); // ['10.20']
+
+// Starting from version `3.5.0` also
+// accepts locale-formatted numbers:
+$number = new Number('1.230,00');
+$number->value(); // '1230.00'
+$number = new Number('1,230.00');
+$number->value(); // '1230.00'
+$number = new Number('1 230,00');
+$number->value(); // '1230.00'
+$number = new Number('1 230.00');
+$number->value(); // '1230.00'
 ```
 
 ---
