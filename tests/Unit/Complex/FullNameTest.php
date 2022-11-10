@@ -52,8 +52,10 @@ test('can break control using word count', function () {
 
 test('can get cast to string', function () {
     $name = new FullName('Michael Rubél');
-
     $this->assertSame('Michael Rubél', (string) $name);
+
+    $name = new FullName('Michael Rubél');
+    $this->assertSame('Michael Rubél', $name->toString());
 });
 
 test('cannot pass empty string', function () {

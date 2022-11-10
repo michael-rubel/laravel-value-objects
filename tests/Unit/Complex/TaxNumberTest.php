@@ -165,6 +165,9 @@ test('tax number is arrayable', function () {
 test('tax number is stringable', function () {
     $valueObject = new TaxNumber('PL0123456789');
     $this->assertSame($valueObject->value(), (string) $valueObject);
+
+    $valueObject = new TaxNumber('PL0123456789');
+    $this->assertSame($valueObject->value(), $valueObject->toString());
 });
 
 test('tax number has immutable properties', function () {

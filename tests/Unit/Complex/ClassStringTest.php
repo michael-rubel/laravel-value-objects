@@ -98,6 +98,8 @@ test('class string is arrayable', function () {
 test('class string is stringable', function () {
     $valueObject = new ClassString('Throwable');
     $this->assertSame($valueObject->value(), (string) $valueObject);
+    $valueObject = new ClassString('Throwable');
+    $this->assertSame($valueObject->value(), $valueObject->toString());
 });
 
 test('class string has immutable properties', function () {
