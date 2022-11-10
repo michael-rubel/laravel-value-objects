@@ -38,6 +38,44 @@ test('number can accept string', function () {
     $this->assertSame('100000.000', $valueObject->value());
 });
 
+test('number accepts formatted value', function () {
+    // Only commas:
+    $valueObject = new Number('1,230,00');
+    assertSame('1230.00', $valueObject->value());
+    $valueObject = new Number('123,123,123,5555', scale: 3);
+    assertSame('123123123.555', $valueObject->value());
+
+    // Only dots:
+    $valueObject = new Number('1.230.00');
+    assertSame('1230.00', $valueObject->value());
+    $valueObject = new Number('123.123.123.555');
+    assertSame('123123123.55', $valueObject->value());
+
+    // Dot-comma convention:
+    $valueObject = new Number('1.230,00');
+    assertSame('1230.00', $valueObject->value());
+    $valueObject = new Number('123.123.123,556', scale: 3);
+    assertSame('123123123.556', $valueObject->value());
+
+    // Comma-dot convention:
+    $valueObject = new Number('1,230.00');
+    assertSame('1230.00', $valueObject->value());
+    $valueObject = new Number('123,123,123.555');
+    assertSame('123123123.55', $valueObject->value());
+
+    // Space-dot convention:
+    $valueObject = new Number('1 230.00');
+    assertSame('1230.00', $valueObject->value());
+    $valueObject = new Number('123 123 123.55');
+    assertSame('123123123.55', $valueObject->value());
+
+    // Space-comma convention:
+    $valueObject = new Number('1 230,00');
+    assertSame('1230.00', $valueObject->value());
+    $valueObject = new Number('123 123 123,55');
+    assertSame('123123123.55', $valueObject->value());
+});
+
 test('number fails when no argument passed', function () {
     $this->expectException(\TypeError::class);
 

@@ -13,8 +13,19 @@ trait SanitizesNumbers
      */
     public function sanitize(int|string|null $number): string
     {
-        return str($number)
-            ->replace([',', ' '], ['.', ''])
-            ->value();
+        $number = str($number)->replace(',', '.');
+
+        $dots = $number->substrCount('.');
+
+        if (1 < $dots) {
+            $number = $number
+                ->replaceLast('.', ',')
+                ->replace('.', '')
+                ->replaceLast(',', '.');
+        }
+
+        return $number
+            ->replaceMatches('/[^0-9.]/', '')
+            ->toString();
     }
 }
