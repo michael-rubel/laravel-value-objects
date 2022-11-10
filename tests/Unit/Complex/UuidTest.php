@@ -78,9 +78,13 @@ test('uuid is arrayable', function () {
 });
 
 test('uuid is stringable', function () {
-    $uuid        = (string) Str::uuid();
+    $uuid = (string) Str::uuid();
+
     $valueObject = new Uuid($uuid);
     $this->assertSame($valueObject->value(), (string) $valueObject);
+
+    $valueObject = new Uuid($uuid);
+    $this->assertSame($valueObject->value(), $valueObject->toString());
 });
 
 test('uuid has immutable properties', function () {
