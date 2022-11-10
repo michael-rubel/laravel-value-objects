@@ -74,6 +74,20 @@ test('number accepts formatted value', function () {
     assertSame('1230.00', $valueObject->value());
     $valueObject = new Number('123 123 123,55');
     assertSame('123123123.55', $valueObject->value());
+
+    // Mixed convention:
+    $valueObject = new Number('1 230,');
+    assertSame('1230.00', $valueObject->value());
+    $valueObject = new Number(',00');
+    assertSame('0.00', $valueObject->value());
+    $valueObject = new Number('.00');
+    assertSame('0.00', $valueObject->value());
+    $valueObject = new Number('123.123 123,55');
+    assertSame('123123123.55', $valueObject->value());
+    $valueObject = new Number('123,123.123,55');
+    assertSame('123123123.55', $valueObject->value());
+    $valueObject = new Number('123	123 123,55');
+    assertSame('123123123.55', $valueObject->value());
 });
 
 test('number fails when no argument passed', function () {
