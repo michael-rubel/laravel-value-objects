@@ -154,15 +154,22 @@ test('boolean has immutable constructor', function () {
 });
 
 test('can extend protected methods', function () {
-    $bool = new TestBoolean(true);
+    $bool = new TestBoolean('true');
     assertTrue($bool->isInTrueValues());
+    assertIsBool($bool->value());
 
-    $bool = new TestBoolean(false);
+    $bool = new TestBoolean('false');
     assertTrue($bool->isInFalseValues());
+    assertIsBool($bool->value());
 });
 
 class TestBoolean extends Boolean
 {
+    public function __construct(bool|int|string $value)
+    {
+        $this->value = $value;
+    }
+
     public function isInTrueValues(): bool
     {
         return parent::isInTrueValues();
