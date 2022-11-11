@@ -77,7 +77,7 @@ class Boolean extends ValueObject
      */
     public function value(): bool
     {
-        return (bool) $this->value;
+        return $this->value;
     }
 
     /**
