@@ -36,6 +36,14 @@ test('fails when wrong uuid passed to uuid object', function () {
     new Uuid('123');
 });
 
+test('validation exception message is correct in uuid', function () {
+    try {
+        new Uuid('123123');
+    } catch (ValidationException $e) {
+        assertSame(__('UUID is invalid.'), $e->getMessage());
+    }
+});
+
 test('fails when null passed to uuid', function () {
     $this->expectException(\TypeError::class);
 
@@ -97,3 +105,18 @@ test('uuid has immutable constructor', function () {
     $valueObject = new Uuid($uuid);
     $valueObject->__construct($uuid, 'test');
 });
+
+test('can extend protected methods', function () {
+    $uuid = (string) Str::uuid();
+    $text = new TestUuid($uuid);
+    $text->validate();
+    assertSame($uuid, $text->value());
+});
+
+class TestUuid extends Uuid
+{
+    public function validate(): void
+    {
+        parent::validate();
+    }
+}
