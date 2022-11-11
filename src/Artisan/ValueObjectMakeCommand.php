@@ -33,7 +33,7 @@ class ValueObjectMakeCommand extends GeneratorCommand
     {
         return file_exists($customPath = $this->laravel->basePath('/stubs/value-object.stub'))
             ? $customPath // @codeCoverageIgnore
-            : __DIR__ .'/stubs/value-object.stub';
+            : __DIR__ . '/stubs/value-object.stub';
     }
 
     /**
