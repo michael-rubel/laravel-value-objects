@@ -179,3 +179,44 @@ test('tax number has immutable constructor', function () {
     $valueObject = new TaxNumber('PL0123456789');
     $valueObject->__construct(' PL0123456789 ');
 });
+
+test('can extend protected methods in phone', function () {
+    $phone = new TestPhone('+38 000 000 00 00');
+    assertSame('+38 000 000 00 00', $phone->value());
+});
+
+class TestTaxNumber extends TaxNumber
+{
+    public function __construct(string $number, ?string $prefix = null)
+    {
+        $this->number = $number;
+        $this->prefix = $prefix;
+
+        $this->validate();
+        $this->sanitize();
+
+        if ($this->canSplit()) {
+            $this->split();
+        }
+    }
+
+    protected function validate(): void
+    {
+        parent::validate();
+    }
+
+    protected function sanitize(): void
+    {
+        parent::sanitize();
+    }
+
+    protected function canSplit(): bool
+    {
+        return parent::canSplit();
+    }
+
+    protected function split(): void
+    {
+        parent::split();
+    }
+}
