@@ -116,9 +116,19 @@ abstract class ValueObject implements Arrayable, Immutable
      *
      * @return string
      */
-    public function __toString(): string
+    public function toString(): string
     {
         return (string) $this->value();
+    }
+
+    /**
+     * Get string representation of the value object.
+     *
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return $this->toString();
     }
 
     /**

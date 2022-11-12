@@ -103,6 +103,8 @@ test('text is stringable', function () {
     $this->assertSame('1.7', (string) $valueObject);
     $valueObject = new Text('1.8');
     $this->assertSame('1.8', (string) $valueObject);
+    $valueObject = new Text('Lorem ipsum');
+    $this->assertSame('Lorem ipsum', $valueObject->toString());
 });
 
 test('text accepts stringable', function () {

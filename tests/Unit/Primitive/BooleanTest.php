@@ -137,7 +137,7 @@ test('boolean is stringable', function () {
     $valueObject = new Boolean('true');
     $this->assertSame('true', (string) $valueObject);
     $valueObject = new Boolean('false');
-    $this->assertSame('false', (string) $valueObject);
+    $this->assertSame('false', $valueObject->toString());
 });
 
 test('boolean has immutable properties', function () {

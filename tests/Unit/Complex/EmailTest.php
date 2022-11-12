@@ -98,6 +98,9 @@ test('email is arrayable', function () {
 test('email is stringable', function () {
     $valueObject = new Email('michael@laravel.software');
     $this->assertSame('michael@laravel.software', (string) $valueObject);
+
+    $valueObject = new Email('michael@laravel.software');
+    $this->assertSame('michael@laravel.software', $valueObject->toString());
 });
 
 test('email accepts stringable', function () {

@@ -73,6 +73,9 @@ test('text is arrayable', function () {
 test('text is stringable', function () {
     $valueObject = new Name('Lorem ipsum');
     $this->assertSame('Lorem ipsum', (string) $valueObject);
+
+    $valueObject = new Name('Lorem ipsum');
+    $this->assertSame('Lorem ipsum', $valueObject->toString());
 });
 
 test('text accepts stringable', function () {

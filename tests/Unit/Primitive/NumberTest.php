@@ -227,6 +227,8 @@ test('number is stringable', function () {
     $this->assertSame('1.70', (string) $valueObject);
     $valueObject = new Number('1.8');
     $this->assertSame('1.80', (string) $valueObject);
+    $valueObject = new Number('1230.00');
+    $this->assertSame('1230.00', $valueObject->toString());
 });
 
 test('number has immutable properties', function () {

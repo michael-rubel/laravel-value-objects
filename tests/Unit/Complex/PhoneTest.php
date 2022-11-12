@@ -121,6 +121,9 @@ test('phone is arrayable', function () {
 test('phone is stringable', function () {
     $valueObject = new Phone('+48 00 000 00 00');
     $this->assertSame('+48 00 000 00 00', (string) $valueObject);
+
+    $valueObject = new Phone('+48 00 000 00 00');
+    $this->assertSame('+48 00 000 00 00', $valueObject->toString());
 });
 
 test('phone accepts stringable', function () {
