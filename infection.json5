@@ -14,6 +14,16 @@
             "ignore": [
                 "MichaelRubel\\ValueObjects\\Collection\\Complex\\FullName::__construct"
             ]
+        },
+        "ConcatOperandRemoval": {
+            "ignore": [
+                "MichaelRubel\\ValueObjects\\Artisan\\ValueObjectMakeCommand::getDefaultNamespace"
+            ]
+        },
+        "Concat": {
+            "ignore": [
+                "MichaelRubel\\ValueObjects\\Artisan\\ValueObjectMakeCommand::getDefaultNamespace"
+            ]
         }
     }
 }
