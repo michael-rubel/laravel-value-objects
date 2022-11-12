@@ -11,13 +11,13 @@ trait SanitizesNumbers
      *
      * @return string
      */
-    public function sanitize(int|string|null $number): string
+    protected function sanitize(int|string|null $number): string
     {
         $number = str($number)->replace(',', '.');
 
         $dots = $number->substrCount('.');
 
-        if (1 < $dots) {
+        if ($dots >= 2) {
             $number = $number
                 ->replaceLast('.', ',')
                 ->replace('.', '')
