@@ -127,7 +127,7 @@ test('boolean is arrayable', function () {
 
 test('boolean is stringable', function () {
     $valueObject = new Boolean(1);
-    $this->assertSame('true', (string) $valueObject);
+    $this->assertSame('true', $valueObject->toString());
     $valueObject = new Boolean(0);
     $this->assertSame('false', (string) $valueObject);
     $valueObject = new Boolean('1');
