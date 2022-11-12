@@ -130,7 +130,6 @@ test('email has immutable constructor', function () {
 test('can extend protected methods in email', function () {
     $email = new TestEmail('contact@observer.name');
     $this->assertSame(['required', 'email:filter,spoof'], $email->validationRules());
-    $this->assertSame(['filter', 'spoof'], $email->validationParameters());
 });
 
 class TestEmail extends Email
@@ -146,10 +145,5 @@ class TestEmail extends Email
     public function validationRules(): array
     {
         return parent::validationRules();
-    }
-
-    public function validationParameters(): array
-    {
-        return parent::validationParameters();
     }
 }

@@ -103,19 +103,7 @@ class Email extends Text
      */
     protected function validationRules(): array
     {
-        return ['required', 'email:' . implode(',', $this->validationParameters())];
-    }
-
-    /**
-     * Define how you want to validate the email.
-     *
-     * @deprecated
-     *
-     * @return array
-     */
-    protected function validationParameters(): array
-    {
-        return ['filter', 'spoof'];
+        return ['required', 'email:filter,spoof'];
     }
 
     /**
