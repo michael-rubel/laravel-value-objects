@@ -1,0 +1,19 @@
+{
+    "$schema": "vendor/infection/infection/resources/schema.json",
+    "source": {
+        "directories": [
+            "src"
+        ]
+    },
+    "logs": {
+        "text": "infection.log"
+    },
+    "mutators": {
+        "@default": true,
+        "IncrementInteger": {
+            "ignore": [
+                "MichaelRubel\\ValueObjects\\Collection\\Complex\\FullName::__construct"
+            ]
+        }
+    }
+}
