@@ -121,7 +121,7 @@ test('class string has immutable constructor', function () {
     $valueObject->__construct('\Throwable');
 });
 
-test('can extend protected methods', function () {
+test('can extend protected methods in class string', function () {
     $text = new TestClassString('Exception');
     $text->validate();
     assertSame('Exception', $text->value());

@@ -153,7 +153,7 @@ test('boolean has immutable constructor', function () {
     $valueObject->__construct('false');
 });
 
-test('can extend protected methods', function () {
+test('can extend protected methods in boolean', function () {
     $bool = new TestBoolean('true');
     assertTrue($bool->isInTrueValues());
     assertIsBool($bool->value());

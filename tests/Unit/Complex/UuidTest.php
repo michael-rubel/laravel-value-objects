@@ -106,7 +106,7 @@ test('uuid has immutable constructor', function () {
     $valueObject->__construct($uuid, 'test');
 });
 
-test('can extend protected methods', function () {
+test('can extend protected methods in uuid', function () {
     $uuid = (string) Str::uuid();
     $text = new TestUuid($uuid);
     $text->validate();
