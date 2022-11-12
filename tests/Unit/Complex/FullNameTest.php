@@ -67,13 +67,13 @@ test('validation exception message is correct in email', function () {
     try {
         new FullName('');
     } catch (ValidationException $e) {
-        assertSame(__('Full name cannot be empty.'), $e->getMessage());
+        $this->assertSame(__('Full name cannot be empty.'), $e->getMessage());
     }
 
     try {
         new FullName('Test');
     } catch (ValidationException $e) {
-        assertSame(__('Full name should have a first name and last name.'), $e->getMessage());
+        $this->assertSame(__('Full name should have a first name and last name.'), $e->getMessage());
     }
 });
 
@@ -158,7 +158,7 @@ test('full name has immutable constructor', function () {
 
 test('can extend protected methods in email', function () {
     $fullName = new TestFullName('First Second Third Fourth Name', 2);
-    assertSame([
+    $this->assertSame([
         'fullName'  => 'First Second Third Fourth Name',
         'firstName' => 'First',
         'lastName'  => 'Second Third Fourth Name',

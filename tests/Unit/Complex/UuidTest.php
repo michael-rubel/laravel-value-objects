@@ -40,7 +40,7 @@ test('validation exception message is correct in uuid', function () {
     try {
         new Uuid('123123');
     } catch (ValidationException $e) {
-        assertSame(__('UUID is invalid.'), $e->getMessage());
+        $this->assertSame(__('UUID is invalid.'), $e->getMessage());
     }
 });
 

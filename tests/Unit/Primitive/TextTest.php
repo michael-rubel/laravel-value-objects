@@ -132,7 +132,7 @@ test('text has immutable constructor', function () {
 test('can extend protected methods in text', function () {
     $text = new TestText('Lorem ipsum');
     $text->validate();
-    assertSame('Lorem ipsum', $text->value());
+    $this->assertSame('Lorem ipsum', $text->value());
 });
 
 class TestText extends Text

@@ -182,7 +182,7 @@ test('tax number has immutable constructor', function () {
 
 test('can extend protected methods in phone', function () {
     $phone = new TestPhone('+38 000 000 00 00');
-    assertSame('+38 000 000 00 00', $phone->value());
+    $this->assertSame('+38 000 000 00 00', $phone->value());
 });
 
 class TestTaxNumber extends TaxNumber

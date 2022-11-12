@@ -40,7 +40,7 @@ test('validation exception message is correct in email', function () {
     try {
         new Email('');
     } catch (ValidationException $e) {
-        assertSame(__('Your email is invalid.'), $e->getMessage());
+        $this->assertSame(__('Your email is invalid.'), $e->getMessage());
     }
 });
 
@@ -126,8 +126,8 @@ test('email has immutable constructor', function () {
 
 test('can extend protected methods in email', function () {
     $email = new TestEmail('contact@observer.name');
-    assertSame(['required', 'email:filter,spoof'], $email->validationRules());
-    assertSame(['filter', 'spoof'], $email->validationParameters());
+    $this->assertSame(['required', 'email:filter,spoof'], $email->validationRules());
+    $this->assertSame(['filter', 'spoof'], $email->validationParameters());
 });
 
 class TestEmail extends Email
