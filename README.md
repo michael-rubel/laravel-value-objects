@@ -138,9 +138,8 @@ $name->firstName(); // 'Taylor'
 $name->lastName();  // 'Otwell'
 
 $name = 'Richard Le Poidevin';
-$parts = str_word_count($name);
 
-$fullName = new FullName($name, $parts);
+$fullName = new FullName($name, limit: 2);
 
 $fullName->toArray();
 
