@@ -18,6 +18,7 @@ use Illuminate\Support\Traits\Macroable;
 use InvalidArgumentException;
 use MichaelRubel\ValueObjects\Concerns\HandlesCallbacks;
 use MichaelRubel\ValueObjects\Contracts\Immutable;
+use Throwable;
 
 /**
  * Base "ValueObject".
@@ -73,7 +74,11 @@ abstract class ValueObject implements Arrayable, Immutable
      */
     public static function makeOrNull(mixed ...$values): static|null
     {
-        return rescue(fn () => static::make(...$values), report: false);
+        try {
+            return static::make(...$values);
+        } catch (Throwable) {
+            return null;
+        }
     }
 
     /**

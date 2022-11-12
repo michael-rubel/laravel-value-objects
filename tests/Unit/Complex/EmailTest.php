@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Illuminate\Support\Stringable;
 use Illuminate\Validation\ValidationException;
 use MichaelRubel\ValueObjects\Collection\Complex\Email;
 
@@ -33,6 +34,14 @@ test('email is wrong with at', function () {
     $this->expectException(ValidationException::class);
 
     new Email('laravel@framework');
+});
+
+test('validation exception message is correct in email', function () {
+    try {
+        new Email('');
+    } catch (ValidationException $e) {
+        $this->assertSame(__('Your email is invalid.'), $e->getMessage());
+    }
 });
 
 test('email cannot accept null', function () {
@@ -117,3 +126,30 @@ test('email has immutable constructor', function () {
     $valueObject = new Email('contact@observer.name');
     $valueObject->__construct('contact@observer.com');
 });
+
+test('can extend protected methods in email', function () {
+    $email = new TestEmail('contact@observer.name');
+    $this->assertSame(['required', 'email:filter,spoof'], $email->validationRules());
+    $this->assertSame(['filter', 'spoof'], $email->validationParameters());
+});
+
+class TestEmail extends Email
+{
+    public function __construct(string|Stringable $value)
+    {
+        $this->value = $value;
+
+        $this->validate();
+        $this->split();
+    }
+
+    public function validationRules(): array
+    {
+        return parent::validationRules();
+    }
+
+    public function validationParameters(): array
+    {
+        return parent::validationParameters();
+    }
+}

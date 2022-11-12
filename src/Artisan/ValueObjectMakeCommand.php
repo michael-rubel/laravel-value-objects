@@ -31,21 +31,9 @@ class ValueObjectMakeCommand extends GeneratorCommand
      */
     protected function getStub(): string
     {
-        return $this->resolveStubPath('/stubs/value-object.stub');
-    }
-
-    /**
-     * Resolve the fully-qualified path to the stub.
-     *
-     * @param  string  $stub
-     *
-     * @return string
-     */
-    protected function resolveStubPath(string $stub): string
-    {
-        return file_exists($customPath = $this->laravel->basePath(trim($stub, '/')))
+        return file_exists($customPath = $this->laravel->basePath('/stubs/value-object.stub'))
             ? $customPath // @codeCoverageIgnore
-            : __DIR__ . $stub;
+            : __DIR__ . '/stubs/value-object.stub';
     }
 
     /**

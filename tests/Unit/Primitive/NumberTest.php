@@ -243,3 +243,29 @@ test('number has immutable constructor', function () {
     $valueObject = new Number('1.2000');
     $valueObject->__construct('1.5000');
 });
+
+test('number uses sanitizes numbers trait', function () {
+    $this->assertTrue(
+        in_array('MichaelRubel\ValueObjects\Concerns\SanitizesNumbers',
+            class_uses_recursive(Number::class)
+        )
+    );
+});
+
+test('can extend protected methods in number', function () {
+    $number = new TestNumber('1 230,00');
+    $this->assertSame('1230.00', $number->value());
+});
+
+class TestNumber extends Number
+{
+    public function __construct(int|string $number, protected int $scale = 2)
+    {
+        $this->bigNumber = new BigNumber($this->sanitize($number), $this->scale);
+    }
+
+    protected function sanitize(int|string|null $number): string
+    {
+        return parent::sanitize($number);
+    }
+}

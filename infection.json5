@@ -1,0 +1,33 @@
+{
+    "$schema": "vendor/infection/infection/resources/schema.json",
+    "source": {
+        "directories": [
+            "src"
+        ]
+    },
+    "logs": {
+        "text": "php://stderr",
+        "github": true
+    },
+    // "logs": {
+    //     "text": "infection.log"
+    // },
+    "mutators": {
+        "@default": true,
+        "IncrementInteger": {
+            "ignore": [
+                "MichaelRubel\\ValueObjects\\Collection\\Complex\\FullName::__construct"
+            ]
+        },
+        "ConcatOperandRemoval": {
+            "ignore": [
+                "MichaelRubel\\ValueObjects\\Artisan\\ValueObjectMakeCommand::getDefaultNamespace"
+            ]
+        },
+        "Concat": {
+            "ignore": [
+                "MichaelRubel\\ValueObjects\\Artisan\\ValueObjectMakeCommand::getDefaultNamespace"
+            ]
+        }
+    }
+}

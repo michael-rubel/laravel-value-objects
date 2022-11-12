@@ -13,6 +13,14 @@ test('class string cannot be empty string', function () {
     new ClassString('');
 });
 
+test('validation exception message is correct in class string', function () {
+    try {
+        new ClassString('');
+    } catch (ValidationException $e) {
+        assertSame(__('Class string cannot be empty.'), $e->getMessage());
+    }
+});
+
 test('class string cannot be null', function () {
     $this->expectException(\TypeError::class);
 
@@ -114,3 +122,17 @@ test('class string has immutable constructor', function () {
     $valueObject = new ClassString('\Exception');
     $valueObject->__construct('\Throwable');
 });
+
+test('can extend protected methods in class string', function () {
+    $text = new TestClassString('Exception');
+    $text->validate();
+    assertSame('Exception', $text->value());
+});
+
+class TestClassString extends ClassString
+{
+    public function validate(): void
+    {
+        parent::validate();
+    }
+}

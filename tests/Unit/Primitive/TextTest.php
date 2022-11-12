@@ -130,3 +130,17 @@ test('text has immutable constructor', function () {
     $valueObject = new Text('Lorem ipsum');
     $valueObject->__construct(' Lorem ipsum ');
 });
+
+test('can extend protected methods in text', function () {
+    $text = new TestText('Lorem ipsum');
+    $text->validate();
+    $this->assertSame('Lorem ipsum', $text->value());
+});
+
+class TestText extends Text
+{
+    public function validate(): void
+    {
+        parent::validate();
+    }
+}

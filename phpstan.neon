@@ -13,10 +13,13 @@ parameters:
         - '#Property (.*) does not accept mixed\.#'
         - '#Method (.*) should return (.*) but returns mixed\.#'
         - '#Parameter (.*), mixed given.#'
-        - '#Parameter \#1 \$string of function strlen expects string, string\|null given\.#'
-        - '#Parameter \#1 \$string of function str expects string\|null, int\|string\|null given\.#'
         - '#Unsafe usage of new static\(\)\.#'
         - '#Cannot cast mixed to string\.#'
+        - '#Parameter \#1 \$string of function str expects string\|null, int\|string\|null given\.#'
+        - '#Method MichaelRubel\\ValueObjects\\Collection\\Complex\\Email\:\:domain\(\) should return string but returns string\|null\.#'
+        - '#Method MichaelRubel\\ValueObjects\\Collection\\Complex\\Email\:\:username\(\) should return string but returns string\|null\.#'
+        - '#Method MichaelRubel\\ValueObjects\\Collection\\Complex\\FullName\:\:firstName\(\) should return string but returns string\|null\.#'
+        - '#Method MichaelRubel\\ValueObjects\\Collection\\Complex\\FullName\:\:lastName\(\) should return string but returns string\|null\.#'
 
     checkMissingIterableValueType: false
 

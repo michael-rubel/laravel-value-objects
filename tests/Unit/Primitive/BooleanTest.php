@@ -127,7 +127,7 @@ test('boolean is arrayable', function () {
 
 test('boolean is stringable', function () {
     $valueObject = new Boolean(1);
-    $this->assertSame('true', (string) $valueObject);
+    $this->assertSame('true', $valueObject->toString());
     $valueObject = new Boolean(0);
     $this->assertSame('false', (string) $valueObject);
     $valueObject = new Boolean('1');
@@ -152,3 +152,31 @@ test('boolean has immutable constructor', function () {
     $valueObject = new Boolean('1');
     $valueObject->__construct('false');
 });
+
+test('can extend protected methods in boolean', function () {
+    $bool = new TestBoolean('true');
+    assertTrue($bool->isInTrueValues());
+    assertIsBool($bool->value());
+
+    $bool = new TestBoolean('false');
+    assertTrue($bool->isInFalseValues());
+    assertIsBool($bool->value());
+});
+
+class TestBoolean extends Boolean
+{
+    public function __construct(bool|int|string $value)
+    {
+        $this->value = $value;
+    }
+
+    public function isInTrueValues(): bool
+    {
+        return parent::isInTrueValues();
+    }
+
+    public function isInFalseValues(): bool
+    {
+        return parent::isInFalseValues();
+    }
+}

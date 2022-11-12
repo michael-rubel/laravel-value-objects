@@ -25,9 +25,9 @@ use MichaelRubel\Formatters\Collection\FullNameFormatter;
  * @template TKey of array-key
  * @template TValue
  *
- * @method static static make(string|Stringable $value, int $parts = 0)
- * @method static static from(string|Stringable $value, int $parts = 0)
- * @method static static makeOrNull(string|Stringable|null $value, int $parts = 0)
+ * @method static static make(string|Stringable $value, int $limit = -1)
+ * @method static static from(string|Stringable $value, int $limit = -1)
+ * @method static static makeOrNull(string|Stringable|null $value, int $limit = -1)
  *
  * @extends Name<TKey, TValue>
  */
@@ -42,9 +42,9 @@ class FullName extends Name
      * Create a new instance of the value object.
      *
      * @param  string|Stringable  $value
-     * @param  int  $parts
+     * @param  int  $limit
      */
-    public function __construct(string|Stringable $value, protected int $parts = 0)
+    public function __construct(string|Stringable $value, protected int $limit = -1)
     {
         static::beforeParentCalls(fn () => $this->split());
 
@@ -68,7 +68,7 @@ class FullName extends Name
      */
     public function firstName(): string
     {
-        return (string) $this->split->first();
+        return $this->split->first();
     }
 
     /**
@@ -78,7 +78,7 @@ class FullName extends Name
      */
     public function lastName(): string
     {
-        return (string) $this->split->last();
+        return $this->split->last();
     }
 
     /**
@@ -128,6 +128,6 @@ class FullName extends Name
      */
     protected function split(): void
     {
-        $this->split = str($this->value())->split('/\s/', $this->parts - 1);
+        $this->split = str($this->value())->split('/\s/', $this->limit);
     }
 }
