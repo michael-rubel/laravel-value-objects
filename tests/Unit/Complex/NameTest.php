@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Illuminate\Support\Stringable;
 use MichaelRubel\ValueObjects\Collection\Complex\Name;
 
 test('name replaces invisible characters', function () {
@@ -97,3 +98,23 @@ test('name has immutable constructor', function () {
     $valueObject = new Name('Lorem ipsum');
     $valueObject->__construct(' Lorem ipsum ');
 });
+
+test('can extend protected methods in name', function () {
+    $name = new TestName('Name');
+    assertSame('Name', $name->value());
+});
+
+class TestName extends Name
+{
+    public function __construct(string|Stringable $value)
+    {
+        $this->value = $value;
+
+        $this->sanitize();
+    }
+
+    protected function sanitize(): void
+    {
+        parent::sanitize();
+    }
+}
