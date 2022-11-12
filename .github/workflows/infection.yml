@@ -29,5 +29,5 @@ jobs:
       - name: Run composer install
         run: composer install -n --prefer-dist
 
-      - name: Run phpstan
+      - name: Run infection
         run: ./vendor/bin/infection --test-framework=pest --show-mutations --min-msi=100 --min-covered-msi=100
