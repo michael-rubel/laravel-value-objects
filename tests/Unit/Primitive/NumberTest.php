@@ -241,3 +241,11 @@ test('number has immutable constructor', function () {
     $valueObject = new Number('1.2000');
     $valueObject->__construct('1.5000');
 });
+
+test('number uses sanitizes numbers trait', function () {
+    $this->assertTrue(
+        in_array('MichaelRubel\ValueObjects\Concerns\SanitizesNumbers',
+            class_uses_recursive(Number::class)
+        )
+    );
+});
