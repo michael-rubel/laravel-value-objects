@@ -6,8 +6,12 @@
         ]
     },
     "logs": {
-        "text": "infection.log"
+        "text": "php://stderr",
+        "github": true
     },
+    // "logs": {
+    //     "text": "infection.log"
+    // },
     "mutators": {
         "@default": true,
         "IncrementInteger": {
