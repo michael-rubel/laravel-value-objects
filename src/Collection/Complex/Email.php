@@ -46,7 +46,6 @@ class Email extends Text
     {
         parent::__construct($value);
 
-        $this->validate();
         $this->split();
     }
 
@@ -55,7 +54,7 @@ class Email extends Text
      */
     public function username(): string
     {
-        return (string) $this->split->first();
+        return $this->split->first();
     }
 
     /**
@@ -63,7 +62,7 @@ class Email extends Text
      */
     public function domain(): string
     {
-        return (string) $this->split->last();
+        return $this->split->last();
     }
 
     /**

@@ -17,6 +17,8 @@ parameters:
         - '#Parameter \#1 \$string of function str expects string\|null, int\|string\|null given\.#'
         - '#Unsafe usage of new static\(\)\.#'
         - '#Cannot cast mixed to string\.#'
+        - '#Method MichaelRubel\\ValueObjects\\Collection\\Complex\\Email\:\:domain\(\) should return string but returns string\|null\.#'
+        - '#Method MichaelRubel\\ValueObjects\\Collection\\Complex\\Email\:\:username\(\) should return string but returns string\|null\.#'
 
     checkMissingIterableValueType: false
 
