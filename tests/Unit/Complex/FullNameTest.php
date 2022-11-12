@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Illuminate\Support\Stringable;
 use Illuminate\Validation\ValidationException;
 use MichaelRubel\ValueObjects\Collection\Complex\FullName;
 
@@ -31,7 +32,7 @@ test('can get full name minus case', function () {
 });
 
 test('full name with break control', function () {
-    $name = new FullName('Alicja Bachleda Curuś', parts: 3);
+    $name = new FullName('Alicja Bachleda Curuś', 2);
     $this->assertSame('Alicja', $name->firstName());
     $this->assertSame('Bachleda Curuś', $name->lastName());
 });
@@ -45,7 +46,7 @@ test('can get full name with name in between', function () {
 
 test('can break control using word count', function () {
     $name = 'Richard Le Poidevin';
-    $name = new FullName($name, str_word_count($name));
+    $name = new FullName($name, 2);
     $this->assertSame('Richard', $name->firstName());
     $this->assertSame('Le Poidevin', $name->lastName());
 });
@@ -60,6 +61,20 @@ test('cannot pass empty string', function () {
     $this->expectException(ValidationException::class);
 
     new FullName('');
+});
+
+test('validation exception message is correct in email', function () {
+    try {
+        new FullName('');
+    } catch (ValidationException $e) {
+        assertSame(__('Full name cannot be empty.'), $e->getMessage());
+    }
+
+    try {
+        new FullName('Test');
+    } catch (ValidationException $e) {
+        assertSame(__('Full name should have a first name and last name.'), $e->getMessage());
+    }
 });
 
 test('cannot pass null', function () {
@@ -104,7 +119,7 @@ test('full name is arrayable', function () {
         'lastName'  => 'Rubél',
     ], $valueObject->toArray());
 
-    $valueObject = new FullName('Richard Le Poidevin', parts: 3);
+    $valueObject = new FullName('Richard Le Poidevin', 2);
     $this->assertSame([
         'fullName'  => 'Richard Le Poidevin',
         'firstName' => 'Richard',
@@ -140,3 +155,27 @@ test('full name has immutable constructor', function () {
     $valueObject = new FullName('Michael Rubél');
     $valueObject->__construct(' Michael Rubél ');
 });
+
+test('can extend protected methods in email', function () {
+    $fullName = new TestFullName('First Second Third Fourth Name', 2);
+    assertSame([
+        'fullName'  => 'First Second Third Fourth Name',
+        'firstName' => 'First',
+        'lastName'  => 'Second Third Fourth Name',
+    ], $fullName->toArray());
+});
+
+class TestFullName extends FullName
+{
+    public function __construct(string|Stringable $value, protected int $limit = -1)
+    {
+        $this->value = $value;
+
+        $this->split();
+    }
+
+    protected function split(): void
+    {
+        parent::split();
+    }
+}
