@@ -35,7 +35,7 @@
         "pestphp/pest-plugin-mock": "^1.0",
         "pestphp/pest-plugin-parallel": "^0.2.0",
         "phpunit/phpunit": "^9.5",
-        "roave/backward-compatibility-check": "^7.0",
+        "roave/backward-compatibility-check": "^7.0|^8.0",
         "roave/infection-static-analysis-plugin": "^1.25"
     },
     "autoload": {
