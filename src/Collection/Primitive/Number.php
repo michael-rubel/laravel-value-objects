@@ -52,7 +52,9 @@ class Number extends ValueObject
             throw new InvalidArgumentException(static::IMMUTABLE_MESSAGE);
         }
 
-        $this->bigNumber = new BigNumber($this->sanitize($number), $this->scale);
+        $this->bigNumber = new BigNumber(
+            $this->sanitize($number), $this->scale, mutable: false
+        );
     }
 
     /**
