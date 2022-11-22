@@ -234,7 +234,7 @@ test('number is stringable', function () {
 test('number has immutable properties', function () {
     $this->expectException(\InvalidArgumentException::class);
     $valueObject = new Number('1.2000');
-    $this->assertEquals(new BigNumber('1.20', 2), $valueObject->bigNumber);
+    $this->assertEquals(new BigNumber('1.20', 2, false), $valueObject->bigNumber);
     $valueObject->bigNumber = new BigNumber('1.20');
 });
 
@@ -242,6 +242,15 @@ test('number has immutable constructor', function () {
     $this->expectException(\InvalidArgumentException::class);
     $valueObject = new Number('1.2000');
     $valueObject->__construct('1.5000');
+});
+
+test('big number is immutable', function () {
+    Number::macro('isImmutable', function () {
+        return ! $this->bigNumber->isMutable();
+    });
+
+    $number = new Number('1.2000');
+    $this->assertTrue($number->isImmutable());
 });
 
 test('number uses sanitizes numbers trait', function () {
