@@ -48,7 +48,7 @@ class Boolean extends ValueObject
      *
      * @var array
      */
-    protected array $falseValues = ['0', 'false', 'False', 'FALSE', 0, false];
+    protected array $falseValues = ['0', 'false', 'False', 'FALSE', 0, false, 'off', 'no'];
 
     /**
      * Create a new instance of the value object.

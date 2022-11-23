@@ -23,6 +23,10 @@ test('boolean can accept boolean strings', function () {
     $this->assertFalse($valueObject->value());
     $valueObject = new Boolean('False');
     $this->assertFalse($valueObject->value());
+    $valueObject = new Boolean('off');
+    $this->assertFalse($valueObject->value());
+    $valueObject = new Boolean('no');
+    $this->assertFalse($valueObject->value());
     $valueObject = new Boolean('FALSE');
     $this->assertFalse($valueObject->value());
     $valueObject = new Boolean('true');
@@ -104,7 +108,7 @@ test('boolean is macroable', function () {
         '1', 'true', 'True', 'TRUE', 1, true, 'on', 'yes'
     ], $valueObject->getPositiveValues());
     $this->assertSame([
-        '0', 'false', 'False', 'FALSE', 0, false,
+        '0', 'false', 'False', 'FALSE', 0, false, 'off', 'no'
     ], $valueObject->getNegativeValues());
 });
 
