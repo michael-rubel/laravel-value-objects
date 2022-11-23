@@ -105,10 +105,10 @@ test('boolean is macroable', function () {
     Boolean::macro('getNegativeValues', fn () => $this->falseValues);
     $valueObject = new Boolean(1);
     $this->assertSame([
-        '1', 'true', 'True', 'TRUE', 1, true, 'on', 'yes'
+        '1', 'true', 'True', 'TRUE', 1, true, 'on', 'yes',
     ], $valueObject->getPositiveValues());
     $this->assertSame([
-        '0', 'false', 'False', 'FALSE', 0, false, 'off', 'no'
+        '0', 'false', 'False', 'FALSE', 0, false, 'off', 'no',
     ], $valueObject->getNegativeValues());
 });
 
