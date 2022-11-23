@@ -41,7 +41,7 @@ class Boolean extends ValueObject
      *
      * @var array
      */
-    protected array $trueValues = ['1', 'true', 'True', 'TRUE', 1, true];
+    protected array $trueValues = ['1', 'true', 'True', 'TRUE', 1, true, 'on', 'yes'];
 
     /**
      * Allowed values that are treated as `false`.
