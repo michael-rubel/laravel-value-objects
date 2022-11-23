@@ -106,7 +106,7 @@ class Number extends ValueObject
      *
      * @return mixed
      */
-    public function __call($method, $parameters): mixed
+    public function __call($method, $parameters)
     {
         if (static::hasMacro($method)) {
             return parent::__call($method, $parameters);
