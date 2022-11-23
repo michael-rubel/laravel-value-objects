@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace MichaelRubel\ValueObjects\Collection\Primitive;
 
+use Illuminate\Support\Stringable;
 use InvalidArgumentException;
 use MichaelRubel\ValueObjects\ValueObject;
 
@@ -37,18 +38,18 @@ class Boolean extends ValueObject
     protected bool|int|string $value;
 
     /**
-     * Allowed values that are treated as `true`.
+     * Values that represent `true` boolean.
      *
      * @var array
      */
-    protected array $trueValues = ['1', 'true', 'True', 'TRUE', 1, true];
+    protected array $trueValues = ['1', 'true', 1, 'on', 'yes'];
 
     /**
-     * Allowed values that are treated as `false`.
+     * Values that represent `false` boolean.
      *
      * @var array
      */
-    protected array $falseValues = ['0', 'false', 'False', 'FALSE', 0, false];
+    protected array $falseValues = ['0', 'false', 0, 'off', 'no'];
 
     /**
      * Create a new instance of the value object.
@@ -63,11 +64,9 @@ class Boolean extends ValueObject
 
         $this->value = $value;
 
-        $this->value = match (true) {
-            $this->isInTrueValues()  => true,
-            $this->isInFalseValues() => false,
-            default => throw new InvalidArgumentException('Invalid boolean.'),
-        };
+        if (! is_bool($this->value)) {
+            $this->handleNonBooleanValue();
+        }
     }
 
     /**
@@ -83,21 +82,17 @@ class Boolean extends ValueObject
     /**
      * Determine if the passed boolean is true.
      *
-     * @return bool
+     * @return void
      */
-    protected function isInTrueValues(): bool
+    protected function handleNonBooleanValue(): void
     {
-        return in_array($this->value, $this->trueValues, strict: true);
-    }
+        $string = new Stringable($this->value);
 
-    /**
-     * Determine if the passed boolean is false.
-     *
-     * @return bool
-     */
-    protected function isInFalseValues(): bool
-    {
-        return in_array($this->value, $this->falseValues, strict: true);
+        $this->value = match (true) {
+            $string->contains($this->trueValues, true) => true,
+            $string->contains($this->falseValues, true) => false,
+            default => throw new InvalidArgumentException('Invalid boolean.'),
+        };
     }
 
     /**
