@@ -88,6 +88,16 @@ class Number extends ValueObject
     }
 
     /**
+     * Get the underlying `BigNumber` object.
+     *
+     * @return BigNumber
+     */
+    public function asBigNumber(): BigNumber
+    {
+        return $this->bigNumber;
+    }
+
+    /**
      * Forward call to underlying object if the method
      * doesn't exist in `Number` and doesn't have a macro.
      *

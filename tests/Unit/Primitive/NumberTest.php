@@ -22,6 +22,11 @@ test('number can cast to float', function () {
     $this->assertSame(36000.50, $valueObject->asFloat());
 });
 
+test('number as a big number', function () {
+    $number = new Number('20000.793', 3);
+    $this->assertEquals(new BigNumber('20000.793', 3, false), $number->asBigNumber());
+});
+
 test('number can be divided using magic call', function () {
     $number = new Number('20000.793', 4);
     $this->assertSame('10000.3965', $number->divide(2));
