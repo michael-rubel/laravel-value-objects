@@ -17,6 +17,11 @@ test('number can cast to integer', function () {
     $this->assertSame(100, $valueObject->asInteger());
 });
 
+test('number can cast to float', function () {
+    $valueObject = new Number('36000.50');
+    $this->assertSame(36000.50, $valueObject->asFloat());
+});
+
 test('number can accept string', function () {
     $valueObject = new Number('1');
     $this->assertSame('1.00', $valueObject->value());
