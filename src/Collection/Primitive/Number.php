@@ -86,4 +86,22 @@ class Number extends ValueObject
     {
         return (float) $this->bigNumber->getValue();
     }
+
+    /**
+     * Forward call to underlying object if the method
+     * doesn't exist in `Number` and doesn't have a macro.
+     *
+     * @param  string  $method
+     * @param  array  $parameters
+     *
+     * @return mixed
+     */
+    public function __call($method, $parameters): mixed
+    {
+        if (static::hasMacro($method)) {
+            return parent::__call($method, $parameters);
+        }
+
+        return $this->bigNumber->{$method}(...$parameters)->getValue();
+    }
 }
