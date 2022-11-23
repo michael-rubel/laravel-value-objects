@@ -76,4 +76,14 @@ class Number extends ValueObject
     {
         return (int) $this->bigNumber->getValue();
     }
+
+    /**
+     * Get the number as a float.
+     *
+     * @return float
+     */
+    public function asFloat(): float
+    {
+        return (float) $this->bigNumber->getValue();
+    }
 }
