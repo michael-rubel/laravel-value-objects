@@ -22,6 +22,21 @@ test('number can cast to float', function () {
     $this->assertSame(36000.50, $valueObject->asFloat());
 });
 
+test('number as a big number', function () {
+    $number = new Number('20000.793', 3);
+    $this->assertEquals(new BigNumber('20000.793', 3, false), $number->asBigNumber());
+});
+
+test('number can be divided using magic call', function () {
+    $number = new Number('20000.793', 4);
+    $this->assertSame('10000.3965', $number->divide(2));
+});
+
+test('number can be multiplied using magic call', function () {
+    $number = new Number('20000.793', 3);
+    $this->assertSame('40001.586', $number->multiply(2));
+});
+
 test('number can accept string', function () {
     $valueObject = new Number('1');
     $this->assertSame('1.00', $valueObject->value());

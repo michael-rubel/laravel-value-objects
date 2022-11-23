@@ -29,6 +29,17 @@ use PHP\Math\BigNumber\BigNumber;
  * @method static static from(int|string $number, int $scale = 2)
  * @method static static makeOrNull(int|string|null $number, int $scale = 2)
  *
+ * @method string abs()
+ * @method string add(float|int|string $value)
+ * @method string divide(float|int|string $value)
+ * @method string multiply(float|int|string $value)
+ * @method string mod(float|int|string $value)
+ * @method string pow(int|string $value)
+ * @method string sqrt()
+ * @method string subtract(float|int|string $value)
+ *
+ * @see \PHP\Math\BigNumber\BigNumber
+ *
  * @extends ValueObject<TKey, TValue>
  */
 class Number extends ValueObject
@@ -85,5 +96,33 @@ class Number extends ValueObject
     public function asFloat(): float
     {
         return (float) $this->bigNumber->getValue();
+    }
+
+    /**
+     * Get the underlying `BigNumber` object.
+     *
+     * @return BigNumber
+     */
+    public function asBigNumber(): BigNumber
+    {
+        return $this->bigNumber;
+    }
+
+    /**
+     * Forward call to underlying object if the method
+     * doesn't exist in `Number` and doesn't have a macro.
+     *
+     * @param  string  $method
+     * @param  array  $parameters
+     *
+     * @return mixed
+     */
+    public function __call($method, $parameters)
+    {
+        if (static::hasMacro($method)) {
+            return parent::__call($method, $parameters);
+        }
+
+        return $this->bigNumber->{$method}(...$parameters)->getValue();
     }
 }
