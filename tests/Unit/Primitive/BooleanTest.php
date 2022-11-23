@@ -170,12 +170,6 @@ class TestBoolean extends Boolean
 {
     public function __construct(bool|int|string $value)
     {
-        $this->value = $value;
-
-        if (! is_bool($this->value)) {
-            parent::handleNonBooleanValue();
-        }
-
-        $this->value = 1;
+        ! is_bool($value) ? $this->handleNonBoolean($value) : $this->value = $value;
     }
 }

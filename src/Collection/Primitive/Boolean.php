@@ -33,9 +33,9 @@ use MichaelRubel\ValueObjects\ValueObject;
 class Boolean extends ValueObject
 {
     /**
-     * @var bool|int|string
+     * @var bool
      */
-    protected bool|int|string $value;
+    protected bool $value;
 
     /**
      * Values that represent `true` boolean.
@@ -62,11 +62,7 @@ class Boolean extends ValueObject
             throw new InvalidArgumentException(static::IMMUTABLE_MESSAGE);
         }
 
-        $this->value = $value;
-
-        if (! is_bool($this->value)) {
-            $this->handleNonBooleanValue();
-        }
+        ! is_bool($value) ? $this->handleNonBoolean($value) : $this->value = $value;
     }
 
     /**
@@ -76,17 +72,18 @@ class Boolean extends ValueObject
      */
     public function value(): bool
     {
-        return (bool) $this->value;
+        return $this->value;
     }
 
     /**
      * Determine if the passed boolean is true.
      *
+     * @param  int|string  $value
      * @return void
      */
-    protected function handleNonBooleanValue(): void
+    protected function handleNonBoolean(int|string $value): void
     {
-        $string = new Stringable($this->value);
+        $string = new Stringable($value);
 
         $this->value = match (true) {
             $string->contains($this->trueValues, true) => true,
@@ -102,7 +99,7 @@ class Boolean extends ValueObject
      */
     public function toString(): string
     {
-        return ! empty($this->value()) ? 'true' : 'false';
+        return $this->value() ? 'true' : 'false';
     }
 
     /**
