@@ -86,8 +86,8 @@ class Boolean extends ValueObject
         $string = new Stringable($value);
 
         $this->value = match (true) {
-            $string->contains($this->trueValues, true) => true,
-            $string->contains($this->falseValues, true) => false,
+            $string->contains($this->trueValues, ignoreCase: true) => true,
+            $string->contains($this->falseValues, ignoreCase: true) => false,
             default => throw new InvalidArgumentException('Invalid boolean.'),
         };
     }
