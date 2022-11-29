@@ -190,10 +190,12 @@ test('number can change decimals as a string input', function () {
     $this->assertSame('7771.777111900000000000', $valueObject->value());
     $valueObject = new Number('7771.77711199', 19);
     $this->assertSame('7771.7771119900000000000', $valueObject->value());
-    $valueObject = new Number('777177711191777.99977777777777777777', 20);
-    $this->assertSame('777177711191777.99977777777777777777', $valueObject->value());
-    $valueObject = new Number('777177711191777.99977777777777777777', 20);
-    $this->assertSame('777177711191777.99977777777777777777', $valueObject->value());
+    $valueObject = new Number('777177711191777.987456321001234567', 20);
+    $this->assertSame('777177711191777.98745632100123456700', $valueObject->value());
+    $valueObject = new Number('777177711191777.98745632100123456789', 20);
+    $this->assertSame('777177711191777.98745632100123456789', $valueObject->value());
+    $valueObject = new Number('777177711191777.987456321001234567898765', 20);
+    $this->assertSame('777177711191777.98745632100123456789', $valueObject->value());
 });
 
 test('number can change decimals as a string float', function () {
