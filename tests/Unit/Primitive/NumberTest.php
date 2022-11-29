@@ -198,7 +198,7 @@ test('number can change decimals as a string input', function () {
     $this->assertSame('777177711191777.98745632100123456789', $valueObject->value());
 });
 
-test('number can change decimals as a string float', function () {
+test('number can change decimals as a float input', function () {
     $valueObject = new Number(111777999.97);
     $this->assertSame('111777999.97', $valueObject->value());
     $valueObject = new Number(92233720368.987, 3);
