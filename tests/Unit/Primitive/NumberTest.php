@@ -143,6 +143,12 @@ test('number can change decimals as a string input', function () {
     $this->assertSame('111777999.99999999997', $valueObject->value());
     $valueObject = new Number('92233720368.547', 3);
     $this->assertSame('92233720368.547', $valueObject->value());
+    $valueObject = new Number('92233720368.9876', 3);
+    $this->assertSame('92233720368.987', $valueObject->value());
+    $valueObject = new Number('92233720368.9876', 4);
+    $this->assertSame('92233720368.9876', $valueObject->value());
+    $valueObject = new Number('9223372036.8547', 3);
+    $this->assertSame('9223372036.854', $valueObject->value());
 
     $valueObject = new Number('7.1', 0);
     $this->assertSame('7', $valueObject->value());
