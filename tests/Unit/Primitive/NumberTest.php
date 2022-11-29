@@ -134,7 +134,7 @@ test('number fails when null passed', function () {
     new Number(null);
 });
 
-test('number can change decimals', function () {
+test('number can change decimals as a string input', function () {
     $valueObject = new Number('111777999.97');
     $this->assertSame('111777999.97', $valueObject->value());
     $valueObject = new Number('111777999,97');
@@ -188,6 +188,62 @@ test('number can change decimals', function () {
     $this->assertSame('777177711191777.99977777777777777777', $valueObject->value());
     $valueObject = new Number('777177711191777.99977777777777777777', 20);
     $this->assertSame('777177711191777.99977777777777777777', $valueObject->value());
+});
+
+test('number can change decimals as a string float', function () {
+    $valueObject = new Number(111777999.97);
+    $this->assertSame('111777999.97', $valueObject->value());
+    $valueObject = new Number('111777999,97');
+    $this->assertSame('111777999.97', $valueObject->value());
+    $valueObject = new Number('111777999.99999999997', 11);
+    $this->assertSame('111777999.99999999997', $valueObject->value());
+    $valueObject = new Number('92233720368.547', 3);
+    $this->assertSame('92233720368.547', $valueObject->value());
+
+    $valueObject = new Number('7.1', 0);
+    $this->assertSame('7', $valueObject->value());
+    $valueObject = new Number(7.1, 1);
+    $this->assertSame('7.1', $valueObject->value());
+    $valueObject = new Number(7.11, 2);
+    $this->assertSame('7.11', $valueObject->value());
+    $valueObject = new Number(7.99, 3);
+    $this->assertSame('7.990', $valueObject->value());
+    $valueObject = new Number(70.1, 4);
+    $this->assertSame('70.1000', $valueObject->value());
+    $valueObject = new Number(71.1, 5);
+    $this->assertSame('71.10000', $valueObject->value());
+    $valueObject = new Number(17.9, 6);
+    $this->assertSame('17.900000', $valueObject->value());
+    $valueObject = new Number(11.1, 7);
+    $this->assertSame('11.1000000', $valueObject->value());
+    $valueObject = new Number(11.7, 8);
+    $this->assertSame('11.70000000', $valueObject->value());
+    $valueObject = new Number(77.77, 9);
+    $this->assertSame('77.770000000', $valueObject->value());
+    $valueObject = new Number(777.7, 10);
+    $this->assertSame('777.7000000000', $valueObject->value());
+    $valueObject = new Number(777.7, 11);
+    $this->assertSame('777.70000000000', $valueObject->value());
+    $valueObject = new Number(777.77, 12);
+    $this->assertSame('777.770000000000', $valueObject->value());
+    $valueObject = new Number(777.777, 13);
+    $this->assertSame('777.7770000000000', $valueObject->value());
+    $valueObject = new Number(7771.777, 14);
+    $this->assertSame('7771.77700000000000', $valueObject->value());
+    $valueObject = new Number(7771.7771, 15);
+    $this->assertSame('7771.777100000000000', $valueObject->value());
+    $valueObject = new Number(7771.77711, 16);
+    $this->assertSame('7771.7771100000000000', $valueObject->value());
+    $valueObject = new Number(7771.777111, 17);
+    $this->assertSame('7771.77711100000000000', $valueObject->value());
+    $valueObject = new Number(7771.7771119, 18);
+    $this->assertSame('7771.777111900000000000', $valueObject->value());
+    $valueObject = new Number(7771.77711199, 19);
+    $this->assertSame('7771.7771119900000000000', $valueObject->value());
+//    $valueObject = new Number(6667777.1234567890123456789, 20);
+//    $this->assertSame('6667777.12345678901234567890', $valueObject->value());
+//    $valueObject = new Number(777177711191777.99977777777777777777, 20);
+//    $this->assertSame('777177711191777.99977777777777777777', $valueObject->value());
 });
 
 test('number can handle huge numbers', function () {
@@ -293,7 +349,7 @@ class TestNumber extends Number
         $this->bigNumber = new BigNumber($this->sanitize($number), $this->scale);
     }
 
-    protected function sanitize(int|string|null $number): string
+    protected function sanitize(float|int|string|null $number): string
     {
         return parent::sanitize($number);
     }
