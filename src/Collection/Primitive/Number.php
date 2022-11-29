@@ -54,10 +54,10 @@ class Number extends ValueObject
     /**
      * Create a new instance of the value object.
      *
-     * @param  int|string  $number
-     * @param  int  $scale
+     * @param float|int|string $number
+     * @param int $scale
      */
-    public function __construct(int|string $number, protected int $scale = 2)
+    public function __construct(float|int|string $number, protected int $scale = 2)
     {
         if (isset($this->bigNumber)) {
             throw new InvalidArgumentException(static::IMMUTABLE_MESSAGE);
