@@ -254,6 +254,17 @@ test('number can change decimals as a string float', function () {
 //    $this->assertSame('777177711191777.99977777777777777777', $valueObject->value());
 });
 
+test('number can change decimals as a float big input', function () {
+    // because the length of the characters including the period is equal to or greater than PHP_FLOAT_DIG (default 15)
+//    $valueObject = new Number(92233720368.9876, 4);
+    $valueObject = new Number(6667777.1234567890123456789, 20);
+//    $this->assertSame('92233720368.9876', $valueObject->value());
+//    $this->assertSame($this->toThrow(LengthException::class), $valueObject->value());
+//    $this->assertSame('6667777.12345678901234567890', $valueObject->value());
+//    $valueObject = new Number(777177711191777.99977777777777777777, 20);
+//    $this->assertSame('777177711191777.99977777777777777777', $valueObject->value());
+})->throws(LengthException::class)->skip();
+
 test('number can handle huge numbers', function () {
     $valueObject = new Number('111777999.97');
     $this->assertSame('111777999.97', $valueObject->value());
