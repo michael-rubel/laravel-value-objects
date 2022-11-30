@@ -43,7 +43,30 @@ trait SanitizesNumbers
     private function is_good_float(float|int|string|null $number): bool
     {
         if (is_float($number)) {
-            if (length((string) ($number)) >= PHP_FLOAT_DIG) {
+            $number_string = (string) $number;
+            $array_number = explode('.',$number_string);
+            $precision = length($array_number[1] ?? '');
+            dump('>',$array_number, $precision,'<<');
+            $number2 = round($number,  $precision , PHP_ROUND_HALF_DOWN);
+            dump(
+                $number2 ,
+//                round($number,  $precision + 0, PHP_ROUND_HALF_DOWN)  ,
+//                round($number,  $precision + 1, PHP_ROUND_HALF_DOWN)  ,
+                '^^^^^^^'
+            );
+if($precision) {
+    $number2 = ($number / (10 * $precision));
+    $number2 = ($number2 * 10 * $precision);
+}
+            dump(length((string) ($number)),
+                $number,
+//'--',PHP_FLOAT_MIN ,PHP_FLOAT_MAX ,PHP_FLOAT_DIG ,
+                '********',
+                $number2,
+                $number2 == $number,
+//                is_scalar($number),
+                '=======');
+            if (length((string) ($number)) >= PHP_FLOAT_DIG && $number2 !== $number) {
                 return false;
             }
         }
