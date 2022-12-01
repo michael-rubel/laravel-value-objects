@@ -311,8 +311,7 @@ test('number can change decimals as a float input-old', function () {
 
 test('number can change decimals as a float big input', function ($number) {
     try {
-//        dump('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++', $number);
-        $valueObject = new Number($number, 20);
+        new Number($number, 20);
         $this->assertFalse(true);
 
     } catch (LengthException $e) {
