@@ -196,39 +196,6 @@ test('number can change decimals as a float big input', function ($number) {
     } catch (LengthException $e) {
         $this->assertSame(0,  $e->getCode());
     }
-
-//    $valueObject = new Number($number, 20);
-//    $this->assertThrow($valueObject, LengthException::class);
-//    expect(new Number($number, 20))->toThrow(LengthException::class);
-    ////   $valueObject = new Number(11.543210987671, 20);
-//    $this->assertSame('11.54321098767100000000', $valueObject->value());
-    // because the length of the characters including the period is equal to or greater than PHP_FLOAT_DIG (default 15)
-//    $valueObject = new Number(92233720368.9876, 4);
-//    $valueObject = new Number(6667777.1234567890123456789, 20);
-//    $this->assertSame('92233720368.9876', $valueObject->value());
-//    $this->assertSame($this->toThrow(LengthException::class), $valueObject->value());
-//    $this->assertSame('6667777.12345678901234567890', $valueObject->value());
-//    $valueObject = new Number(777177711191777.99977777777777777777, 20);
-//    $this->assertSame('777177711191777.99977777777777777777', $valueObject->value());
-//    $valueObject = new Number(7771.07771100199, 11);
-////    $this->assertSame('7771.07771100199', $valueObject->value());
-//    $valueObject = new Number(7771.07771100129, 11);
-////    $this->assertSame('7771.07771100129', $valueObject->value());
-//    $valueObject = new Number(7771.07771100123, 11);
-////    $this->assertSame('7771.07771100123', $valueObject->value());
-//    $valueObject = new Number(9876.10007779999, 11);
-////    $this->assertSame('9876.10007779999', $valueObject->value());
-//
-//    $valueObject = new Number(7771.0777110019, 11);
-////    $this->assertSame('7771.07771100190', $valueObject->value());
-//
-//    $valueObject = new Number(12.5432109876712, 20);
-////    $this->assertSame('12.54321098767120000000', $valueObject->value());
-//    $valueObject = new Number(13.5432109876789, 20);
-////    $this->assertSame('13.54321098767890000000', $valueObject->value());
-
-//    $valueObject = new Number(210987654321.78, 20);
-//    $this->assertSame('210987654321.78000000000000000000', $valueObject->value());
 })->with([
     11.5432109876731,
     6667777.1234567890123456789,
