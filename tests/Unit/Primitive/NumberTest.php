@@ -185,6 +185,7 @@ test('number can change decimals as a float input', function ($input, $scale, $r
     [7771.7771119, 18, '7771.777111900000000000'],
     [7771.77711199, 19, '7771.7771119900000000000'],
     [777177711191777.99977777777777777777, 20, '777177711191777.99977777777777777777'],
+    [3210987654321.0, 2, '3210987654321.00'],
 ]);
 
 test('number can change decimals as a float input-old', function () {
