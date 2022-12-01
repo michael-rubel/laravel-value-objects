@@ -167,8 +167,6 @@ test('number can change decimals', function () {
     $this->assertSame('7771.7771119900000000000', $valueObject->value());
     $valueObject = new Number('777177711191777.99977777777777777777', 20);
     $this->assertSame('777177711191777.99977777777777777777', $valueObject->value());
-    $valueObject = new Number('777177711191777.99977777777777777777', 20);
-    $this->assertSame('777177711191777.99977777777777777777', $valueObject->value());
 });
 
 test('number can handle huge numbers', function () {
