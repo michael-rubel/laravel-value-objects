@@ -52,57 +52,42 @@ test('number can accept string', function ($input, $result) {
     [' 100 000 ,000  ', '100000.00'],
 ]);
 
-test('number accepts formatted value', function () {
+test('number accepts formatted value', function ($input, $scale, $result) {
+    $valueObject = new Number($input, $scale);
+    $this->assertSame($result, $valueObject->value());
+})->with([
     // Only commas:
-    $valueObject = new Number('1,230,00');
-    assertSame('1230.00', $valueObject->value());
-    $valueObject = new Number('123,123,123,5555', scale: 3);
-    assertSame('123123123.555', $valueObject->value());
+    ['1,230,00', 2, '1230.00'],
+    ['123,123,123,5555', 3, '123123123.555'],
 
     // Only dots:
-    $valueObject = new Number('1.230.00');
-    assertSame('1230.00', $valueObject->value());
-    $valueObject = new Number('123.123.123.555');
-    assertSame('123123123.55', $valueObject->value());
+    ['1.230.00', 2, '1230.00'],
+    ['123.123.123.555', 2, '123123123.55'],
 
     // Dot-comma convention:
-    $valueObject = new Number('1.230,00');
-    assertSame('1230.00', $valueObject->value());
-    $valueObject = new Number('123.123.123,556', scale: 3);
-    assertSame('123123123.556', $valueObject->value());
+    ['1.230,00', 2, '1230.00'],
+    ['123.123.123,556', 3, '123123123.556'],
 
     // Comma-dot convention:
-    $valueObject = new Number('1,230.00');
-    assertSame('1230.00', $valueObject->value());
-    $valueObject = new Number('123,123,123.555');
-    assertSame('123123123.55', $valueObject->value());
+    ['1,230.00', 2, '1230.00'],
+    ['123,123,123.555', 2, '123123123.55'],
 
     // Space-dot convention:
-    $valueObject = new Number('1 230.00');
-    assertSame('1230.00', $valueObject->value());
-    $valueObject = new Number('123 123 123.55');
-    assertSame('123123123.55', $valueObject->value());
+    ['1 230.00', 2, '1230.00'],
+    ['123 123 123.55', 2, '123123123.55'],
 
     // Space-comma convention:
-    $valueObject = new Number('1 230,00');
-    assertSame('1230.00', $valueObject->value());
-    $valueObject = new Number('123 123 123,55');
-    assertSame('123123123.55', $valueObject->value());
+    ['1 230,00', 2, '1230.00'],
+    ['123 123 123,55', 2, '123123123.55'],
 
     // Mixed convention:
-    $valueObject = new Number('1 230,');
-    assertSame('1230.00', $valueObject->value());
-    $valueObject = new Number(',00');
-    assertSame('0.00', $valueObject->value());
-    $valueObject = new Number('.00');
-    assertSame('0.00', $valueObject->value());
-    $valueObject = new Number('123.123 123,55');
-    assertSame('123123123.55', $valueObject->value());
-    $valueObject = new Number('123,123.123,55');
-    assertSame('123123123.55', $valueObject->value());
-    $valueObject = new Number('123	123 123,55');
-    assertSame('123123123.55', $valueObject->value());
-});
+    ['1 230,', 2, '1230.00'],
+    [',00', 2, '0.00'],
+    ['.00', 2, '0.00'],
+    ['123.123 123,55', 2, '123123123.55'],
+    ['123,123.123,55', 2, '123123123.55'],
+    ['123	123 123,55', 2, '123123123.55'],
+]);
 
 test('number fails when no argument passed', function () {
     $this->expectException(\TypeError::class);
