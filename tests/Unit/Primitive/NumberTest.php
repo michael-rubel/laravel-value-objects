@@ -147,16 +147,15 @@ test('number can change decimals', function ($input, $scale, $result) {
     ['777177711191777.99977777777777777777', 20, '777177711191777.99977777777777777777'],
 ]);
 
-test('number can handle huge numbers', function () {
-    $valueObject = new Number('111777999.97');
-    $this->assertSame('111777999.97', $valueObject->value());
-    $valueObject = new Number('111777999,97');
-    $this->assertSame('111777999.97', $valueObject->value());
-    $valueObject = new Number('111777999.99999999997', 11);
-    $this->assertSame('111777999.99999999997', $valueObject->value());
-    $valueObject = new Number('92233720368.547', 3);
-    $this->assertSame('92233720368.547', $valueObject->value());
-});
+test('number can handle huge numbers', function ($input, $scale, $result) {
+    $valueObject = new Number($input, $scale);
+    $this->assertSame($result, $valueObject->value());
+})->with([
+    ['111777999.97', 2, '111777999.97'],
+    ['111777999,97', 2, '111777999.97'],
+    ['111777999.99999999997', 11, '111777999.99999999997'],
+    ['92233720368.547', 3, '92233720368.547'],
+]);
 
 test('number is makeable', function () {
     $valueObject = Number::make('1');
