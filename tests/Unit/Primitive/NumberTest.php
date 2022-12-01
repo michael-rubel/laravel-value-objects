@@ -45,78 +45,59 @@ test('number strips zeros when the value starts from zero', function ($input, $r
     ['0000123', '123.00'],
 ]);
 
-test('number can accept string', function () {
-    $valueObject = new Number('1');
-    $this->assertSame('1.00', $valueObject->value());
-    $valueObject = new Number('1.2');
-    $this->assertSame('1.20', $valueObject->value());
-    $valueObject = new Number('1.3');
-    $this->assertSame('1.30', $valueObject->value());
-    $valueObject = new Number('1.7');
-    $this->assertSame('1.70', $valueObject->value());
-    $valueObject = new Number('1.8');
-    $this->assertSame('1.80', $valueObject->value());
-    $valueObject = new Number('2');
-    $this->assertSame('2.00', $valueObject->value());
-    $valueObject = new Number('3.1');
-    $this->assertSame('3.10', $valueObject->value());
-    $valueObject = new Number(' 100,000 ');
-    $this->assertSame('100.00', $valueObject->value());
-    $valueObject = new Number(' 100 000,000 ', 3);
-    $this->assertSame('100000.000', $valueObject->value());
-});
+test('number can accept string', function ($input, $result) {
+    $valueObject = new Number($input);
+    $this->assertSame($result, $valueObject->value());
+})->with([
+    ['1', '1.00'],
+    ['1.2', '1.20'],
+    ['1.3', '1.30'],
+    ['1.7', '1.70'],
+    ['1.8', '1.80'],
+    ['2', '2.00'],
+    ['3.1', '3.10'],
+    [' 100,000 ', '100.00'],
+    [' 100 000 ,000  ', '100000.00'],
+]);
 
-test('number accepts formatted value', function () {
+test('number accepts formatted value', function ($input, $scale, $result) {
+    $valueObject = new Number($input, $scale);
+    $this->assertSame($result, $valueObject->value());
+})->with([
     // Only commas:
-    $valueObject = new Number('1,230,00');
-    assertSame('1230.00', $valueObject->value());
-    $valueObject = new Number('123,123,123,5555', scale: 3);
-    assertSame('123123123.555', $valueObject->value());
+    ['1,230,00', 2, '1230.00'],
+    ['123,123,123,5555', 3, '123123123.555'],
 
     // Only dots:
-    $valueObject = new Number('1.230.00');
-    assertSame('1230.00', $valueObject->value());
-    $valueObject = new Number('123.123.123.555');
-    assertSame('123123123.55', $valueObject->value());
+    ['1.230.00', 2, '1230.00'],
+    ['123.123.123.555', 2, '123123123.55'],
 
     // Dot-comma convention:
-    $valueObject = new Number('1.230,00');
-    assertSame('1230.00', $valueObject->value());
-    $valueObject = new Number('123.123.123,556', scale: 3);
-    assertSame('123123123.556', $valueObject->value());
+    ['1.230,00', 2, '1230.00'],
+    ['123.123.123,556', 3, '123123123.556'],
 
     // Comma-dot convention:
-    $valueObject = new Number('1,230.00');
-    assertSame('1230.00', $valueObject->value());
-    $valueObject = new Number('123,123,123.555');
-    assertSame('123123123.55', $valueObject->value());
+    ['1,230.00', 2, '1230.00'],
+    ['123,123,123.555', 2, '123123123.55'],
 
     // Space-dot convention:
-    $valueObject = new Number('1 230.00');
-    assertSame('1230.00', $valueObject->value());
-    $valueObject = new Number('123 123 123.55');
-    assertSame('123123123.55', $valueObject->value());
+    ['1 230.00', 2, '1230.00'],
+    ['123 123 123.55', 2, '123123123.55'],
 
     // Space-comma convention:
-    $valueObject = new Number('1 230,00');
-    assertSame('1230.00', $valueObject->value());
-    $valueObject = new Number('123 123 123,55');
-    assertSame('123123123.55', $valueObject->value());
+    ['1 230,00', 2, '1230.00'],
+    ['123 123 123,55', 2, '123123123.55'],
 
     // Mixed convention:
-    $valueObject = new Number('1 230,');
-    assertSame('1230.00', $valueObject->value());
-    $valueObject = new Number(',00');
-    assertSame('0.00', $valueObject->value());
-    $valueObject = new Number('.00');
-    assertSame('0.00', $valueObject->value());
-    $valueObject = new Number('123.123 123,55');
-    assertSame('123123123.55', $valueObject->value());
-    $valueObject = new Number('123,123.123,55');
-    assertSame('123123123.55', $valueObject->value());
-    $valueObject = new Number('123	123 123,55');
-    assertSame('123123123.55', $valueObject->value());
-});
+    ['1 230,', 2, '1230.00'],
+    [',00', 2, '0.00'],
+    ['.00', 2, '0.00'],
+    ['123.123 123,55', 2, '123123123.55'],
+    ['123,123.123,55', 2, '123123123.55'],
+    ['123	123 123,55', 2, '123123123.55'],
+    [' 100 000,00 ', 3, '100000.000'],
+    [' 100 000,000 ', 2, '100000.00'],
+]);
 
 test('number fails when no argument passed', function () {
     $this->expectException(\TypeError::class);
@@ -142,72 +123,49 @@ test('number fails when null passed', function () {
     new Number(null);
 });
 
-test('number can change decimals', function () {
-    $valueObject = new Number('111777999.97');
-    $this->assertSame('111777999.97', $valueObject->value());
-    $valueObject = new Number('111777999,97');
-    $this->assertSame('111777999.97', $valueObject->value());
-    $valueObject = new Number('111777999.99999999997', 11);
-    $this->assertSame('111777999.99999999997', $valueObject->value());
-    $valueObject = new Number('92233720368.547', 3);
-    $this->assertSame('92233720368.547', $valueObject->value());
+test('number can change decimals', function ($input, $scale, $result) {
+    $valueObject = new Number($input, $scale);
+    $this->assertSame($result, $valueObject->value());
+})->with([
+    ['111777999.97', 2, '111777999.97'],
+    ['111777999,97', 2, '111777999.97'],
+    ['111777999.99999999997', 11, '111777999.99999999997'],
+    ['92233720368.547', 3, '92233720368.547'],
 
-    $valueObject = new Number('7.1', 0);
-    $this->assertSame('7', $valueObject->value());
-    $valueObject = new Number('7.1', 1);
-    $this->assertSame('7.1', $valueObject->value());
-    $valueObject = new Number('7.11', 2);
-    $this->assertSame('7.11', $valueObject->value());
-    $valueObject = new Number('7.99', 3);
-    $this->assertSame('7.990', $valueObject->value());
-    $valueObject = new Number('70.1', 4);
-    $this->assertSame('70.1000', $valueObject->value());
-    $valueObject = new Number('71.1', 5);
-    $this->assertSame('71.10000', $valueObject->value());
-    $valueObject = new Number('17.9', 6);
-    $this->assertSame('17.900000', $valueObject->value());
-    $valueObject = new Number('11.1', 7);
-    $this->assertSame('11.1000000', $valueObject->value());
-    $valueObject = new Number('11.7', 8);
-    $this->assertSame('11.70000000', $valueObject->value());
-    $valueObject = new Number('77.77', 9);
-    $this->assertSame('77.770000000', $valueObject->value());
-    $valueObject = new Number('777.7', 10);
-    $this->assertSame('777.7000000000', $valueObject->value());
-    $valueObject = new Number('777.7', 11);
-    $this->assertSame('777.70000000000', $valueObject->value());
-    $valueObject = new Number('777.77', 12);
-    $this->assertSame('777.770000000000', $valueObject->value());
-    $valueObject = new Number('777.777', 13);
-    $this->assertSame('777.7770000000000', $valueObject->value());
-    $valueObject = new Number('7771.777', 14);
-    $this->assertSame('7771.77700000000000', $valueObject->value());
-    $valueObject = new Number('7771.7771', 15);
-    $this->assertSame('7771.777100000000000', $valueObject->value());
-    $valueObject = new Number('7771.77711', 16);
-    $this->assertSame('7771.7771100000000000', $valueObject->value());
-    $valueObject = new Number('7771.777111', 17);
-    $this->assertSame('7771.77711100000000000', $valueObject->value());
-    $valueObject = new Number('7771.7771119', 18);
-    $this->assertSame('7771.777111900000000000', $valueObject->value());
-    $valueObject = new Number('7771.77711199', 19);
-    $this->assertSame('7771.7771119900000000000', $valueObject->value());
-    $valueObject = new Number('777177711191777.99977777777777777777', 20);
-    $this->assertSame('777177711191777.99977777777777777777', $valueObject->value());
-    $valueObject = new Number('777177711191777.99977777777777777777', 20);
-    $this->assertSame('777177711191777.99977777777777777777', $valueObject->value());
-});
+    ['7.1', 0, '7'],
+    ['7.1', 1, '7.1'],
+    ['7.11', 2, '7.11'],
+    ['7.99', 3, '7.990'],
+    ['70.1', 4, '70.1000'],
+    ['71.1', 5, '71.10000'],
+    ['17.9', 6, '17.900000'],
+    ['11.1', 7, '11.1000000'],
+    ['11.7', 8, '11.70000000'],
+    ['77.77', 9, '77.770000000'],
+    ['777.7', 10, '777.7000000000'],
+    ['777.7', 11, '777.70000000000'],
+    ['777.77', 12, '777.770000000000'],
+    ['777.777', 13, '777.7770000000000'],
+    ['7771.777', 14, '7771.77700000000000'],
+    ['7771.7771', 15, '7771.777100000000000'],
+    ['7771.77711', 16, '7771.7771100000000000'],
+    ['7771.777111', 17, '7771.77711100000000000'],
+    ['7771.7771119', 18, '7771.777111900000000000'],
+    ['7771.77711199', 19, '7771.7771119900000000000'],
+    ['777177711191777.99977777777777777777', 20, '777177711191777.99977777777777777777'],
+]);
 
-test('number can handle huge numbers', function () {
-    $valueObject = new Number('111777999.97');
-    $this->assertSame('111777999.97', $valueObject->value());
-    $valueObject = new Number('111777999,97');
-    $this->assertSame('111777999.97', $valueObject->value());
-    $valueObject = new Number('111777999.99999999997', 11);
-    $this->assertSame('111777999.99999999997', $valueObject->value());
-    $valueObject = new Number('92233720368.547', 3);
-    $this->assertSame('92233720368.547', $valueObject->value());
-});
+test('number can handle huge numbers', function ($input, $scale, $result) {
+    $valueObject = new Number($input, $scale);
+    $this->assertSame($result, $valueObject->value());
+})->with([
+    ['111777999.97', 2, '111777999.97'],
+    ['111777999,97', 2, '111777999.97'],
+    ['111777999.99999999997', 11, '111777999.99999999997'],
+    ['92233720368.547', 3, '92233720368.547'],
+    ['9876543210111777999.9087', 2, '9876543210111777999.90'],
+    ['98765432101117779990000.9087', 1, '98765432101117779990000.9'],
+]);
 
 test('number is makeable', function () {
     $valueObject = Number::make('1');
