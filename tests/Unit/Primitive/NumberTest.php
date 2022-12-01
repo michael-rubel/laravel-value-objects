@@ -87,6 +87,8 @@ test('number accepts formatted value', function ($input, $scale, $result) {
     ['123.123 123,55', 2, '123123123.55'],
     ['123,123.123,55', 2, '123123123.55'],
     ['123	123 123,55', 2, '123123123.55'],
+    [' 100 000,00 ', 3, '100000.000'],
+    [' 100 000,000 ', 2, '100000.00'],
 ]);
 
 test('number fails when no argument passed', function () {
