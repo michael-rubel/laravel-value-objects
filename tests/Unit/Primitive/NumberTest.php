@@ -201,12 +201,12 @@ test('number can change decimals as a string input', function () {
 test('number can change decimals as a float input', function () {
     $valueObject = new Number(111777999.97);
     $this->assertSame('111777999.97', $valueObject->value());
-    $valueObject = new Number(92233720368.987, 3);
-    $this->assertSame('92233720368.987', $valueObject->value());
+//    $valueObject = new Number(92233720368.987, 3);
+//    $this->assertSame('92233720368.987', $valueObject->value());
 //    $valueObject = new Number(92233720368.9876, 3);
 //    $this->assertSame('92233720368.987', $valueObject->value());  // for fload is xxx.988 :/
-    $valueObject = new Number(9223372036.8547, 3);
-    $this->assertSame('9223372036.854', $valueObject->value());
+//    $valueObject = new Number(9223372036.8547, 3);
+//    $this->assertSame('9223372036.854', $valueObject->value());
 //    $valueObject = new Number(592233720368.547, 3);
 //    $this->assertSame('592233720368.547', $valueObject->value());
 //    $valueObject = new Number(111777999.99999999997, 11);
@@ -261,52 +261,52 @@ test('number can change decimals as a float input', function () {
     $this->assertSame('7771.777111900000000000', $valueObject->value());
     $valueObject = new Number(7771.77711199, 19);
     $this->assertSame('7771.7771119900000000000', $valueObject->value());
-    $valueObject = new Number(7771.0777110012, 11);
-    $this->assertSame('7771.07771100120', $valueObject->value());
-    $valueObject = new Number(7771.0777110012, 11);
-    $this->assertSame('7771.07771100120', $valueObject->value());
+//    $valueObject = new Number(7771.0777110012, 11);
+//    $this->assertSame('7771.07771100120', $valueObject->value());
+//    $valueObject = new Number(7771.0777110012, 11);
+//    $this->assertSame('7771.07771100120', $valueObject->value());
 
-    $valueObject = new Number(9876.100077799, 11);
-    $this->assertSame('9876.10007779900', $valueObject->value());
-    $valueObject = new Number(9876.1000777999, 11);
-    $this->assertSame('9876.10007779990', $valueObject->value());
-    $valueObject = new Number(9876.1000777999, 11);
-    $this->assertSame('9876.10007779990', $valueObject->value());
-    $valueObject = new Number(1.543210987671, 20);
-    $this->assertSame('1.54321098767100000000', $valueObject->value());
-    $valueObject = new Number(2.5432109876712, 20);
-    $this->assertSame('2.54321098767120000000', $valueObject->value());
-    $valueObject = new Number(3.5432109876789, 20);
-    $this->assertSame('3.54321098767890000000', $valueObject->value());
-    $valueObject = new Number(11.543210987671, 20);
-    $this->assertSame('11.54321098767100000000', $valueObject->value());
+//    $valueObject = new Number(9876.100077799, 11);
+//    $this->assertSame('9876.10007779900', $valueObject->value());
+//    $valueObject = new Number(9876.1000777999, 11);
+//    $this->assertSame('9876.10007779990', $valueObject->value());
+//    $valueObject = new Number(9876.1000777999, 11);
+//    $this->assertSame('9876.10007779990', $valueObject->value());
+//    $valueObject = new Number(1.543210987671, 20);
+//    $this->assertSame('1.54321098767100000000', $valueObject->value());
+//    $valueObject = new Number(2.5432109876712, 20);
+//    $this->assertSame('2.54321098767120000000', $valueObject->value());
+//    $valueObject = new Number(3.5432109876789, 20);
+//    $this->assertSame('3.54321098767890000000', $valueObject->value());
+//    $valueObject = new Number(11.543210987671, 20);
+//    $this->assertSame('11.54321098767100000000', $valueObject->value());
 //    $valueObject = new Number(11.543210987000085, 20);
 //    $this->assertSame('11.54321098700008500000', $valueObject->value());
-    dump('down');
-    $valueObject = new Number(10987654321.789, 20);
-    $this->assertSame('10987654321.78900000000000000000', $valueObject->value());
+//    dump('down');
+//    $valueObject = new Number(10987654321.789, 20);
+//    $this->assertSame('10987654321.78900000000000000000', $valueObject->value());
 
-    $valueObject = new Number(3210987654321.7, 20);
-    $this->assertSame('3210987654321.70000000000000000000', $valueObject->value());
+//    $valueObject = new Number(3210987654321.7, 20);
+//    $this->assertSame('3210987654321.70000000000000000000', $valueObject->value());
 //    $valueObject = new Number(42210987654321.77711199, 32);
 //    $valueObject = new Number(43210987654321.17711199, 32);
-    dump('new down');
-    $valueObject = new Number(44210987654321.0, 32);
-    $valueObject = new Number(452109876543212.0, 32);
-    $valueObject = new Number(4621098765432123.0, 32);
-    $valueObject = new Number(4721098765432123., 32);
-    dump('ccc');
-    $valueObject = new Number(543210987654321.77711199, 32);
-    $valueObject = new Number(6543210987654321.77711199, 32);
-    $valueObject = new Number(76543210987654321.77711199, 32);
-    $valueObject = new Number(896543210987654321.77711199, 32);
-    $valueObject = new Number(9553543210987654321.77711199, 32);
+//    dump('new down');
+//    $valueObject = new Number(44210987654321.0, 32);
+//    $valueObject = new Number(452109876543212.0, 32);
+//    $valueObject = new Number(4621098765432123.0, 32);
+//    $valueObject = new Number(4721098765432123., 32);
+//    dump('ccc');
+//    $valueObject = new Number(543210987654321.77711199, 32);
+//    $valueObject = new Number(6543210987654321.77711199, 32);
+//    $valueObject = new Number(76543210987654321.77711199, 32);
+//    $valueObject = new Number(896543210987654321.77711199, 32);
+//    $valueObject = new Number(9553543210987654321.77711199, 32);
 
 
-    $valueObject = new Number(3210987654321.0, 20);
-    $this->assertSame('3210987654321.00000000000000000000', $valueObject->value());
-    $valueObject = new Number(43210987654321.0, 20);
-    $this->assertSame('43210987654321.00000000000000000000', $valueObject->value());
+//    $valueObject = new Number(3210987654321.0, 20);
+//    $this->assertSame('3210987654321.00000000000000000000', $valueObject->value());
+//    $valueObject = new Number(43210987654321.0, 20);
+//    $this->assertSame('43210987654321.00000000000000000000', $valueObject->value());
 //    $valueObject = new Number(543210987654321.0, 20);
 //    $this->assertSame('543210987654321.00000000000000000000', $valueObject->value());
 //    $valueObject = new Number(1543210987654321.0, 20);
@@ -360,14 +360,25 @@ test('number can change decimals as a float big input', function ($number) {
 //    $valueObject = new Number(210987654321.78, 20);
 //    $this->assertSame('210987654321.78000000000000000000', $valueObject->value());
 })->with([
-    11.2,
-//    11.5432109876731,
+    11.5432109876731,
     6667777.1234567890123456789,
-//    290987654321.78,
+    290987654321.78,
+    92233720368.987,
+    9223372036.8547,
+    7771.0777110012,
+    9876.100077799,
+    1.543210987671,
+    2.5432109876712,
+    3.5432109876789,
+    11.543210987671,
+    10987654321.789,
+    3210987654321.7,
+    44210987654321.0,
 
-])
-//    ->throws(LengthException::class)
-;
+    9553543210987654321.77711199,
+    3210987654321.0,
+    3210987654321.0,
+]);
 
 test('number can handle huge numbers', function () {
     $valueObject = new Number('111777999.97');
