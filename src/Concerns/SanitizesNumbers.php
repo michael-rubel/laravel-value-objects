@@ -48,7 +48,7 @@ trait SanitizesNumbers
             $number_string = (string) $number;
             $array_number = explode('.',$number_string);
             $precision = length($array_number[1] ?? '');
-//            dump('>',$array_number, $precision,'<<');
+            dump('>',$array_number, $precision,'<<');
             $number2 = round($number,  $precision , PHP_ROUND_HALF_DOWN);
 //            dump(
 //                $number2 ,
@@ -57,24 +57,24 @@ trait SanitizesNumbers
 //                '^^^^^^^'
 //            );
 if($precision) {
-    $number2 = ($number / (10 * $precision));
-    $number2 = ($number2 * 10 * $precision);
+    $number2 = ($number * 10 * $precision);
+    $number2 = ($number2 / (10 * $precision));
 }
-//            dump('ssssssssssssssss',
+            dump('ssssssssssssssss',
 //                PHP_FLOAT_DIG ,
 //                length($number_string),
-//                $number,
+                $number,
 ////'--',PHP_FLOAT_MIN ,PHP_FLOAT_MAX ,PHP_FLOAT_DIG ,
 //                '********',
-//                $number2,
-//                $number2 == $number,
+                $number2,
+                $number2 == $number,
 //                length($number_string) >= PHP_FLOAT_DIG - 1,
 //                length($number_string) >= (PHP_FLOAT_DIG - 1),
 //                length($number_string) ,
 //                PHP_FLOAT_DIG - 1,
 //                PHP_FLOAT_DIG,
-//                '=======');
-            if (length($number_string) >= PHP_FLOAT_DIG - 1 || $number2 !== $number) {
+                '=======');
+            if (length($number_string) >= PHP_FLOAT_DIG - 1 ) { //|| $number2 !== $number
                 return false;
             }
         }
