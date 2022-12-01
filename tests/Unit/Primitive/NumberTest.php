@@ -37,7 +37,7 @@ test('number can be multiplied using magic call', function () {
     $this->assertSame('40001.586', $number->multiply(2));
 });
 
-test('number takes the value in its starting zeros', function ($input, $result) {
+test('number strips zeros when the value starts from zero', function ($input, $result) {
     $valueObject = new Number($input);
     $this->assertSame($result, $valueObject->value());
 })->with([
