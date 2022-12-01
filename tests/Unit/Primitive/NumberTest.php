@@ -37,26 +37,20 @@ test('number can be multiplied using magic call', function () {
     $this->assertSame('40001.586', $number->multiply(2));
 });
 
-test('number can accept string', function () {
-    $valueObject = new Number('1');
-    $this->assertSame('1.00', $valueObject->value());
-    $valueObject = new Number('1.2');
-    $this->assertSame('1.20', $valueObject->value());
-    $valueObject = new Number('1.3');
-    $this->assertSame('1.30', $valueObject->value());
-    $valueObject = new Number('1.7');
-    $this->assertSame('1.70', $valueObject->value());
-    $valueObject = new Number('1.8');
-    $this->assertSame('1.80', $valueObject->value());
-    $valueObject = new Number('2');
-    $this->assertSame('2.00', $valueObject->value());
-    $valueObject = new Number('3.1');
-    $this->assertSame('3.10', $valueObject->value());
-    $valueObject = new Number(' 100,000 ');
-    $this->assertSame('100.00', $valueObject->value());
-    $valueObject = new Number(' 100 000,000 ', 3);
-    $this->assertSame('100000.000', $valueObject->value());
-});
+test('number can accept string', function ($input, $result) {
+    $valueObject = new Number($input);
+    $this->assertSame($result, $valueObject->value());
+})->with([
+    ['1', '1.00'],
+    ['1.2', '1.20'],
+    ['1.3', '1.30'],
+    ['1.7', '1.70'],
+    ['1.8', '1.80'],
+    ['2', '2.00'],
+    ['3.1', '3.10'],
+    [' 100,000 ', '100.00'],
+    [' 100 000 ,000  ', '100000.00'],
+]);
 
 test('number accepts formatted value', function () {
     // Only commas:
