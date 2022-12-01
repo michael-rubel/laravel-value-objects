@@ -37,6 +37,14 @@ test('number can be multiplied using magic call', function () {
     $this->assertSame('40001.586', $number->multiply(2));
 });
 
+test('number takes the value in its starting zeros', function ($input, $result) {
+    $valueObject = new Number($input);
+    $this->assertSame($result, $valueObject->value());
+})->with([
+    ['0000123.987', '123.98'],
+    ['0000123', '123.00'],
+]);
+
 test('number can accept string', function () {
     $valueObject = new Number('1');
     $this->assertSame('1.00', $valueObject->value());
