@@ -51,6 +51,19 @@ test('can break control using word count', function () {
     $this->assertSame('Le Poidevin', $name->lastName());
 });
 
+test('full name covnerts the first letter of each word to uppercase', function ($input, $result) {
+    $name = new FullName($input);
+    $this->assertSame($result, $name->fullName());
+})->with([
+    ['michael mcKenzie', 'Michael McKenzie'],
+    ['michael McKenzie', 'Michael McKenzie'],
+    ['Michael mcKenzie', 'Michael McKenzie'],
+    ['Michael McKenzie', 'Michael McKenzie'],
+    ['michael mckenzie', 'Michael Mckenzie'],
+    ['michael mc-kenzie', 'Michael Mc-kenzie'],
+    [' michael mc-Kenzie ', 'Michael Mc-Kenzie'],
+]);
+
 test('can get cast to string', function () {
     $name = new FullName('Michael Rubél');
     $this->assertSame('Michael Rubél', (string) $name);
