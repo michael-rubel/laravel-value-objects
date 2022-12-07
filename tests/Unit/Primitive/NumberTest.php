@@ -155,7 +155,7 @@ test('number can change decimals as a string input', function ($input, $scale, $
     ['777177711191777.99977777777777777777', 20, '777177711191777.99977777777777777777'],
 ]);
 
-test('number can change decimals as a float input', function ($input, $scale, $result) {
+test('number can change decimals as a float input up to 14 characters/digits', function ($input, $scale, $result) {
     $valueObject = new Number($input, $scale);
     $this->assertSame($result, $valueObject->value());
 })->with([
@@ -187,7 +187,7 @@ test('number can change decimals as a float input', function ($input, $scale, $r
     [9223372036.8547, 2, '9223372036.85'],
 ]);
 
-test('number can change decimals as a float big input', function ($number) {
+test('no conversion of decimal numbers as float input above 14 characters/digits', function ($number) {
     try {
         new Number($number, 20);
         $this->assertFalse(true);
