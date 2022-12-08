@@ -202,6 +202,16 @@ test('number can change decimals as a float input up to 14 characters/digits', f
     [92233720368.547, 3, '92233720368.547'],
 ]);
 
+test('numeric integer in float form input up to 14 characters/digitss', function ($input, $scale, $result) {
+    $valueObject = new Number($input, $scale);
+    $this->assertSame($result, $valueObject->value());
+})->with([
+    [1.0, 3, '1.000'],
+    [2.0000, 3, '2.000'],
+    [1234567890.0000, 3, '1234567890.000'],
+    [12345678901234.0000, 3, '1234567890.000'],
+]);
+
 test('no conversion of decimal numbers as float input above 14 characters/digits', function ($number) {
     try {
         new Number($number, 20);
