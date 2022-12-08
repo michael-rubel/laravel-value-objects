@@ -54,8 +54,8 @@ class Number extends ValueObject
     /**
      * Create a new instance of the value object.
      *
-     * @param float|int|string $number
-     * @param int $scale
+     * @param  float|int|string  $number
+     * @param  int  $scale
      */
     public function __construct(float|int|string $number, protected int $scale = 2)
     {

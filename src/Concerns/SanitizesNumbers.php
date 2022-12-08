@@ -10,7 +10,7 @@ use function Psl\Str\Byte\length;
 trait SanitizesNumbers
 {
     /**
-     * @param float|int|string|null $number
+     * @param  float|int|string|null  $number
      *
      * @return string
      */
@@ -37,7 +37,7 @@ trait SanitizesNumbers
     }
 
     /**
-     * @param float|int|string|null $number
+     * @param  float|int|string|null  $number
      * @return bool
      */
     private function is_good_float(float|int|string|null $number): bool
@@ -47,19 +47,17 @@ trait SanitizesNumbers
 
             $precision_position = length($array_number->get(1, ''));
 
-            $round_number = round($number,  $precision_position );
+            $round_number = round($number, $precision_position);
 
-            $sum_digits = $array_number->sum(function($item) {
+            $sum_digits = $array_number->sum(function ($item) {
                 return length($item);
             });
 
-            if (($round_number == $number  && $sum_digits <= PHP_FLOAT_DIG - 1)) { //|| $number2 !== $number
+            if (($round_number == $number && $sum_digits <= PHP_FLOAT_DIG - 1)) { //|| $number2 !== $number
                 return true;
             }
         }
 
         return false;
     }
-
-
 }
