@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace MichaelRubel\ValueObjects\Concerns;
 
 use LengthException;
-use function Psl\Str\Byte\length;
 
 trait SanitizesNumbers
 {
@@ -45,12 +44,12 @@ trait SanitizesNumbers
         if (is_float($number)) {
             $array_number = str((string) $number)->explode('.');
 
-            $precision_position = length($array_number->get(1, ''));
+            $precision_position = str($array_number->get(1, ''))->length();
 
             $round_number = round($number, $precision_position);
 
             $sum_digits = $array_number->sum(function ($item) {
-                return length($item);
+                return str($item)->length();
             });
 
             if (($round_number == $number && $sum_digits <= PHP_FLOAT_DIG - 1)) { //|| $number2 !== $number
