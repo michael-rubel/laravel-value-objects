@@ -41,5 +41,5 @@ test('decimal object equality works as expected', function () {
     $this->assertTrue($vo1->notEquals($vo2));
     $this->assertTrue($vo3->equals($vo1));
     $this->assertTrue($vo4->equals($vo1));
-//    $this->assertFalse($vo2->equals($vo3));
+    $this->assertFalse($vo2->equals($vo3));
 });
