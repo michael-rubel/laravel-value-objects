@@ -16,7 +16,8 @@ trait SanitizesNumbers
      */
     protected function sanitize(float|int|string|null $number): string
     {
-        if (! $this->is_good_float($number)) {
+//        dump('>>>>in>>>>',$number,floor($number - 0.000000000000000001));
+        if (is_float($number) && ! $this->is_good_float($number)) {
             throw new LengthException();
         }
 
@@ -42,11 +43,7 @@ trait SanitizesNumbers
      */
     private function is_good_float(float|int|string|null $number): bool
     {
-
         if (is_float($number)) {
-            $number_string = (string) $number;
-            $numer_int = (int) $number_string;
-
             $array_number = str($number)->explode('.');
 
             $precision_position = length($array_number->get(1, ''));
@@ -57,13 +54,13 @@ trait SanitizesNumbers
                 return length($item);
             });
 
-            if (($round_number == $number && $numer_int != $number && $sum_digits <= PHP_FLOAT_DIG - 1)) { //|| $number2 !== $number
-//                (! $precision && $numer_int == $number) ||
-
+            if (($round_number == $number  && $sum_digits <= PHP_FLOAT_DIG - 1)) { //|| $number2 !== $number
                 return true;
             }
         }
 
         return false;
     }
+
+
 }
