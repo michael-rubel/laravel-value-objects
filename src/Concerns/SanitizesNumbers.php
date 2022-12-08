@@ -20,7 +20,7 @@ trait SanitizesNumbers
             throw new LengthException();
         }
 
-        $number = str($number)->replace(',', '.');
+        $number = str((string) $number)->replace(',', '.');
 
         $dots = $number->substrCount('.');
 
@@ -43,7 +43,7 @@ trait SanitizesNumbers
     private function is_good_float(float|int|string|null $number): bool
     {
         if (is_float($number)) {
-            $array_number = str($number)->explode('.');
+            $array_number = str((string) $number)->explode('.');
 
             $precision_position = length($array_number->get(1, ''));
 
