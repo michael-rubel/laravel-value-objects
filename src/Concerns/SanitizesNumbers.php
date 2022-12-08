@@ -16,7 +16,6 @@ trait SanitizesNumbers
      */
     protected function sanitize(float|int|string|null $number): string
     {
-//        dump('>>>>in>>>>',$number,floor($number - 0.000000000000000001));
         if (is_float($number) && ! $this->is_good_float($number)) {
             throw new LengthException();
         }
