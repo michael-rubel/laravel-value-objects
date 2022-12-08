@@ -16,8 +16,6 @@ trait SanitizesNumbers
      */
     protected function sanitize(float|int|string|null $number): string
     {
-//        dump('OOOOOOOOkkkkkkkkkkKKKKKKKK', $this->is_good_float($number));
-
         if (! $this->is_good_float($number)) {
             throw new LengthException();
         }
@@ -48,70 +46,23 @@ trait SanitizesNumbers
         if (is_float($number)) {
             $number_string = (string) $number;
             $numer_int = (int) $number_string;
-//            $array_number = explode('.', $number_string);
+
             $array_number = str($number)->explode('.');
-            $precision = length($array_number->get(1, ''));
-           $sum = $array_number->sum(function($item) {
-              return length($item);
-           });
-            dump('cccccccccccc', $sum);
-            dump('>',$array_number, $precision,'<<',length($number_string),'<<<<',PHP_FLOAT_DIG - 1);
-            $number2 = round($number,  $precision , PHP_ROUND_HALF_DOWN);
-            dump('++++++++++++',
-                $number_string,
-                $numer_int,
-                $numer_int == $number,
-                '--------',
-                $number,
-                $precision,
-//                round($number,  $precision , PHP_ROUND_HALF_DOWN),
-//                round($number,  $precision , PHP_ROUND_HALF_UP),
-//                round($number,  $precision , PHP_ROUND_HALF_ODD),
-//                round($number,  $precision , PHP_ROUND_HALF_EVEN),
 
-            '***************'
-            );
-//            dump(
-//                $number2 ,
-////                round($number,  $precision + 0, PHP_ROUND_HALF_DOWN)  ,
-////                round($number,  $precision + 1, PHP_ROUND_HALF_DOWN)  ,
-//                '^^^^^^^'
-//            );
-            dump('PPP', $number2);
-if($precision) {
-    $number3 = ($number * pow(10, $precision+5) * 9);
-    $number3str = (string) $number3;
+            $precision_position = length($array_number->get(1, ''));
 
-    dump('PPP-', $number3,$number3str );
+            $round_number = round($number,  $precision_position );
 
-    $number4= ($number2 / 9 / pow(10, $precision+5));
-    $number4str = (string) $number4;
+            $sum_digits = $array_number->sum(function($item) {
+                return length($item);
+            });
 
-    dump('PPP+', $number4,$number4str);
-}
-            dump('ssssssNUMBERssssssssss',
-//                PHP_FLOAT_DIG ,
-//                length($number_string),
-                $number,
-////'--',PHP_FLOAT_MIN ,PHP_FLOAT_MAX ,PHP_FLOAT_DIG ,
-//                '********',
-                $number2,
-                $number2 == $number,
-//                length($number_string) >= PHP_FLOAT_DIG - 1,
-//                length($number_string) >= (PHP_FLOAT_DIG - 1),
-//                length($number_string) ,
-//                PHP_FLOAT_DIG - 1,
-//                PHP_FLOAT_DIG,
-                '=======');
-
-dump($numer_int != $number ,$sum <= PHP_FLOAT_DIG - 1, '///', $precision , $numer_int == $number);
-            if (($number2 == $number && $numer_int != $number && $sum <= PHP_FLOAT_DIG - 1)) { //|| $number2 !== $number
+            if (($round_number == $number && $numer_int != $number && $sum_digits <= PHP_FLOAT_DIG - 1)) { //|| $number2 !== $number
 //                (! $precision && $numer_int == $number) ||
-                dump('OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO',$number);
+
                 return true;
             }
         }
-        dump('FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF',$number);
 
         return false;
     }
