@@ -42,7 +42,7 @@ trait SanitizesNumbers
     private function is_good_float(float|int|string|null $number): bool
     {
         if (is_float($number)) {
-            $array_number = str((string) $number)->explode('.');
+            $array_number = str($number)->explode('.');
 
             $precision_position = str($array_number->get(1, ''))->length();
 
