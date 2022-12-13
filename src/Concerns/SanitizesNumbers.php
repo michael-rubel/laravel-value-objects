@@ -42,13 +42,13 @@ trait SanitizesNumbers
     private function is_good_float(int|string|float|null $number): bool
     {
         if (is_float($number)) {
-            $separate = str($number)->explode('.')->sep;
+            $separated = str($number)->explode('.');
 
-            $precision_position = str($separate->get(1, ''))->length();
+            $precision_position = str($separated->get(1, ''))->length();
 
             $round_number = round($number, $precision_position);
 
-            $sum_digits = $separate->sum(function ($item) {
+            $sum_digits = $separated->sum(function ($item) {
                 return str($item)->length();
             });
 
