@@ -19,7 +19,7 @@ trait SanitizesNumbers
             throw new LengthException();
         }
 
-        $number = str((string) $number)->replace(',', '.');
+        $number = str($number)->replace(',', '.');
 
         $dots = $number->substrCount('.');
 
