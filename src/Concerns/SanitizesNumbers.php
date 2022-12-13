@@ -9,11 +9,11 @@ use LengthException;
 trait SanitizesNumbers
 {
     /**
-     * @param  float|int|string|null  $number
+     * @param  int|string|float|null  $number
      *
      * @return string
      */
-    protected function sanitize(float|int|string|null $number): string
+    protected function sanitize(int|string|float|null $number): string
     {
         if (is_float($number) && ! $this->is_good_float($number)) {
             throw new LengthException();
@@ -36,10 +36,10 @@ trait SanitizesNumbers
     }
 
     /**
-     * @param  float|int|string|null  $number
+     * @param  int|string|float|null  $number
      * @return bool
      */
-    private function is_good_float(float|int|string|null $number): bool
+    private function is_good_float(int|string|float|null $number): bool
     {
         if (is_float($number)) {
             $array_number = str($number)->explode('.');

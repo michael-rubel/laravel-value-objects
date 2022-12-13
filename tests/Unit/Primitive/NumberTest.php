@@ -341,7 +341,7 @@ class TestNumber extends Number
         $this->bigNumber = new BigNumber($this->sanitize($number), $this->scale);
     }
 
-    protected function sanitize(float|int|string|null $number): string
+    protected function sanitize(int|string|float|null $number): string
     {
         return parent::sanitize($number);
     }
