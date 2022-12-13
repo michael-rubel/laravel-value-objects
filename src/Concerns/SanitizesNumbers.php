@@ -15,7 +15,7 @@ trait SanitizesNumbers
      */
     protected function sanitize(int|string|float|null $number): string
     {
-        if (is_float($number) && ! $this->is_good_float($number)) {
+        if (is_float($number) && ! $this->isGoodFloat($number)) {
             throw new LengthException();
         }
 
@@ -39,7 +39,7 @@ trait SanitizesNumbers
      * @param  int|string|float|null  $number
      * @return bool
      */
-    private function is_good_float(int|string|float|null $number): bool
+    private function isGoodFloat(int|string|float|null $number): bool
     {
         if (is_float($number)) {
             $separated = str($number)->explode('.');
