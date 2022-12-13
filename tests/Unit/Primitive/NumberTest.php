@@ -220,7 +220,7 @@ test('no conversion of decimal numbers as float input above 14 characters/digits
         $this->assertSame(0, $e->getCode());
     }
 })->with([
-    11.5432109876731,
+    11.54321098767312,
     6667777.1234567890123456789,
     5556666.2345678901234567891,
     4445555.3456789012345678912,
