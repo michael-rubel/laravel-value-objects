@@ -52,7 +52,7 @@ trait SanitizesNumbers
                 return str($item)->length();
             });
 
-            if (($round_number == $number && $sum_digits <= PHP_FLOAT_DIG - 1)) {
+            if (($round_number == $number && $sum_digits < PHP_FLOAT_DIG)) {
                 return true;
             }
         }
