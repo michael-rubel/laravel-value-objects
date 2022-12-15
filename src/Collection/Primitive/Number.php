@@ -25,9 +25,9 @@ use PHP\Math\BigNumber\BigNumber;
  * @template TKey of array-key
  * @template TValue
  *
- * @method static static make(int|string $number, int $scale = 2)
- * @method static static from(int|string $number, int $scale = 2)
- * @method static static makeOrNull(int|string|null $number, int $scale = 2)
+ * @method static static make(int|string|float $number, int $scale = 2)
+ * @method static static from(int|string|float $number, int $scale = 2)
+ * @method static static makeOrNull(int|string|float|null $number, int $scale = 2)
  *
  * @method string abs()
  * @method string add(float|int|string|BigNumber $value)
