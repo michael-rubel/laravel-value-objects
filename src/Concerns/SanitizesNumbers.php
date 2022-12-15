@@ -15,8 +15,8 @@ trait SanitizesNumbers
      */
     protected function sanitize(int|string|float|null $number): string
     {
-        if (is_float($number) && ! $this->isGoodFloat($number)) {
-            throw new LengthException();
+        if (is_float($number) && ! $this->isPrecise($number)) {
+            throw new LengthException('Float precision loss detected.');
         }
 
         $number = str($number)->replace(',', '.');
@@ -36,21 +36,26 @@ trait SanitizesNumbers
     }
 
     /**
-     * @param  int|string|float|null  $number
+     * Determine whether the passed floating point number is precise.
+     *
+     * @param  float  $number
+     *
      * @return bool
      */
-    private function isGoodFloat(int|string|float|null $number): bool
+    private function isPrecise(float $number): bool
     {
-        if (is_float($number)) {
-            $string_number = str($number);
+        $numberAsString = str($number);
 
-            $precision_position = str($string_number->explode('.')->get(1, ''))->length();
+        $afterFloatingPoint = $numberAsString
+            ->explode('.')
+            ->get(1, '');
 
-            $round_number = round($number, $precision_position);
+        $precisionPosition = str($afterFloatingPoint)->length();
 
-            if (($round_number == $number && $string_number->length() <= PHP_FLOAT_DIG)) {
-                return true;
-            }
+        $roundedNumber = round($number, $precisionPosition);
+
+        if ($roundedNumber === $number && $numberAsString->length() <= PHP_FLOAT_DIG) {
+            return true;
         }
 
         return false;

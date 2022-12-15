@@ -218,6 +218,7 @@ test('no conversion of decimal numbers as float input above 14 characters/digits
         $this->assertFalse(true);
     } catch (LengthException $e) {
         $this->assertSame(0, $e->getCode());
+        $this->assertSame('Float precision loss detected.', $e->getMessage());
     }
 })->with([
     11.5432109876731,
