@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace MichaelRubel\ValueObjects\Collection\Primitive;
 
+use Illuminate\Support\Stringable;
 use InvalidArgumentException;
 use MichaelRubel\ValueObjects\ValueObject;
 
@@ -32,23 +33,23 @@ use MichaelRubel\ValueObjects\ValueObject;
 class Boolean extends ValueObject
 {
     /**
-     * @var bool|int|string
+     * @var bool
      */
-    protected bool|int|string $value;
+    protected bool $value;
 
     /**
-     * Allowed values that are treated as `true`.
+     * Values that represent `true` boolean.
      *
      * @var array
      */
-    protected array $trueValues = ['1', 'true', 'True', 'TRUE', 1, true];
+    protected array $trueValues = ['1', 'true', 1, 'on', 'yes'];
 
     /**
-     * Allowed values that are treated as `false`.
+     * Values that represent `false` boolean.
      *
      * @var array
      */
-    protected array $falseValues = ['0', 'false', 'False', 'FALSE', 0, false];
+    protected array $falseValues = ['0', 'false', 0, 'off', 'no'];
 
     /**
      * Create a new instance of the value object.
@@ -61,13 +62,7 @@ class Boolean extends ValueObject
             throw new InvalidArgumentException(static::IMMUTABLE_MESSAGE);
         }
 
-        $this->value = $value;
-
-        $this->value = match (true) {
-            $this->isInTrueValues()  => true,
-            $this->isInFalseValues() => false,
-            default => throw new InvalidArgumentException('Invalid boolean.'),
-        };
+        ! is_bool($value) ? $this->handleNonBoolean($value) : $this->value = $value;
     }
 
     /**
@@ -77,27 +72,24 @@ class Boolean extends ValueObject
      */
     public function value(): bool
     {
-        return (bool) $this->value;
+        return $this->value;
     }
 
     /**
      * Determine if the passed boolean is true.
      *
-     * @return bool
+     * @param  int|string  $value
+     * @return void
      */
-    protected function isInTrueValues(): bool
+    protected function handleNonBoolean(int|string $value): void
     {
-        return in_array($this->value, $this->trueValues, strict: true);
-    }
+        $string = new Stringable($value);
 
-    /**
-     * Determine if the passed boolean is false.
-     *
-     * @return bool
-     */
-    protected function isInFalseValues(): bool
-    {
-        return in_array($this->value, $this->falseValues, strict: true);
+        $this->value = match (true) {
+            $string->contains($this->trueValues, ignoreCase: true) => true,
+            $string->contains($this->falseValues, ignoreCase: true) => false,
+            default => throw new InvalidArgumentException('Invalid boolean.'),
+        };
     }
 
     /**
@@ -107,7 +99,7 @@ class Boolean extends ValueObject
      */
     public function toString(): string
     {
-        return ! empty($this->value()) ? 'true' : 'false';
+        return $this->value() ? 'true' : 'false';
     }
 
     /**

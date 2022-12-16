@@ -23,6 +23,10 @@ test('boolean can accept boolean strings', function () {
     $this->assertFalse($valueObject->value());
     $valueObject = new Boolean('False');
     $this->assertFalse($valueObject->value());
+    $valueObject = new Boolean('off');
+    $this->assertFalse($valueObject->value());
+    $valueObject = new Boolean('no');
+    $this->assertFalse($valueObject->value());
     $valueObject = new Boolean('FALSE');
     $this->assertFalse($valueObject->value());
     $valueObject = new Boolean('true');
@@ -30,6 +34,10 @@ test('boolean can accept boolean strings', function () {
     $valueObject = new Boolean('True');
     $this->assertTrue($valueObject->value());
     $valueObject = new Boolean('TRUE');
+    $this->assertTrue($valueObject->value());
+    $valueObject = new Boolean('on');
+    $this->assertTrue($valueObject->value());
+    $valueObject = new Boolean('yes');
     $this->assertTrue($valueObject->value());
 });
 
@@ -97,10 +105,10 @@ test('boolean is macroable', function () {
     Boolean::macro('getNegativeValues', fn () => $this->falseValues);
     $valueObject = new Boolean(1);
     $this->assertSame([
-        '1', 'true', 'True', 'TRUE', 1, true,
+        '1', 'true', 1, 'on', 'yes',
     ], $valueObject->getPositiveValues());
     $this->assertSame([
-        '0', 'false', 'False', 'FALSE', 0, false,
+        '0', 'false', 0, 'off', 'no',
     ], $valueObject->getNegativeValues());
 });
 
@@ -155,11 +163,6 @@ test('boolean has immutable constructor', function () {
 
 test('can extend protected methods in boolean', function () {
     $bool = new TestBoolean('true');
-    assertTrue($bool->isInTrueValues());
-    assertIsBool($bool->value());
-
-    $bool = new TestBoolean('false');
-    assertTrue($bool->isInFalseValues());
     assertIsBool($bool->value());
 });
 
@@ -167,16 +170,6 @@ class TestBoolean extends Boolean
 {
     public function __construct(bool|int|string $value)
     {
-        $this->value = $value;
-    }
-
-    public function isInTrueValues(): bool
-    {
-        return parent::isInTrueValues();
-    }
-
-    public function isInFalseValues(): bool
-    {
-        return parent::isInFalseValues();
+        ! is_bool($value) ? $this->handleNonBoolean($value) : $this->value = $value;
     }
 }
