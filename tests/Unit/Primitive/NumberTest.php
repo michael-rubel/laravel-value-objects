@@ -331,17 +331,16 @@ test('number uses sanitizes numbers trait', function () {
 test('can extend protected methods in number', function () {
     $number = new TestNumber('1 230,00');
     $this->assertSame('1230.00', $number->value());
+    $number = new TestNumber(1230.12);
+    $this->assertSame('1230.12', $number->value());
 });
 
 class TestNumber extends Number
 {
-    public function __construct(int|string $number, protected int $scale = 2)
+    public function __construct(int|string|float $number, protected int $scale = 2)
     {
-        $this->bigNumber = new BigNumber($this->sanitize($number), $this->scale);
-    }
+        parent::isPrecise((float) $number);
 
-    protected function sanitize(int|string|float|null $number): string
-    {
-        return parent::sanitize($number);
+        $this->bigNumber = new BigNumber($this->sanitize($number), $this->scale);
     }
 }

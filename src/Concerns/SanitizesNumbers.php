@@ -42,7 +42,7 @@ trait SanitizesNumbers
      *
      * @return bool
      */
-    private function isPrecise(float $number): bool
+    protected function isPrecise(float $number): bool
     {
         $numberAsString = str($number);
 
