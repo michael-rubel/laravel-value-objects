@@ -25,9 +25,9 @@ use PHP\Math\BigNumber\BigNumber;
  * @template TKey of array-key
  * @template TValue
  *
- * @method static static make(int|string $number, int $scale = 2)
- * @method static static from(int|string $number, int $scale = 2)
- * @method static static makeOrNull(int|string|null $number, int $scale = 2)
+ * @method static static make(int|string|float $number, int $scale = 2)
+ * @method static static from(int|string|float $number, int $scale = 2)
+ * @method static static makeOrNull(int|string|float|null $number, int $scale = 2)
  *
  * @method string abs()
  * @method string add(float|int|string|BigNumber $value)
@@ -54,10 +54,10 @@ class Number extends ValueObject
     /**
      * Create a new instance of the value object.
      *
-     * @param  int|string  $number
+     * @param  int|string|float  $number
      * @param  int  $scale
      */
-    public function __construct(int|string $number, protected int $scale = 2)
+    public function __construct(int|string|float $number, protected int $scale = 2)
     {
         if (isset($this->bigNumber)) {
             throw new InvalidArgumentException(static::IMMUTABLE_MESSAGE);
