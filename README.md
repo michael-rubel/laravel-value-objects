@@ -5,7 +5,7 @@
 [![Tests](https://img.shields.io/github/actions/workflow/status/michael-rubel/laravel-value-objects/run-tests.yml?branch=main&style=flat-square&label=tests&logo=github)](https://github.com/michael-rubel/laravel-value-objects/actions)
 [![Code Quality](https://img.shields.io/scrutinizer/quality/g/michael-rubel/laravel-value-objects.svg?style=flat-square&logo=scrutinizer)](https://scrutinizer-ci.com/g/michael-rubel/laravel-value-objects/?branch=main)
 [![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/michael-rubel/laravel-value-objects.svg?style=flat-square&logo=scrutinizer)](https://scrutinizer-ci.com/g/michael-rubel/laravel-value-objects/?branch=main)
-[![Infection](https://img.shields.io/github/actions/workflow/status/michael-rubel/laravel-value-objects/infection.yml?branch=main&style=flat-square&label=infection&logo=php)](https://github.com/michael-rubel/laravel-package-template/actions)
+[![Infection](https://img.shields.io/github/actions/workflow/status/michael-rubel/laravel-value-objects/infection.yml?branch=main&style=flat-square&label=infection&logo=php)](https://github.com/michael-rubel/laravel-value-objects/actions)
 [![Larastan](https://img.shields.io/github/actions/workflow/status/michael-rubel/laravel-value-objects/phpstan.yml?branch=main&style=flat-square&label=larastan&logo=laravel)](https://github.com/michael-rubel/laravel-value-objects/actions)
 
 A bunch of general-purpose value objects you can use in your Laravel application.
