@@ -1,7 +1,7 @@
 {
   "preset": "laravel",
   "rules": {
-    "Laravel/laravel_phpdoc_separation": false,
+    "phpdoc_separation": false,
     "concat_space": {
       "spacing": "one"
     },
