@@ -163,7 +163,7 @@ test('boolean has immutable constructor', function () {
 
 test('can extend protected methods in boolean', function () {
     $bool = new TestBoolean('true');
-    assertIsBool($bool->value());
+    $this->assertIsBool($bool->value());
 });
 
 class TestBoolean extends Boolean

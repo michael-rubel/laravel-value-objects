@@ -17,7 +17,7 @@ test('validation exception message is correct in class string', function () {
     try {
         new ClassString('');
     } catch (ValidationException $e) {
-        assertSame(__('Class string cannot be empty.'), $e->getMessage());
+        $this->assertSame(__('Class string cannot be empty.'), $e->getMessage());
     }
 });
 
@@ -126,7 +126,7 @@ test('class string has immutable constructor', function () {
 test('can extend protected methods in class string', function () {
     $text = new TestClassString('Exception');
     $text->validate();
-    assertSame('Exception', $text->value());
+    $this->assertSame('Exception', $text->value());
 });
 
 class TestClassString extends ClassString

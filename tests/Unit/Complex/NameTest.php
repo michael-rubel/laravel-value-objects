@@ -104,7 +104,7 @@ test('name has immutable constructor', function () {
 
 test('can extend protected methods in name', function () {
     $name = new TestName('Name');
-    assertSame('Name', $name->value());
+    $this->assertSame('Name', $name->value());
 });
 
 class TestName extends Name

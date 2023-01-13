@@ -22,7 +22,7 @@ test('can use makeOrNull', function () {
 
 test('toString casts value to string', function () {
     $vo = new TestVO;
-    assertSame('100', $vo->toString());
+    $this->assertSame('100', $vo->toString());
 });
 
 class TestVO extends ValueObject

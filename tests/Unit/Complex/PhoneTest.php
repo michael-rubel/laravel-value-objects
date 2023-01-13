@@ -70,7 +70,7 @@ test('validation exception message is correct in phone', function () {
     try {
         new Phone('123');
     } catch (ValidationException $e) {
-        assertSame(__('Your phone number is invalid.'), $e->getMessage());
+        $this->assertSame(__('Your phone number is invalid.'), $e->getMessage());
     }
 });
 
@@ -158,7 +158,7 @@ test('phone has immutable constructor', function () {
 
 test('can extend protected methods in phone', function () {
     $phone = new TestPhone('+38 000 000 00 00');
-    assertSame('+38 000 000 00 00', $phone->value());
+    $this->assertSame('+38 000 000 00 00', $phone->value());
 });
 
 class TestPhone extends Phone

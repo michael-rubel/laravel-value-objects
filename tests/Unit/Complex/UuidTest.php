@@ -114,7 +114,7 @@ test('can extend protected methods in uuid', function () {
     $uuid = (string) Str::uuid();
     $text = new TestUuid($uuid);
     $text->validate();
-    assertSame($uuid, $text->value());
+    $this->assertSame($uuid, $text->value());
 });
 
 class TestUuid extends Uuid
