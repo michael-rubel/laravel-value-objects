@@ -17,7 +17,7 @@
     ],
     "require": {
         "php": "^8.0",
-        "illuminate/contracts": "^9.33",
+        "illuminate/contracts": "^9.33|^10.0",
         "michael-rubel/laravel-formatters": "^7.0.4",
         "phpmath/bignumber": "^1.2",
         "spatie/laravel-package-tools": "^1.12"
@@ -28,7 +28,7 @@
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^6.0",
         "nunomaduro/larastan": "^2.2",
-        "orchestra/testbench": "^7.4",
+        "orchestra/testbench": "^7.4|^8.0",
         "pestphp/pest": "^1.16",
         "pestphp/pest-plugin-global-assertions": "^1.0",
         "pestphp/pest-plugin-laravel": "^1.1",
