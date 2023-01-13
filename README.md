@@ -12,7 +12,7 @@ A bunch of general-purpose value objects you can use in your Laravel application
 
 ---
 
-The package requires PHP `^8.0.2` and Laravel `^9.33`.
+The package requires `PHP 8` or higher and `Laravel 9` or higher.
 
 ## #StandWithUkraine
 [![SWUbanner](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner2-direct.svg)](https://github.com/vshymanskyy/StandWithUkraine/blob/main/docs/README.md)
