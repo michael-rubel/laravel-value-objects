@@ -34,5 +34,5 @@ test('value object command option', function () {
 
     $fakeOption = new InputOption('value-object', null, InputOption::VALUE_NONE, 'Create a value object');
 
-    assertEquals($option, $fakeOption);
+    $this->assertEquals($option, $fakeOption);
 });
