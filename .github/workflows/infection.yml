@@ -30,4 +30,4 @@ jobs:
         run: composer install -n --prefer-dist
 
       - name: Run infection
-        run: ./vendor/bin/infection --test-framework=pest --show-mutations --min-msi=100 --min-covered-msi=100
+        run: ./vendor/bin/infection --show-mutations --min-msi=100 --min-covered-msi=100
