@@ -5,6 +5,7 @@
             "src"
         ]
     },
+    "testFramework": "pest",
     "logs": {
         "text": "php://stderr",
         "github": true
