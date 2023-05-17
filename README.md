@@ -29,6 +29,7 @@ composer require michael-rubel/laravel-value-objects
 - [`Number`](https://github.com/michael-rubel/laravel-value-objects/blob/main/src/Collection/Primitive/Number.php)
 - [`Text`](https://github.com/michael-rubel/laravel-value-objects/blob/main/src/Collection/Primitive/Text.php)
 - [`ClassString`](https://github.com/michael-rubel/laravel-value-objects/blob/main/src/Collection/Complex/ClassString.php)
+- [`Email`](https://github.com/michael-rubel/laravel-value-objects/blob/main/src/Collection/Complex/Email.php)
 - [`FullName`](https://github.com/michael-rubel/laravel-value-objects/blob/main/src/Collection/Complex/FullName.php)
 - [`Name`](https://github.com/michael-rubel/laravel-value-objects/blob/main/src/Collection/Complex/Name.php)
 - [`Phone`](https://github.com/michael-rubel/laravel-value-objects/blob/main/src/Collection/Complex/Phone.php)
