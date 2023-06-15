@@ -29,11 +29,11 @@ test('cannot instantiate invalid url', function () {
 });
 
 test('cannot instantiate invalid url with try/catch', function () {
-     try {
-         new Url(' Test Url ');
-     } catch (ValidationException $exception) {
-         $this->assertSame('Your URL is invalid.', $exception->getMessage());
-     }
+    try {
+        new Url(' Test Url ');
+    } catch (ValidationException $exception) {
+        $this->assertSame('Your URL is invalid.', $exception->getMessage());
+    }
 });
 
 test('can cast url to string', function () {
@@ -91,17 +91,6 @@ test('url is stringable', function () {
 
     $valueObject = new Url('test-url');
     $this->assertSame('http://localhost/test-url', $valueObject->toString());
-});
-
-test('url accepts stringable', function () {
-    $valueObject = new Url(str('test-url'));
-    $this->assertSame('http://localhost/test-url', $valueObject->value());
-});
-
-test('url fails when empty stringable passed', function () {
-    $this->expectException(\InvalidArgumentException::class);
-
-    new Url(str(''));
 });
 
 test('url has immutable properties', function () {

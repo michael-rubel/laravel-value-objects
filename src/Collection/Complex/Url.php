@@ -13,7 +13,6 @@ declare(strict_types=1);
 namespace MichaelRubel\ValueObjects\Collection\Complex;
 
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Stringable;
 use Illuminate\Validation\ValidationException;
 use MichaelRubel\ValueObjects\Collection\Primitive\Text;
 
@@ -25,9 +24,9 @@ use MichaelRubel\ValueObjects\Collection\Primitive\Text;
  * @template TKey of array-key
  * @template TValue
  *
- * @method static static make(string|Stringable $value)
- * @method static static from(string|Stringable $value)
- * @method static static makeOrNull(string|Stringable|null $value)
+ * @method static static make(string $value)
+ * @method static static from(string $value)
+ * @method static static makeOrNull(string|null $value)
  *
  * @extends Text<TKey, TValue>
  */
@@ -36,9 +35,9 @@ class Url extends Text
     /**
      * Create a new instance of the value object.
      *
-     * @param  string|Stringable  $value
+     * @param  string  $value
      */
-    public function __construct(string|Stringable $value)
+    public function __construct(string $value)
     {
         parent::__construct($value);
 
