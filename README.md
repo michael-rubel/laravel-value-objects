@@ -26,14 +26,15 @@ composer require michael-rubel/laravel-value-objects
 ## Built-in value objects
 
 - [`Boolean`](https://github.com/michael-rubel/laravel-value-objects/blob/main/src/Collection/Primitive/Boolean.php)
-- [`Number`](https://github.com/michael-rubel/laravel-value-objects/blob/main/src/Collection/Primitive/Number.php)
-- [`Text`](https://github.com/michael-rubel/laravel-value-objects/blob/main/src/Collection/Primitive/Text.php)
 - [`ClassString`](https://github.com/michael-rubel/laravel-value-objects/blob/main/src/Collection/Complex/ClassString.php)
 - [`Email`](https://github.com/michael-rubel/laravel-value-objects/blob/main/src/Collection/Complex/Email.php)
 - [`FullName`](https://github.com/michael-rubel/laravel-value-objects/blob/main/src/Collection/Complex/FullName.php)
 - [`Name`](https://github.com/michael-rubel/laravel-value-objects/blob/main/src/Collection/Complex/Name.php)
+- [`Number`](https://github.com/michael-rubel/laravel-value-objects/blob/main/src/Collection/Primitive/Number.php)
 - [`Phone`](https://github.com/michael-rubel/laravel-value-objects/blob/main/src/Collection/Complex/Phone.php)
 - [`TaxNumber`](https://github.com/michael-rubel/laravel-value-objects/blob/main/src/Collection/Complex/TaxNumber.php)
+- [`Text`](https://github.com/michael-rubel/laravel-value-objects/blob/main/src/Collection/Primitive/Text.php)
+- [`Url`](https://github.com/michael-rubel/laravel-value-objects/blob/main/src/Collection/Complex/Url.php)
 - [`Uuid`](https://github.com/michael-rubel/laravel-value-objects/blob/main/src/Collection/Complex/Uuid.php)
 
 ### Artisan command
@@ -194,6 +195,19 @@ $taxNumber->toArray(); // ['fullTaxNumber' => 'PL0123456789', 'taxNumber' => '01
 $taxNumber->fullTaxNumber(); // 'PL0123456789'
 $taxNumber->taxNumber();     // '0123456789'
 $taxNumber->prefix();        // 'PL'
+```
+
+---
+
+### Url
+```php
+$uuid = new Url('my-blog-page');
+$uuid = Url::make('my-blog-page');
+$uuid = Url::from('my-blog-page');
+
+$uuid->value();   // 'https://example.com/my-blog-page'
+(string) $uuid;   // 'https://example.com/my-blog-page'
+$uuid->toArray(); // ['https://example.com/my-blog-page']
 ```
 
 ---
