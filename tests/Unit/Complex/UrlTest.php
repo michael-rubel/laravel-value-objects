@@ -36,6 +36,11 @@ test('cannot instantiate invalid url with try/catch', function () {
      }
 });
 
+test('can cast url to string', function () {
+    $url = new Url('test-url');
+    $this->assertSame('http://localhost/test-url', (string) $url);
+});
+
 test('url cannot accept null', function () {
     $this->expectException(\TypeError::class);
 
