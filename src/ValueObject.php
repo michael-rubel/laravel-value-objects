@@ -32,7 +32,7 @@ use Throwable;
  */
 abstract class ValueObject implements Arrayable, Immutable
 {
-    use Macroable, Conditionable, HandlesCallbacks;
+    use Conditionable, HandlesCallbacks, Macroable;
 
     /**
      * Get the object value.
@@ -72,7 +72,7 @@ abstract class ValueObject implements Arrayable, Immutable
      *
      * @return static|null
      */
-    public static function makeOrNull(mixed ...$values): static|null
+    public static function makeOrNull(mixed ...$values): ?static
     {
         try {
             return static::make(...$values);
