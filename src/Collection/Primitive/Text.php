@@ -74,7 +74,7 @@ class Text extends ValueObject
      */
     protected function validate(): void
     {
-        if (empty($this->value())) {
+        if ($this->value() === '') {
             throw new InvalidArgumentException('Text cannot be empty.');
         }
     }

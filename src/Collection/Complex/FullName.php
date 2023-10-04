@@ -102,7 +102,7 @@ class FullName extends Name
      */
     protected function validate(): void
     {
-        if (empty($this->value())) {
+        if ($this->value() === '') {
             throw ValidationException::withMessages(['Full name cannot be empty.']);
         }
 
