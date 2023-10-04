@@ -10,7 +10,6 @@
 
 namespace MichaelRubel\ValueObjects\Collection\Complex;
 
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Stringable;
 use Illuminate\Validation\ValidationException;
@@ -33,9 +32,9 @@ use MichaelRubel\ValueObjects\Collection\Primitive\Text;
 class Email extends Text
 {
     /**
-     * @var Collection<int, string>
+     * @var array<int, string>
      */
-    protected Collection $split;
+    protected array $split;
 
     /**
      * Create a new instance of the value object.
@@ -54,7 +53,7 @@ class Email extends Text
      */
     public function username(): string
     {
-        return $this->split->first();
+        return $this->split[0];
     }
 
     /**
@@ -62,7 +61,7 @@ class Email extends Text
      */
     public function domain(): string
     {
-        return $this->split->last();
+        return $this->split[1];
     }
 
     /**
@@ -113,6 +112,6 @@ class Email extends Text
      */
     protected function split(): void
     {
-        $this->split = str($this->value())->split('/@/');
+        $this->split = explode('@', $this->value());
     }
 }
