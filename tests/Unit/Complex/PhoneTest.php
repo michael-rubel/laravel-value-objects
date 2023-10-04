@@ -70,7 +70,7 @@ test('validation exception message is correct in phone', function () {
     try {
         new Phone('123');
     } catch (ValidationException $e) {
-        $this->assertSame(__('Your phone number is invalid.'), $e->getMessage());
+        $this->assertSame('Your phone number is invalid.', $e->getMessage());
     }
 });
 

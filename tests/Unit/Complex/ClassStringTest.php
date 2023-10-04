@@ -17,7 +17,7 @@ test('validation exception message is correct in class string', function () {
     try {
         new ClassString('');
     } catch (ValidationException $e) {
-        $this->assertSame(__('Class string cannot be empty.'), $e->getMessage());
+        $this->assertSame('Class string cannot be empty.', $e->getMessage());
     }
 });
 

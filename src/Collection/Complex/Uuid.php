@@ -111,7 +111,7 @@ class Uuid extends ValueObject
     protected function validate(): void
     {
         if (! str($this->value())->isUuid()) {
-            throw ValidationException::withMessages([__('UUID is invalid.')]);
+            throw ValidationException::withMessages(['UUID is invalid.']);
         }
     }
 }

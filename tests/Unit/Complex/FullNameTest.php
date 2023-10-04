@@ -82,13 +82,13 @@ test('validation exception message is correct in email', function () {
     try {
         new FullName('');
     } catch (ValidationException $e) {
-        $this->assertSame(__('Full name cannot be empty.'), $e->getMessage());
+        $this->assertSame('Full name cannot be empty.', $e->getMessage());
     }
 
     try {
         new FullName('Test');
     } catch (ValidationException $e) {
-        $this->assertSame(__('Full name should have a first name and last name.'), $e->getMessage());
+        $this->assertSame('Full name should have a first name and last name.', $e->getMessage());
     }
 });
 

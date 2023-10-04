@@ -40,7 +40,7 @@ test('validation exception message is correct in email', function () {
     try {
         new Email('');
     } catch (ValidationException $e) {
-        $this->assertSame(__('Your email is invalid.'), $e->getMessage());
+        $this->assertSame('Your email is invalid.', $e->getMessage());
     }
 });
 

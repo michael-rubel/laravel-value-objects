@@ -92,7 +92,7 @@ class Email extends Text
         );
 
         if ($validator->fails()) {
-            throw ValidationException::withMessages([__('Your email is invalid.')]);
+            throw ValidationException::withMessages(['Your email is invalid.']);
         }
     }
 

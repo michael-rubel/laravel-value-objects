@@ -63,7 +63,7 @@ class Phone extends Text
     protected function validate(): void
     {
         if (! preg_match('/^[+]?[0-9 ]{5,15}$/', $this->sanitized())) {
-            throw ValidationException::withMessages([__('Your phone number is invalid.')]);
+            throw ValidationException::withMessages(['Your phone number is invalid.']);
         }
     }
 

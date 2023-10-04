@@ -142,7 +142,7 @@ class TaxNumber extends ValueObject
     protected function validate(): void
     {
         if (empty($this->value())) {
-            throw ValidationException::withMessages([__('Tax number cannot be empty.')]);
+            throw ValidationException::withMessages(['Tax number cannot be empty.']);
         }
     }
 

@@ -68,7 +68,7 @@ class {{ class }} extends ValueObject
         // TODO: Implement validate() method.
 
         if (empty($this->value())) {
-            throw ValidationException::withMessages([__('Value of {{ class }} cannot be empty.')]);
+            throw ValidationException::withMessages(['Value of {{ class }} cannot be empty.']);
         }
     }
 }

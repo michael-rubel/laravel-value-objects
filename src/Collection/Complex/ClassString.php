@@ -115,7 +115,7 @@ class ClassString extends ValueObject
     protected function validate(): void
     {
         if (empty($this->value())) {
-            throw ValidationException::withMessages([__('Class string cannot be empty.')]);
+            throw ValidationException::withMessages(['Class string cannot be empty.']);
         }
     }
 }
