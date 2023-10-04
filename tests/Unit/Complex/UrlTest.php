@@ -130,7 +130,7 @@ class TestUrl extends Url
         );
 
         if ($validator->fails()) {
-            throw ValidationException::withMessages([__('Your URL is invalid.')]);
+            throw ValidationException::withMessages(['Your URL is invalid.']);
         }
     }
 

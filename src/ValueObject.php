@@ -159,6 +159,6 @@ abstract class ValueObject implements Arrayable, Immutable
      */
     public function __set(string $name, mixed $value): void
     {
-        throw new InvalidArgumentException(__(static::IMMUTABLE_MESSAGE));
+        throw new InvalidArgumentException(static::IMMUTABLE_MESSAGE);
     }
 }

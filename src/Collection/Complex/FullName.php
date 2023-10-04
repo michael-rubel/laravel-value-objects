@@ -103,11 +103,11 @@ class FullName extends Name
     protected function validate(): void
     {
         if (empty($this->value())) {
-            throw ValidationException::withMessages([__('Full name cannot be empty.')]);
+            throw ValidationException::withMessages(['Full name cannot be empty.']);
         }
 
         if (count($this->split) < 2) {
-            throw ValidationException::withMessages([__('Full name should have a first name and last name.')]);
+            throw ValidationException::withMessages(['Full name should have a first name and last name.']);
         }
     }
 

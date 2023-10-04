@@ -49,7 +49,7 @@ class Url extends Text
         );
 
         if ($validator->fails()) {
-            throw ValidationException::withMessages([__('Your URL is invalid.')]);
+            throw ValidationException::withMessages(['Your URL is invalid.']);
         }
     }
 
