@@ -112,6 +112,6 @@ class Email extends Text
      */
     protected function split(): void
     {
-        $this->split = explode('@', $this->value);
+        $this->split = explode('@', $this->value());
     }
 }
