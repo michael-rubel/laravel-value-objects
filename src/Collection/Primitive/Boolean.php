@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace MichaelRubel\ValueObjects\Collection\Primitive;
 
-use Illuminate\Support\Stringable;
+use Illuminate\Support\Str;
 use InvalidArgumentException;
 use MichaelRubel\ValueObjects\ValueObject;
 
@@ -83,11 +83,9 @@ class Boolean extends ValueObject
      */
     protected function handleNonBoolean(int|string $value): void
     {
-        $string = new Stringable($value);
-
         $this->value = match (true) {
-            $string->contains($this->trueValues, ignoreCase: true) => true,
-            $string->contains($this->falseValues, ignoreCase: true) => false,
+            Str::contains($value, $this->trueValues, ignoreCase: true) => true,
+            Str::contains($value, $this->falseValues, ignoreCase: true) => false,
             default => throw new InvalidArgumentException('Invalid boolean.'),
         };
     }
