@@ -29,6 +29,16 @@
             "ignore": [
                 "MichaelRubel\\ValueObjects\\Artisan\\ValueObjectMakeCommand::getDefaultNamespace"
             ]
+        },
+        "CastString": {
+            "ignore": [
+                "MichaelRubel\\ValueObjects\\Collection\\Primitive\\Boolean::handleNonBoolean"
+            ]
+        },
+        "Ternary": {
+            "ignore": [
+                "MichaelRubel\\ValueObjects\\Collection\\Primitive\\Boolean::handleNonBoolean"
+            ]
         }
     }
 }
