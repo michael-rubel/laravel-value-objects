@@ -42,14 +42,14 @@ class Boolean extends ValueObject
      *
      * @var array
      */
-    protected array $trueValues = ['1', 'true', 1, 'on', 'yes'];
+    protected array $trueValues = ['1', 'true', 'on', 'yes'];
 
     /**
      * Values that represent `false` boolean.
      *
      * @var array
      */
-    protected array $falseValues = ['0', 'false', 0, 'off', 'no'];
+    protected array $falseValues = ['0', 'false', 'off', 'no'];
 
     /**
      * Create a new instance of the value object.
@@ -83,9 +83,11 @@ class Boolean extends ValueObject
      */
     protected function handleNonBoolean(int|string $value): void
     {
+        $string = is_string($value) ? $value : (string) $value;
+
         $this->value = match (true) {
-            Str::contains($value, $this->trueValues, ignoreCase: true) => true,
-            Str::contains($value, $this->falseValues, ignoreCase: true) => false,
+            Str::contains($string, $this->trueValues, ignoreCase: true) => true,
+            Str::contains($string, $this->falseValues, ignoreCase: true) => false,
             default => throw new InvalidArgumentException('Invalid boolean.'),
         };
     }

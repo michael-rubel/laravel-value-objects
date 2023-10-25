@@ -11,6 +11,12 @@ test('boolean can accept integer', function () {
     $this->assertTrue($valueObject->value());
 });
 
+test('throws exception on invalid integer', function () {
+    $this->expectException(InvalidArgumentException::class);
+
+    new Boolean(2);
+});
+
 test('boolean can accept integer as a string', function () {
     $valueObject = new Boolean('0');
     $this->assertFalse($valueObject->value());
@@ -105,10 +111,10 @@ test('boolean is macroable', function () {
     Boolean::macro('getNegativeValues', fn () => $this->falseValues);
     $valueObject = new Boolean(1);
     $this->assertSame([
-        '1', 'true', 1, 'on', 'yes',
+        '1', 'true', 'on', 'yes',
     ], $valueObject->getPositiveValues());
     $this->assertSame([
-        '0', 'false', 0, 'off', 'no',
+        '0', 'false', 'off', 'no',
     ], $valueObject->getNegativeValues());
 });
 
