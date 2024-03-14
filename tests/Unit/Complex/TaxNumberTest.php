@@ -190,7 +190,7 @@ test('can extend protected methods in phone', function () {
 
 class TestTaxNumber extends TaxNumber
 {
-    public function __construct(string $number, string $prefix = null)
+    public function __construct(string $number, ?string $prefix = null)
     {
         $this->number = $number;
         $this->prefix = $prefix;

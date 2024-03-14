@@ -48,7 +48,7 @@ class Uuid extends ValueObject
      * @param  string  $value
      * @param  string|null  $name
      */
-    public function __construct(string $value, string $name = null)
+    public function __construct(string $value, ?string $name = null)
     {
         if (isset($this->value)) {
             throw new InvalidArgumentException(static::IMMUTABLE_MESSAGE);
