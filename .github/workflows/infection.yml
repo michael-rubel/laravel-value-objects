@@ -18,7 +18,7 @@ jobs:
         with:
           php-version: '8.1'
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, intl, fileinfo, sodium
-          coverage: xdebug
+          coverage: pcov
 
       - name: Cache composer dependencies
         uses: actions/cache@v2
@@ -26,8 +26,10 @@ jobs:
           path: vendor
           key: composer-${{ hashFiles('composer.lock') }}
 
-      - name: Run composer install
-        run: composer install -n --prefer-dist
+      - name: Install dependencies
+        run: |
+          composer require "laravel/framework:10.*" "nesbot/carbon:^2.64.1" --dev --no-interaction --no-update
+          composer update --prefer-stable --prefer-dist --no-interaction
 
       - name: Run infection
         run: ./vendor/bin/infection --show-mutations --min-msi=100 --min-covered-msi=100
