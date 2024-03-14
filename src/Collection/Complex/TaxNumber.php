@@ -49,7 +49,7 @@ class TaxNumber extends ValueObject
      * @param  string  $number
      * @param  string|null  $prefix
      */
-    public function __construct(string $number, string $prefix = null)
+    public function __construct(string $number, ?string $prefix = null)
     {
         if (isset($this->number)) {
             throw new InvalidArgumentException(static::IMMUTABLE_MESSAGE);
