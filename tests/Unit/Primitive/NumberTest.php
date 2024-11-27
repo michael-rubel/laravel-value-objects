@@ -335,6 +335,86 @@ test('can extend protected methods in number', function () {
     $this->assertSame('1230.12', $number->value());
 });
 
+test('number can accept negative integer', function () {
+    $valueObject = new Number(-1);
+    $this->assertSame('-1.00', $valueObject->value());
+    $valueObject = new Number(-2);
+    $this->assertSame('-2.00', $valueObject->value());
+});
+
+test('number can cast negative value to integer', function () {
+    $valueObject = new Number('-100');
+    $this->assertSame(-100, $valueObject->asInteger());
+});
+
+test('number can cast negative value to float', function () {
+    $valueObject = new Number('-36000.50');
+    $this->assertSame(-36000.50, $valueObject->asFloat());
+});
+
+test('negative number as a big number', function () {
+    $number = new Number('-20000.793', 3);
+    $this->assertEquals(new BigNumber('-20000.793', 3, false), $number->asBigNumber());
+});
+
+test('negative number can be divided using magic call', function () {
+    $number = new Number('-20000.793', 4);
+    $this->assertSame('-10000.3965', $number->divide(2));
+});
+
+test('negative number can be multiplied using magic call', function () {
+    $number = new Number('-20000.793', 3);
+    $this->assertSame('-40001.586', $number->multiply(2));
+});
+
+test('negative number strips zeros when the value starts from zero', function ($input, $result) {
+    $valueObject = new Number($input);
+    $this->assertSame($result, $valueObject->value());
+})->with([
+    ['-0000123.987', '-123.98'],
+    ['-0000123', '-123.00'],
+]);
+
+test('negative number accepts formatted value', function ($input, $scale, $result) {
+    $valueObject = new Number($input, $scale);
+    $this->assertSame($result, $valueObject->value());
+})->with([
+    ['-1,230,00', 2, '-1230.00'],
+    ['-123.123.123,556', 3, '-123123123.556'],
+    ['-1 230,00', 2, '-1230.00'],
+    ['-777.7', 3, '-777.700'],
+]);
+
+test('negative number fails when invalid text provided', function () {
+    $this->expectException(\InvalidArgumentException::class);
+
+    new Number('-asd');
+});
+
+test('negative number fails when empty string passed', function () {
+    $this->expectException(\InvalidArgumentException::class);
+
+    new Number('-');
+});
+
+test('negative number can change decimals as a string input', function ($input, $scale, $result) {
+    $valueObject = new Number($input, $scale);
+    $this->assertSame($result, $valueObject->value());
+})->with([
+    ['-111777999.97', 2, '-111777999.97'],
+    ['-111777999,97', 2, '-111777999.97'],
+    ['-7.99', 3, '-7.990'],
+    ['-71.1', 5, '-71.10000'],
+]);
+
+test('negative number can handle huge numbers', function ($input, $scale, $result) {
+    $valueObject = new Number($input, $scale);
+    $this->assertSame($result, $valueObject->value());
+})->with([
+    ['-9876543210111777999.9087', 2, '-9876543210111777999.90'],
+    ['-98765432101117779990000.9087', 1, '-98765432101117779990000.9'],
+]);
+
 class TestNumber extends Number
 {
     public function __construct(int|string|float $number, protected int $scale = 2)

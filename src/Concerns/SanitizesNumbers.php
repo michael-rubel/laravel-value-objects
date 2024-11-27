@@ -31,7 +31,7 @@ trait SanitizesNumbers
         }
 
         return $number
-            ->replaceMatches('/[^0-9.]/', '')
+            ->replaceMatches('/(?!^-)[^0-9.]/', '')
             ->toString();
     }
 
